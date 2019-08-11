@@ -1,0 +1,172 @@
+---
+title: "Estudos de caso"
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+  pdf_document:
+    includes:
+      in_header: preamble.tex
+    keep_tex: yes
+    number_sections: yes
+  word_document: default
+  html_document:
+    fig_caption: yes
+    keep_md: yes
+classoption: a4paper
+documentclass: article
+link-citations: yes
+csl: ABNT_UFPR_2011-Mendeley.csl
+subtitle: Aplicações na Engenharia de Avaliações
+bibliography: bibliography.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message=FALSE, warning = FALSE, 
+                      fig.ext='png', fig.align='center', fig.path = "images/",
+                      fig.pos = "H", dev = "png", dpi = 600, out.width = "70%")
+type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+options(digits = 10)
+brformat <- function(x, decimal.mark = ",", big.mark = ".", digits = 2, nsmall = 2, scientific = FALSE, ...) {
+  format(x, decimal.mark = decimal.mark, big.mark = big.mark, digits = digits, 
+         nsmall = nsmall, scientific = scientific, ...)
+}
+reais <- function(prefix = "R$", ...) {
+  function(x) paste(prefix, brformat(x, ...), sep = "")
+}
+porcento <- function (x) {
+    if (length(x) == 0) 
+        return(character())
+    x <- plyr::round_any(x, scales:::precision(x)/100)
+    paste0(brformat(x * 100), "\\%")
+}
+library(quantreg)
+library(appraiseR)
+library(ggplot2)
+library(ggthemes)
+theme_set(theme_stata())
+library(stargazer)
+```
+
+# Estudos de Caso
+
+Para os estudos de caso foram utilizados os dados disponíveis em @hochheim.
+
+```{r}
+dados <- centro_2015@data
+dados$padrao <- as.numeric(dados$padrao)
+```
+
+## Duas dimensões
+
+Assim como na regressão linear, é mais fácil aa compreensão da regressão quantílica através de exemplos em duas dimensões, e depois generalizar para $n$ dimensões.
+
+Seja primeiramente o caso de dados heteroscedásticos. A figura \ref{fig:qr1} ilustra a aplicação da regressão quantílica e da regressão linear para este caso. Na figura \ref{fig:qr1}, a reta vermelha é a reta de regressão linear entre as variáveis. A área sombreada em cinza é o intervalo de confiança para a regressão linear \@80\%. As retas azuis são as retas de regressão quantílica para os quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
+
+A regressão quantílica neste caso pode ser usada para demonstrar a não validade dos intervalos de confiança (IC) e predição (IP) para a regressão linear para este tipo de dados: como a variância da população não é constante, mas aumenta com o aumento da área, as retas da regressão quantílica se abrem. Como os intervalos de confiança e predição na inferência clássica são calculados considerando-se que a variância da população é constante, este efeito não se observa no formato do IC.
+
+```{r qr1, fig.cap = "Regressão Linear e Quantílica para dados heteroscedásticos."}
+qs <- 1:9/10
+qr <- rq(valor ~ area_total, data = dados, tau = qs)
+ggplot(dados, aes(area_total, valor)) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = TRUE, level = .80, color = "red")
+```
+
+Assim como na regressão linear, uma conveniente transformação das variáveis pode ser aplicada para a obtenção da homoscedasticidade. Isto pode ser visto na figura \ref{fig:qr2}, onde as retas para os diferentes quantis obtidas pela regressão quantílica agora são praticamente paralelas entre si, indicando que a heteroscedasticidade foi removida.
+
+```{r qr2, fig.cap = "Regressão Linear e Quantílica com dados transformados."}
+qs <- 1:9/10
+qr2 <- rq(log(valor) ~ log(area_total), data = dados, tau = qs)
+ggplot(dados, aes(log(area_total), log(valor))) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = FALSE, color = "red")
+```
+
+Os coeficientes das retas de regressão quantílica podem ser plotados como na figura \ref{fig:coef1}. Nesta figura, a reta cheia vermelha representa o coeficiente do modelo de regressão linear, enquanto a reta preta pontilhada representa os vários coeficientes da regressão quantílica. As retas vermelhas tracejadas representam o intervalo de confiança de estimação do coeficiente de regressão linear. A área sombreada em cinza representa os intervalos de confiança para os coeficientes da regressão quantílica. Deve-se notar que, entre os quantis aproximados de 0,3 e 0,55, os coeficientes da regressão quantílica não são significamente diferentes, estatísticamente, do coeficiente da regreessão linear.
+
+```{r coef1, fig.cap = "Variação dos coeficientes de regressão quantílica (variáveis originais)."}
+plot(summary(qr), parm="area_total")
+```
+Já para os dados transformados, pode-se notar na figura \ref{fig:coef2} que para todos os quantis, os coeficientes da regressão quantílica não podem ser considerados estatisticamente diferentes do coeficiente da regressão linear. Também se pode notar nesta figura como o estimador de regressão linear, para uma variável normalmente distribuída e na ausência de heteroscedasticidade, é mais eficiente do que o estimador da regressão quantílica, como a teoria já prevê (ver @matloff2017, 238). 
+
+(Zilli, não sei se tu pesquisou isso na revisão bibliográfica, mas acho que se não, era bom colocar! Colocar algo do tipo: as vantagens e desvantagens da regressão quantílica. Apesar da regressão quantílica ser robusta à presença de *outliers*, ela é menos eficiente do que a regressao linear, caso a distribuição da variável estudada seja normal, claro.)
+
+```{r coef2, fig.cap = "Variação dos coeficientes de regressão quantílica (variáveis transformadas)."}
+plot(summary(qr2), parm="log(area_total)")
+```
+
+
+## Análise Multivariada
+
+Para os dados obtidos de Hochheim [-@hochheim, 22-23] foram ajustados dois modelos, um de regressão linear, com os dados saneados, e outro de regressão quantílica, utilizando-se a totalidade dos dados, para os quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
+
+Na figura \ref{fig:coefs} podem ser vistos os valores dos coeficientes de cada variável para os diferentes quantis. Pode-se perceber, mais uma vez, que o valor dos coeficientes da regressão quantílica não diferem significantemente dos coeficientes da regressão linear (exceção para alguns quantis superiores nas variáveis `area_total` e `padrao`).
+
+```{r}
+fit_qr <- rq(log(valor) ~ area_total + quartos + suites + garagens + 
+            log(dist_b_mar) + rec(padrao), data = dados, tau = qs)
+```
+
+
+```{r coefs, out.width="100%", fig.cap="Coeficientes de regressão linear e quantílica. Análise multivariada."}
+plot(summary(fit_qr))
+```
+
+
+
+Na tabela \ref{tab:fits} podem ser vistos os coeficientes e estatísticas básicas dos modelos de regressão linear e de regressão à mediana (quantil 0,5).
+
+```{r}
+fit <- lm(log(valor) ~ area_total + quartos + suites + garagens + 
+            log(dist_b_mar) + rec(padrao), data = dados,
+          subset = -c(31, 39))
+fit_1 <- rq(log(valor) ~ area_total + quartos + suites + garagens + 
+            log(dist_b_mar) + rec(padrao), data = dados)
+# fit_2 <- rq(log(valor) ~ area_total + quartos + suites + garagens + 
+#             log(dist_b_mar) + rec(padrao), data = dados, tau = c(.1, .9))
+fit_2 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
+            log(dist_b_mar) + rec(padrao), data = dados, tau = .1)
+fit_3 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
+            log(dist_b_mar) + rec(padrao), data = dados, tau = .9)
+```
+
+
+
+```{r, results='asis'}
+stargazer(fit, fit_1, type = type, header = FALSE, label = "tab:fits",
+          title = "Comparação entre os modelos de regressão linear e regressão à mediana.",
+          report = "vcstp*", ci = TRUE, ci.level = .80)
+```
+
+```{r}
+p <- predict(fit, newdata = dados[52,], interval = "confidence", level = .80)
+pp <- predict(fit, newdata = dados[52,], interval = "prediction", level = .80)
+p1 <- predict(fit_1, newdata = dados[52,], interval = "confidence", level = .80)
+p2 <- predict(fit_2, newdata = dados[52,], interval = "confidence", level = .80)
+p3 <- predict(fit_3, newdata = dados[52,], interval = "confidence", level = .80)
+```
+
+### Estimativas
+
+É interessante comparar as estimativas obtidas com os modelos de regressão linear, com dados saneados, e o modelo de regressão à mediana, com a totalidade dos dados. Por um lado, o modelo de regressão linear tende a ser mais preciso para a estimação da média, como prevê a teoria. Por outro lado, com mais dados, o modelo de regressão à mediana pode tornar-se mais eficiente.
+
+Deve-se levar em conta que as estimativas com o modelo de regressão linear aqui apresentadas são para a mediana da distribuição lognormal. 
+
+Pelo modelo de regressão linear, o valor da estimativa central  encontrado foi de R\$`r brformat(exp(p[, "fit"]))`, com intervalo de confiança entre R\$ `r brformat(exp(p[, "lwr"]))` e R\$ `r brformat(exp(p[, "upr"]))`. A amplitude do intervalo de confiança foi de `r porcento(amplitude(exp(p))/100)`.
+
+Já pelo modelo de regressão quantílica, o valor da estimativa central encontrado foi de R\$`r brformat(exp(p1[, "fit"]))`, com intervalo de confiança entre R\$ `r brformat(exp(p1[, "lower"]))` e R\$ `r brformat(exp(p1[, "higher"]))`. A amplitude do intervalo de confiança foi de  `r porcento(amplitude(exp(p1))/100)`.
+
+O modelo de regressão linear mostrou-se, portanto, mais eficiente do que o modelo de regressão a mediana, apesar no menor número de dados.
+
+Os limites inferior e superior do intervalo de predição \@80\% para o modelo de regressão linear são, respectivamente:  R\$ `r brformat(exp(pp[, "lwr"]))` e R\$ `r brformat(exp(pp[, "upr"]))`.
+
+Para o modelo de regressão quantílica, o intervalo de predição não faz qualquer sentido. No entanto, é possível estimar os valores diretamente para os quantis 0,1 e 0,9 da população. Nesta caso, os valores encontrados foram, respectivamente: R\$ `r brformat(exp(p2[, "fit"]))` e R\$ `r brformat(exp(p3[, "fit"]))`.
+
+Podem ainda ser calculados os intervalos de confiança \@80\% para as estimativas dos quantis 0,1 e 0,9. 
+
+Os limites inferior e superior do IC para o quantil 0,1 são, respectivamente: R\$ `r brformat(exp(p2[, "lower"]))` e R\$ `r brformat(exp(p2[, "higher"]))`.
+
+Os limites inferior e superior do IC para o quantil 0,9 são, respectivamente: R\$ `r brformat(exp(p3[, "lower"]))` e R\$ `r brformat(exp(p3[, "higher"]))`.
+
+# Referências {-}
