@@ -43,18 +43,29 @@ library(stargazer)
 <img src="https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg" class="fullpage">
 
 
-## Média vs. Mediana
+## Média, Mediana e Quantil
 
-1. Média
-
+<div class="double">
+<p class="double-flow">
+* Média
 $$\min_{\mu \in \mathfrak{R}} \sum (y_i - \mu)^2$$
-2. Mediana
-
+</p><p class="double-flow">
+* Mediana
 $$\min_{\xi \in \mathfrak{R}} \sum|y_i - \xi|$$
-
+* Quantil
 $$\min_{\xi \in \mathfrak{R}} \sum \rho_\tau (y_i - \xi)$$
+</p>
+</div>
 
-## Função de perda ou de custo
+
+
+
+
+## Função de perda ou de custo { .fullpage }
+
+<img src="https://i.stack.imgur.com/DmKq7.png" class="fullpage">
+
+## Funções para quantis variados
 
 ```{r}
 x <- seq(-2, 2, length=200)
