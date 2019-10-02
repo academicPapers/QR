@@ -7,6 +7,7 @@ author:
 - "Norberto Hochheim"
 output:
   rmdshower::shower_presentation:
+    theme: mango
     self_contained: false
     katex: true
     ratio: 16x10
@@ -14,22 +15,32 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message=FALSE, warning = FALSE, 
-                      fig.ext='png', fig.align='center', fig.path = "images/",
-                      fig.pos = "H", dev = "png", dpi = 600, out.width = "70%")
+                      fig.path = "images/")
 swjpg <- system.file('examples', 'sw.jpg', package = 'rmdshower')
 scifi <- system.file('examples', 'scifi.jpg', package = 'rmdshower')
 qr1 <- "https://miro.medium.com/max/739/1*mF9Pv4NNnzZhT1ocEPOgvQ.png"
 qr2 <- "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTEZ7QB7aWDvu8lUbPMDVbh6u8fvMirNNHSAeGIAetXEAQ0Tji0"
+type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+options(digits = 10)
+library(appraiseR)
+library(quantreg)
+library(qrnn)
+library(tidyr)
+library(ggplot2)
+library(ggthemes)
+theme_set(theme_few())
+library(stargazer)
 ```
 
 ## Regressão Quantílica
 
 <img src="`r qr1`" class="fullpage">
 
-## Motivação
+# Motivação
 
-![Gráficos de crescimento]("https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg")
+## { .fullpage }
 
+<img src="https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg" class="fullpage">
 
 
 ## Média vs. Mediana
@@ -46,9 +57,6 @@ $$\min_{\xi \in \mathfrak{R}} \sum \rho_\tau (y_i - \xi)$$
 ## Função de perda ou de custo
 
 ```{r}
-library(qrnn)
-library(tidyr)
-library(ggplot2)
 x <- seq(-2, 2, length=200)
 `.1` <- tilted.abs(x, tau=0.1)
 `.25` <- tilted.abs(x, tau=0.25)
@@ -65,160 +73,105 @@ ggplot(dados, aes(x = x, y = y, colour = tau)) +
 ```
 
 
-## Regressão Linear vs. Regressão Quantílica
+## Regressão Linear vs. Quantílica
 
 $$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
 
 $$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$
 
-## Shower
+## RQ -- duas dimensões
 
-These slides use a template from the [shower](https://github.com/shower/shower)
-presentation system. Notable features:
+```{r qr1}
+dados <- centro_2015@data
+dados$padrao <- as.numeric(dados$padrao)
+qs <- 1:9/10
+qr <- rq(valor ~ area_total, data = dados, tau = qs)
+ggplot(dados, aes(area_total, valor)) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = TRUE, level = .80, color = "red")
+```
 
-1. Works in all modern browsers
-1. Presentation fully keyboard accessible
-1. Multiple themes available
-1. Printable to PDF
+## RQ -- transformações
 
-<p class="note"> Shower ['ʃəuə] noun. A person or thing that shows.</p>
+```{r qr2}
+qs <- 1:9/10
+qr2 <- rq(log(valor) ~ log(area_total), data = dados, tau = qs)
+ggplot(dados, aes(log(area_total), log(valor))) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = FALSE, color = "red")
+```
 
-## Slide with Plain Text
+## Análise dos coeficientes da RQ
 
-Let me see your identification. You don't need to see his
-identification. We don't need to see his identification. These are not the
-droids your looking for. These are not the droids we're looking for. He can
-go about his business. You can go about your business.
+```{r coef1}
+plot(summary(qr), parm="area_total")
+```
 
-Move along. Move along. Move along.
-
-## Two column layout
-
-
-<p class="double">
-What is it? Your fathers lightsaber. This is the weapon of a Jedi
-Knight. Not as clumsy or as random as a blaster. An elegant weapon for a
-more civilized time. For over a thousand generations the Jedi Knights were
-the guardians of peace and justice in the Old Republic. Before the dark
-times, before the Empire. How did my father die? A young Jedi named Darth
-Vader, who was a pupil of mine until he turned to evil, helped the Empire
-hunt down and destroy the Jedi Knights.
-</p>
-
-## Two column layout, text and image
-
-<p class="double">
-How did I get into this mess? I really don't know how. We seem to be made
-to suffer. It's our lot in life. I've got to rest before I fall apart. My
-joints are almost frozen. What a desolate place this is. Where are you
-going?
-<img src="`r swjpg`" class="one-col-image">
-</p>
-
-## Two column layout, image and text
-
-<p class="double">
-<img src="`r swjpg`" class="one-col-image">
-How did I get into this mess? I really don't know how. We seem to be made
-to suffer. It's our lot in life. I've got to rest before I fall apart. My
-joints are almost frozen. What a desolate place this is. Where are you
-going?
-</p>
-
-## Two column layout, independent columns
-
-<div class="double">
-<p class="double-flow">
-How did I get into this mess? I really don't know how. We seem to be made
-to suffer.
-</p><p class="double-flow">
-It's our lot in life. I've got to rest before I fall apart.
-</p>
-</div>
-
-## Lists
-
-1. Simple lists are marked with bullets
-1. Ordered lists begin with a number
-1. You can even nest lists one inside another
-    * Or mix their types
-    * But do not go too far
-    * Otherwise audience will be bored
-1. Look, seven rows exactly!
-
-## Formulas
-
-Formulas are rendered by KaTeX, https://github.com/Khan/KaTeX
-
-It supports both inline: \(y = x / 2\) and displayed formulas:
-
-\[ x_{1,2} = \frac{- b \pm \sqrt{b^2 - 4ac}}{2a} \]
-
-## Slide with quote
-
-> The bad news is that when ever you learn a new skill you're going to
-> suck. It's going to be frustrating. The good news is that is typical and
-> happens to everyone and it is only temporary. You can't go from knowing
-> nothing to becoming an expert without going through a period of great
-> frustration and great suckiness.
-
-**Hadley Wickham? **
-
-## Slide with R Code and Output
+# RQ em $p$ dimensões
 
 ```{r}
-summary(cars)
+fit <- lm(log(valor) ~ area_total + quartos + suites + garagens + 
+            log(dist_b_mar) + rec(padrao), data = dados,
+          subset = -c(31, 39))
+fit_1 <- rq(log(valor) ~ area_total + quartos + suites + garagens + 
+            log(dist_b_mar) + rec(padrao), data = dados)
+fit_2 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
+            log(dist_b_mar) + rec(padrao), data = dados, tau = .1)
+fit_3 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
+            log(dist_b_mar) + rec(padrao), data = dados, tau = .9)
+fit_qr <- rq(log(valor) ~ area_total + quartos + suites + garagens + 
+            log(dist_b_mar) + rec(padrao), data = dados, tau = qs)
 ```
-
-## Tables
-
-|                   |  mpg  |  cyl  |  disp  |  hp  |
-|:-----------------:|:-----:|:-----:|:------:|:----:|
-|     Mazda RX4     | 21    |   6   |  160   | 110  |
-|   Mazda RX4 Wag   | 21    |   6   |  160   | 110  |
-|    Datsun 710     | 22.8  |   4   |  108   |  93  |
-|   Hornet 4 Drive  | 21.4  |   6   |  258   | 110  |
-| Hornet Sportabout | 18.7  |   8   |  360.0 | 175  |
-|       Valiant     | 18.1  |   6   |  225.0 | 105  |
-|      Duster 360   | 14.3  |   8   |  360.0 | 245  |
-
-## Pictures { .white }
-
-<img src="`r scifi`" class="cover">
-
-<p class="white">
-And text on top of them.
-</p>
-
-# Title slide
-
-## Lists item by item
-
-> 1. Lets you reveal list items one by one
-> 2. To keep some key points
-> 3. In secret from audience
-> 4. But it will work only once
-> 5. Nobody wants to see the same joke twice
-
-## Slide with Plot
-
-```{r, echo=FALSE, dev='jpeg'}
-par(mar = c(5, 4, 1, 2) + 0.1)
-pairs(iris[1:4], pch = 21,
-      bg = c("red", "green3", "blue")[unclass(iris$Species)])
-```
-
-# Full Page Plots
 
 ## { .fullpage }
 
+
 <div class="fullpage width">
-```{r, echo=FALSE, dev='jpeg'}
-par(mar = c(5, 4, 1, 2) + 0.1)
-pairs(iris[1:4], pch = 21,
-      bg = c("red", "green3", "blue")[unclass(iris$Species)])
+```{r coefs}
+plot(summary(fit_qr))
 ```
 </div>
+
+## Comparações
+
+```{r}
+p <- predict(fit, newdata = dados[52,], interval = "confidence", level = .80)
+pp <- predict(fit, newdata = dados[52,], interval = "prediction", level = .80)
+p1 <- predict(fit_1, newdata = dados[52,], interval = "confidence", level = .80)
+p2 <- predict(fit_2, newdata = dados[52,], interval = "confidence", level = .80)
+p3 <- predict(fit_3, newdata = dados[52,], interval = "confidence", level = .80)
+P <- brformat(exp(p))
+PP <- brformat(exp(pp))
+P1 <- brformat(exp(p1))
+P2 <- brformat(exp(p2))
+P3 <- brformat(exp(p3))
+```
+
+|                      | 10%           | 50% ou média  | 90%           | 
+|:---------------------|--------------:|--------------:|--------------:|
+| Regressão linear (IP)|`r PP[, "lwr"]`|`r PP[, "fit"]`|`r PP[, "upr"]`|
+| Regressão quantílica |`r P2[, "fit"]`|`r P1[, "fit"]`|`r P3[, "fit"]`|
+
+## Comparação
+
+<div class="double">
+<p class="double-flow">
+* Regressão Linear à média
+  + Maior Eficiência
+  + Sensível a *outliers*
+  + Sensível à heteroscedasticidade
+  + Não caracteriza outros quantis
+</p><p class="double-flow">
+* Regressão Quantílica
+  + Menor Eficiência
+  + Robusta a *outliers*
+  + Robusta a heteroscedasticidade
+  + Caracteriza outros quantis
+</p>
+</div>
+
 
 ## More information
 
