@@ -15,11 +15,9 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message=FALSE, warning = FALSE, 
-                      fig.path = "images/")
-swjpg <- system.file('examples', 'sw.jpg', package = 'rmdshower')
-scifi <- system.file('examples', 'scifi.jpg', package = 'rmdshower')
+                      fig.path = "images/", fig.height = 2.5, fig.width = 6, 
+                      out.width = "100%")
 qr1 <- "https://miro.medium.com/max/739/1*mF9Pv4NNnzZhT1ocEPOgvQ.png"
-qr2 <- "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTEZ7QB7aWDvu8lUbPMDVbh6u8fvMirNNHSAeGIAetXEAQ0Tji0"
 type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
 options(digits = 10)
 library(appraiseR)
@@ -34,7 +32,7 @@ library(stargazer)
 
 ## Regressão Quantílica
 
-<img src="`r qr1`" class="fullpage">
+<img src="https://miro.medium.com/max/739/1*mF9Pv4NNnzZhT1ocEPOgvQ.png" class="fullpage">
 
 # Motivação
 
@@ -57,17 +55,13 @@ $$\min_{\xi \in \mathfrak{R}} \sum \rho_\tau (y_i - \xi)$$
 </p>
 </div>
 
-
-
-
-
 ## Função de perda ou de custo { .fullpage }
 
 <img src="https://i.stack.imgur.com/DmKq7.png" class="fullpage">
 
 ## Funções para quantis variados
 
-```{r}
+```{r, out.width="100%"}
 x <- seq(-2, 2, length=200)
 `.1` <- tilted.abs(x, tau=0.1)
 `.25` <- tilted.abs(x, tau=0.25)
@@ -83,12 +77,31 @@ ggplot(dados, aes(x = x, y = y, colour = tau)) +
   guides(colour=guide_legend(title=bquote(tau)))
 ```
 
+## Vantagens e desvantagens
+
+* Possibilitam explorar melhor a distribuição de probabilidade
+* Não diferenciáveis em $\epsilon = 0$
+* Taxa de convergência constante
+
+
+## Problemas de convergência { .fullpage}
+ 
+<img src="https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png" class="fullpage">
+ 
+## Outras funções de perda { .fullpage}
+
+<img src="https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png" class="fullpage width">
 
 ## Regressão Linear vs. Quantílica
 
 $$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
 
 $$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$
+
+## Heteroscedasticidade e não-normalidade
+
+<img src="https://miro.medium.com/max/856/1*h_iOn3gSUa2bk6o0foudDA.png" class="fullpage">
+
 
 ## RQ -- duas dimensões
 
@@ -100,7 +113,7 @@ qr <- rq(valor ~ area_total, data = dados, tau = qs)
 ggplot(dados, aes(area_total, valor)) + 
   geom_point() + 
   geom_quantile(quantiles = qs) + 
-  geom_smooth(method="lm", se = TRUE, level = .80, color = "red")
+  geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
 ```
 
 ## RQ -- transformações
@@ -140,7 +153,7 @@ fit_qr <- rq(log(valor) ~ area_total + quartos + suites + garagens +
 
 
 <div class="fullpage width">
-```{r coefs}
+```{r coefs, fig.height=4}
 plot(summary(fit_qr))
 ```
 </div>
@@ -170,13 +183,15 @@ P3 <- brformat(exp(p3))
 <div class="double">
 <p class="double-flow">
 * Regressão Linear à média
-  + Maior Eficiência
+  + Solução única
+  + Maior Eficiência Estatística
   + Sensível a *outliers*
   + Sensível à heteroscedasticidade
   + Não caracteriza outros quantis
 </p><p class="double-flow">
 * Regressão Quantílica
-  + Menor Eficiência
+  + Solução Iterativa
+  + Menor Eficiência Estatística
   + Robusta a *outliers*
   + Robusta a heteroscedasticidade
   + Caracteriza outros quantis

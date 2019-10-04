@@ -55,25 +55,41 @@
 <p><img src="https://i.stack.imgur.com/DmKq7.png" class="fullpage"></p>
 </section><section id="funcoes-para-quantis-variados" class="slide level2">
 <h2>Funções para quantis variados</h2>
-<p><img src="images/unnamed-chunk-1-1.png" width="768" /></p>
+<p><img src="images/unnamed-chunk-1-1.png" width="100%" /></p>
+</section><section id="vantagens-e-desvantagens" class="slide level2">
+<h2>Vantagens e desvantagens</h2>
+<ul>
+<li>Possibilitam explorar melhor a distribuição de probabilidade</li>
+<li>Não diferenciáveis em <span class="math inline">\(\epsilon = 0\)</span></li>
+<li>Taxa de convergência constante</li>
+</ul>
+</section><section id="problemas-de-convergencia" class="slide level2 fullpage">
+<h2>Problemas de convergência</h2>
+<p><img src="https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png" class="fullpage"></p>
+</section><section id="outras-funcoes-de-perda" class="slide level2 fullpage">
+<h2>Outras funções de perda</h2>
+<p><img src="https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png" class="fullpage width"></p>
 </section><section id="regressao-linear-vs.quantilica" class="slide level2">
 <h2>Regressão Linear vs. Quantílica</h2>
 <p><span class="math display">\[\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 \]</span></p>
 <p><span class="math display">\[\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))\]</span></p>
+</section><section id="heteroscedasticidade-e-nao-normalidade" class="slide level2">
+<h2>Heteroscedasticidade e não-normalidade</h2>
+<p><img src="https://miro.medium.com/max/856/1*h_iOn3gSUa2bk6o0foudDA.png" class="fullpage"></p>
 </section><section id="rq-duas-dimensoes" class="slide level2">
 <h2>RQ – duas dimensões</h2>
-<p><img src="images/qr1-1.png" width="768" /></p>
+<p><img src="images/qr1-1.png" width="100%" /></p>
 </section><section id="rq-transformacoes" class="slide level2">
 <h2>RQ – transformações</h2>
-<p><img src="images/qr2-1.png" width="768" /></p>
+<p><img src="images/qr2-1.png" width="100%" /></p>
 </section><section id="analise-dos-coeficientes-da-rq" class="slide level2">
 <h2>Análise dos coeficientes da RQ</h2>
-<p><img src="images/coef1-1.png" width="768" /></p>
+<p><img src="images/coef1-1.png" width="100%" /></p>
 </section>
 <section id="rq-em-p-dimensoes" class="title-slide slide level1"><h1>RQ em <span class="math inline">\(p\)</span> dimensões</h1></section><section id="section-1" class="slide level2 fullpage">
 <h2></h2>
 <div class="fullpage width">
-<p><img src="images/coefs-1.png" width="768" /></p>
+<p><img src="images/coefs-1.png" width="100%" /></p>
 </div>
 </section><section id="comparacoes" class="slide level2">
 <h2>Comparações</h2>
@@ -108,7 +124,8 @@
 <ul>
 <li>Regressão Linear à média
 <ul>
-<li>Maior Eficiência</li>
+<li>Solução única</li>
+<li>Maior Eficiência Estatística</li>
 <li>Sensível a <em>outliers</em></li>
 <li>Sensível à heteroscedasticidade</li>
 <li>Não caracteriza outros quantis</li>
@@ -119,7 +136,8 @@
 <ul>
 <li>Regressão Quantílica
 <ul>
-<li>Menor Eficiência</li>
+<li>Solução Iterativa</li>
+<li>Menor Eficiência Estatística</li>
 <li>Robusta a <em>outliers</em></li>
 <li>Robusta a heteroscedasticidade</li>
 <li>Caracteriza outros quantis</li>
