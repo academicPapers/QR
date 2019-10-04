@@ -1,9 +1,9 @@
 ---
-title: "Presentation Ninja"
-subtitle: "⚔<br/>with xaringan"
-author: "Yihui Xie"
-institute: "RStudio, Inc."
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+title: "Regressão Quantílica"
+subtitle: "Com dados imobiliários"
+author: "Luiz Fernando Palin Droubi"
+institute: "droubi.tech"
+date: "2019/10/04 (updated: `r Sys.Date()`)"
 output:
   xaringan::moon_reader:
     lib_dir: libs
