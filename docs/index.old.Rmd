@@ -1,90 +1,67 @@
 ---
-title: "Presentation Ninja"
-subtitle: "⚔<br/>with xaringan"
-author: "Yihui Xie"
-institute: "RStudio, Inc."
-date: "2016/12/12 (updated: `r Sys.Date()`)"
+title: "Regressão Quantílica"
+author: 
+- "Carlos Augusto Zilli"
+- "Murilo Damian Ribeiro"
+- "Luiz Fernando Palin Droubi"
+- "Norberto Hochheim"
 output:
-  xaringan::moon_reader:
-    lib_dir: libs
-    css: [default, cobreap.css]
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      ratio: "16:9"
-    seal: false
+  rmdshower::shower_presentation:
+    theme: mango
+    self_contained: false
+    katex: true
+    ratio: 16x10
 ---
-class: title-slide
 
 ```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
-                      fig.align = "center", out.width = "80%", fig.path = "images/")
-library(knitr)
-library(kableExtra)
+knitr::opts_chunk$set(echo = FALSE, cache = FALSE, message=FALSE, warning = FALSE, 
+                      fig.path = "images/", fig.height = 2.5, fig.width = 6, 
+                      out.width = "100%")
+qr1 <- "https://miro.medium.com/max/739/1*mF9Pv4NNnzZhT1ocEPOgvQ.png"
+type <- knitr::opts_knit$get("rmarkdown.pandoc.to")
+options(digits = 10)
+library(appraiseR)
+library(quantreg)
+library(qrnn)
+library(tidyr)
 library(ggplot2)
 library(ggthemes)
 theme_set(theme_few())
-library(qrnn)
-library(tidyr)
-library(appraiseR)
-library(quantreg)
+library(stargazer)
 ```
 
-.pull-left[
-]
+## Regressão Quantílica
 
-.pull-right[
-<br><br><br><br>
-### ANÁLISE DE MODELOS DE REGRESSÃO QUANTÍLICA OBTIDOS A PARTIR DE DADOS IMOBILIÁRIOS
-
-#### Autores:
-
-* Carlos Augusto Zilli
-* Murilo Damian Ribeiro
-* Luiz Fernando Palin Droubi
-* Norberto Hochheim
-]
-
-
----
-class: primary
+<img src="https://miro.medium.com/max/739/1*mF9Pv4NNnzZhT1ocEPOgvQ.png" class="fullpage">
 
 # Motivação
 
-.fullpage.height[
-![](https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg)
-]
+## { .fullpage }
 
----
-class: primary
-# Estimativas amostrais
+<img src="https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg" class="fullpage">
 
-```{r}
-data.frame(Estimativa = c("Média", "Mediana", "Quantil"),
-           `Expressão` = c("\\(\\min_{\\mu \\in \\mathfrak{R}} \\sum (y_i - \\mu)^2\\)",
-                           "\\(\\min_{\\xi \\in \\mathfrak{R}} \\sum|y_i - \\xi|\\)",
-                           "\\(\\min_{\\xi \\in \\mathfrak{R}} \\sum \\rho_\\tau (y_i - \\xi)\\)")
-           ) %>%
-  knitr::kable(format = "html", escape = FALSE)
-```
 
----
-class: primary
+## Média, Mediana e Quantil
 
-## Função de perda ou de custo
+<div class="double">
+<p class="double-flow">
+* Média
+$$\min_{\mu \in \mathfrak{R}} \sum (y_i - \mu)^2$$
+</p><p class="double-flow">
+* Mediana
+$$\min_{\xi \in \mathfrak{R}} \sum|y_i - \xi|$$
+* Quantil
+$$\min_{\xi \in \mathfrak{R}} \sum \rho_\tau (y_i - \xi)$$
+</p>
+</div>
 
-.center2[
-![](https://i.stack.imgur.com/DmKq7.png)
-]
+## Função de perda ou de custo { .fullpage }
 
----
-class: primary
+<img src="https://i.stack.imgur.com/DmKq7.png" class="fullpage">
 
 ## Funções para quantis variados
 
-```{r qunatis, fig.height=3.5, dev='svg'}
+```{r, out.width="100%"}
 x <- seq(-2, 2, length=200)
 `.1` <- tilted.abs(x, tau=0.1)
 `.25` <- tilted.abs(x, tau=0.25)
@@ -100,37 +77,20 @@ ggplot(dados, aes(x = x, y = y, colour = tau)) +
   guides(colour=guide_legend(title=bquote(tau)))
 ```
 
----
-class: primary
-
 ## Vantagens e desvantagens
 
 * Possibilitam explorar melhor a distribuição de probabilidade
 * Não diferenciáveis em $\epsilon = 0$
 * Taxa de convergência constante
 
----
-class: primary
 
-## Problemas de convergência 
+## Problemas de convergência { .fullpage}
+ 
+<img src="https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png" class="fullpage">
+ 
+## Outras funções de perda { .fullpage}
 
-.center2[
-![](https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png)
-]
-
----
-class: primary
-
-## Outras funções de perda 
-
-.center2[
-![](https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png)
-]
-
-
-
----
-class: primary
+<img src="https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png" class="fullpage width">
 
 ## Regressão Linear vs. Quantílica
 
@@ -138,22 +98,14 @@ $$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
 
 $$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$
 
----
-class: primary
-
 ## Heteroscedasticidade e não-normalidade
 
-.center2[
-![](https://miro.medium.com/max/856/1*h_iOn3gSUa2bk6o0foudDA.png)
-]
+<img src="https://miro.medium.com/max/856/1*h_iOn3gSUa2bk6o0foudDA.png" class="fullpage">
 
-
----
-class: primary
 
 ## RQ -- duas dimensões
 
-```{r qr1, fig.height=3.5, dev='svg'}
+```{r qr1}
 dados <- centro_2015@data
 dados$padrao <- as.numeric(dados$padrao)
 qs <- 1:9/10
@@ -164,12 +116,9 @@ ggplot(dados, aes(area_total, valor)) +
   geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
 ```
 
----
-class: primary
-
 ## RQ -- transformações
 
-```{r qr2, fig.height=3.5, dev='svg'}
+```{r qr2}
 qs <- 1:9/10
 qr2 <- rq(log(valor) ~ log(area_total), data = dados, tau = qs)
 ggplot(dados, aes(log(area_total), log(valor))) + 
@@ -178,22 +127,13 @@ ggplot(dados, aes(log(area_total), log(valor))) +
   geom_smooth(method="lm", se = FALSE, color = "red")
 ```
 
----
-class: primary
-
 ## Análise dos coeficientes da RQ
 
-```{r coef1, fig.height=3.5, dev='svg'}
+```{r coef1}
 plot(summary(qr), parm="area_total")
 ```
 
----
-class: primary, center, middle
-
-## RQ em $p$ dimensões
-
----
-class: center, middle
+# RQ em $p$ dimensões
 
 ```{r}
 fit <- lm(log(valor) ~ area_total + quartos + suites + garagens + 
@@ -209,14 +149,16 @@ fit_qr <- rq(log(valor) ~ area_total + quartos + suites + garagens +
             log(dist_b_mar) + rec(padrao), data = dados, tau = qs)
 ```
 
-```{r coefs, out.width = "100%", fig.height=4.5, dev='svg'}
+## { .fullpage }
+
+
+<div class="fullpage width">
+```{r coefs, fig.height=4}
 plot(summary(fit_qr))
 ```
+</div>
 
----
-class: primary
-
-## Predições
+## Comparações
 
 ```{r}
 p <- predict(fit, newdata = dados[52,], interval = "confidence", level = .80)
@@ -236,25 +178,31 @@ P3 <- brformat(exp(p3))
 | Regressão linear (IP)|`r PP[, "lwr"]`|`r PP[, "fit"]`|`r PP[, "upr"]`|
 | Regressão quantílica |`r P2[, "fit"]`|`r P1[, "fit"]`|`r P3[, "fit"]`|
 
----
-class: primary
-
 ## Comparação
 
-.pull-left[
+<div class="double">
+<p class="double-flow">
 * Regressão Linear à média
   + Solução única
   + Maior Eficiência Estatística
   + Sensível a *outliers*
   + Sensível à heteroscedasticidade
   + Não caracteriza outros quantis
-]
-.pull-right[
+</p><p class="double-flow">
 * Regressão Quantílica
   + Solução Iterativa
   + Menor Eficiência Estatística
   + Robusta a *outliers*
   + Robusta a heteroscedasticidade
   + Caracteriza outros quantis
+</p>
+</div>
 
-]
+
+## More information
+
+### About R markdown: http://rmarkdown.rstudio.com
+
+### About shower: https://github.com/shower/shower
+
+### Example shower presentation: http://shwr.me/
