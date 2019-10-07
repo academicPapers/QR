@@ -86,7 +86,7 @@ class: primary
 
 ## Funções para quantis variados
 
-```{r qunatis, fig.height=3.5, dev='svg'}
+```{r quantis, fig.height=3.5, dev='svg'}
 x <- seq(-2, 2, length=200)
 `.1` <- tilted.abs(x, tau=0.1)
 `.25` <- tilted.abs(x, tau=0.25)
