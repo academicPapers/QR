@@ -31,6 +31,8 @@ library(qrnn)
 library(tidyr)
 library(appraiseR)
 library(quantreg)
+library(broom)
+library(cowplot)
 ```
 
 .pull-left[
@@ -58,6 +60,19 @@ class: primary, center, middle
 class: center, middle
 background-image: url("https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg")
 background-size: contain
+
+
+---
+class: primary
+# Histórico
+
+* Século XVIII: 
+  + Boscovich
+  + Laplace
+* Edgeworth (1888): propõe algorítmo para obter intercepto e inclinação da reta que minimiza a soma dos resíduos absolutos
+* Arrow e Hoffenberg (1959): aplicação da regressão à mediana em Economia.
+* Koenker e Basset (1978)
+
 
 ---
 class: primary
@@ -105,11 +120,204 @@ ggplot(dados, aes(x = x, y = y, colour = tau)) +
 ---
 class: primary
 
+## Regressão Linear vs. Quantílica
+
+$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
+
+$$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$
+$$\text{Escolhe-se} \qquad \hat\beta (\tau) \quad | \quad \text{res} \left\{\begin{matrix}
+\tau n > 0\\ 
+(1-\tau)n <0
+\end{matrix}\right.$$
+
+---
+class: primary
+
+## RQ - duas dimensões
+
+```{r qr1, fig.height=3.5, dev='svg'}
+dados <- centro_2015@data
+dados$padrao <- as.numeric(dados$padrao)
+qs <- 1:9/10
+qr <- rq(valor ~ area_total, data = dados, tau = qs)
+ggplot(dados, aes(area_total, valor)) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
+```
+
+---
+class:primary
+
+```{r}
+fit1 <- rq(valor ~ area_total, data = dados, tau = 0.1)
+fit_data <- augment(fit1)
+# library(gghighlight)
+# gghighlight_point(fit_data, aes(x=area_total, y=valor), .resid < 0, col="red") + 
+#   geom_quantile(quantile = .1)
+p1 <- ggplot(fit_data, aes(x = area_total, y = valor)) +
+  geom_quantile(quantiles = 0.1) +
+  geom_point(aes(x = area_total, y = valor, colour = .resid > 0)) + 
+  labs(title = expression(~tau~'= .1'))
+fit2 <- rq(valor ~ area_total, data = centro_2015, tau = 0.2)
+fit_data <- augment(fit2)
+p2 <- ggplot(fit_data, aes(x = area_total, y = valor)) +
+  geom_quantile(quantiles = 0.2) +
+  geom_point(aes(x = area_total, y = valor, colour = .resid > 0)) + 
+  labs(title = expression(~tau~'= .2'))
+fit3 <- rq(valor ~ area_total, data = centro_2015, tau = 0.5)
+fit_data <- augment(fit3)
+p3 <- ggplot(fit_data, aes(x = area_total, y = valor)) +
+  geom_quantile(quantiles = 0.5) +
+  geom_point(aes(x = area_total, y = valor, colour = .resid > 0)) + 
+  labs(title = expression(~tau~'= .5'))
+fit4 <- rq(valor ~ area_total, data = centro_2015, tau = 0.8)
+fit_data <- augment(fit4)
+p4 <- ggplot(fit_data, aes(x = area_total, y = valor)) +
+  geom_quantile(quantiles = 0.8) +
+  geom_point(aes(x = area_total, y = valor, colour = .resid > 0)) + 
+  labs(title = expression(~tau~'= .8'))
+fit5 <- rq(valor ~ area_total, data = centro_2015, tau = 0.9)
+fit_data <- augment(fit5)
+p5 <- ggplot(fit_data, aes(x = area_total, y = valor)) +
+  geom_quantile(quantiles = 0.9) +
+  geom_point(aes(x = area_total, y = valor, colour = .resid >= 0)) + 
+  labs(title = expression(~tau~'= .9'))
+legend_b <- get_legend(
+  p1 + 
+    guides(color = guide_legend(nrow = 1)) +
+    theme(legend.position = "bottom")
+)
+```
+
+```{r residuos_quantis, fig.height=4.5, dev='svg'}
+plot_rows <- plot_grid(p1 + theme(legend.position="none"),
+          p2 + theme(legend.position="none"), 
+          p3 + theme(legend.position="none"), 
+          p4 + theme(legend.position="none"), 
+          p5 + theme(legend.position="none"), 
+          nrow = 2,
+          legend_b)
+# now add the title
+theme_georgia <- function(...) {
+  theme_gray(base_family = "Georgia", ...) + 
+    theme(plot.title = element_text(face = "bold"))
+}
+title <- ggplot() + 
+  labs(title = "Regressão para quantis variados", 
+       subtitle = "50 dados de apartamentos no centro de Florianópolis (2015)") + 
+  theme_georgia()
+plot_grid(
+  title, plot_rows,
+  ncol = 1,
+  # rel_heights values control vertical title margins
+  rel_heights = c(0.1, 1)
+)
+```
+
+
+---
+class: primary
+
+## Análise dos coeficientes da RQ
+
+```{r coef1, fig.height=3.5, dev='svg'}
+plot(summary(qr), parm="area_total")
+```
+
+---
+class: primary
+
+# Solução não-única
+
+---
+class: primary
+
+```{r exemplo_1, fig.height=4, dev ='svg', fig.cap='Fonte: https://tinyurl.com/y6283end', results='hide'}
+par(bg = "light blue")
+x <- rep(1:10, each=2)
+y <- x/10 + 0:1
+plot(x,y, pch = 21, bg = 'grey', main = 'Dados Inventados')
+
+sad <- function(x,y,coef) { # mad is sad/n
+    yhat <- coef[1] + coef[2]*x
+    resid <- y - yhat
+    sum( abs( resid ) )
+}
+fit <- lm(y~x)
+abline(fit, col = "red", lwd = 2)
+
+fit0 <- rq(y~x)
+abline(fit0)
+
+fit1 <- lm( y~x, subset= c(1,20) )
+fit2 <- lm( y~x, subset= c(2,19) )
+fit3 <- lm( y~x, subset= c(2,20) )
+fit4 <- lm( y~x, subset= c(1,19) )
+
+fit5.coef <- c(0.5, 1/10)
+
+abline(fit1)
+abline(fit2)
+abline(fit3)
+abline(fit4)
+abline(fit5.coef)
+for (i in seq( -0.5, 0.5, by=0.1 ) ) {
+    abline( fit5.coef + c(i,0) )
+}
+
+tmp1 <- seq( coef(fit1)[1], coef(fit2)[1], len=10 )
+tmp2 <- seq( coef(fit1)[2], coef(fit2)[2], len=10 )
+
+for (i in seq_along(tmp1) ) {
+    abline( tmp1[i], tmp2[i] )
+}
+
+sad(x,y, coef(fit0))
+sad(x,y, coef(fit1))
+sad(x,y, coef(fit2))
+sad(x,y, coef(fit3))
+sad(x,y, coef(fit4))
+sad(x,y, fit5.coef )
+
+for (i in seq( -0.5, 0.5, by=0.1 ) ) {
+    print(sad(x,y, fit5.coef + c(i,0) ))
+}
+
+for (i in seq_along(tmp1) ) {
+    print(sad(x,y, c(tmp1[i], tmp2[i]) ) )
+}
+```
+
+---
+class: primary
+
+```{r exemplo_2, fig.height=4, dev ='svg', fig.cap='Fonte: https://tinyurl.com/y6283end', results='hide'}
+# Exemplo 2
+set.seed(1)
+par(bg = "light blue")
+y2 <- y + rnorm(20,0,0.25)
+plot(x,y2, pch = 21, bg = 'grey', main = 'Dados aleatórios')
+fitnew <- rq(y2~x)  # note the still non-unique warning
+abline(fitnew)
+abline(coef(fitnew) + c(.1,0))
+abline(coef(fitnew) + c(0, 0.01) )
+sad( x,y2, coef(fitnew) )
+sad( x,y2, coef(fitnew)+c(.1,0))
+sad( x,y2, coef(fitnew)+c(0,0.01))
+```
+
+---
+class: primary
+
 ## Vantagens e desvantagens
 
-* Possibilitam explorar melhor a distribuição de probabilidade
-* Não diferenciáveis em $\epsilon = 0$
-* Taxa de convergência constante
+| Mínimos Quadrados Ordinários      |	Mínimos Resíduos Absolutos           |
+|:----------------------------------|:-------------------------------------|
+| Não muito robusto                 | Robusto                              |
+| Solução Estável	                  | Solução instável e iterativa         |
+| Solução única     	              | Possíveis múltiplas soluções         |
+| BLUE                              | Não-linear                           |
 
 ---
 class: primary
@@ -131,14 +339,6 @@ class: primary
 
 
 
----
-class: primary
-
-## Regressão Linear vs. Quantílica
-
-$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
-
-$$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$
 
 ---
 class: primary
@@ -149,27 +349,10 @@ class: primary
 ![](https://miro.medium.com/max/856/1*h_iOn3gSUa2bk6o0foudDA.png)
 ]
 
-
 ---
 class: primary
 
-## RQ -- duas dimensões
-
-```{r qr1, fig.height=3.5, dev='svg'}
-dados <- centro_2015@data
-dados$padrao <- as.numeric(dados$padrao)
-qs <- 1:9/10
-qr <- rq(valor ~ area_total, data = dados, tau = qs)
-ggplot(dados, aes(area_total, valor)) + 
-  geom_point() + 
-  geom_quantile(quantiles = qs) + 
-  geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
-```
-
----
-class: primary
-
-## RQ -- transformações
+## Transformações
 
 ```{r qr2, fig.height=3.5, dev='svg'}
 qs <- 1:9/10
@@ -178,15 +361,6 @@ ggplot(dados, aes(log(area_total), log(valor))) +
   geom_point() + 
   geom_quantile(quantiles = qs) + 
   geom_smooth(method="lm", se = FALSE, color = "red")
-```
-
----
-class: primary
-
-## Análise dos coeficientes da RQ
-
-```{r coef1, fig.height=3.5, dev='svg'}
-plot(summary(qr), parm="area_total")
 ```
 
 ---
@@ -238,25 +412,3 @@ P3 <- brformat(exp(p3))
 | Regressão linear (IP)|`r PP[, "lwr"]`|`r PP[, "fit"]`|`r PP[, "upr"]`|
 | Regressão quantílica |`r P2[, "fit"]`|`r P1[, "fit"]`|`r P3[, "fit"]`|
 
----
-class: primary
-
-## Comparação
-
-.pull-left[
-* Regressão Linear à média
-  + Solução única
-  + Maior Eficiência Estatística
-  + Sensível a *outliers*
-  + Sensível à heteroscedasticidade
-  + Não caracteriza outros quantis
-]
-.pull-right[
-* Regressão Quantílica
-  + Solução Iterativa
-  + Menor Eficiência Estatística
-  + Robusta a *outliers*
-  + Robusta a heteroscedasticidade
-  + Caracteriza outros quantis
-
-]

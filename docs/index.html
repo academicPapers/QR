@@ -40,6 +40,19 @@ class: center, middle
 background-image: url("https://statisticaloddsandends.files.wordpress.com/2019/01/growth-chart.jpg")
 background-size: contain
 
+
+---
+class: primary
+# Histórico
+
+* Século XVIII: 
+  + Boscovich
+  + Laplace
+* Edgeworth (1888): propõe algorítmo para obter intercepto e inclinação da reta que minimiza a soma dos resíduos absolutos
+* Arrow e Hoffenberg (1959): aplicação da regressão à mediana em Economia.
+* Koenker e Basset (1978)
+
+
 ---
 class: primary
 # Estimativas amostrais
@@ -86,11 +99,70 @@ class: primary
 ---
 class: primary
 
+## Regressão Linear vs. Quantílica
+
+$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
+
+`$$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$`
+`$$\text{Escolhe-se} \qquad \hat\beta (\tau) \quad | \quad \text{res} \left\{\begin{matrix}
+\tau n &gt; 0\\ 
+(1-\tau)n &lt;0
+\end{matrix}\right.$$`
+
+---
+class: primary
+
+## RQ - duas dimensões
+
+&lt;img src="images/qr1-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class:primary
+
+
+
+&lt;img src="images/residuos_quantis-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: primary
+
+## Análise dos coeficientes da RQ
+
+&lt;img src="images/coef1-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+
+# Solução não-única
+
+---
+class: primary
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/exemplo_1-1.svg" alt="Fonte: https://tinyurl.com/y6283end" width="80%" /&gt;
+&lt;p class="caption"&gt;Fonte: https://tinyurl.com/y6283end&lt;/p&gt;
+&lt;/div&gt;
+
+---
+class: primary
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/exemplo_2-1.svg" alt="Fonte: https://tinyurl.com/y6283end" width="80%" /&gt;
+&lt;p class="caption"&gt;Fonte: https://tinyurl.com/y6283end&lt;/p&gt;
+&lt;/div&gt;
+
+---
+class: primary
+
 ## Vantagens e desvantagens
 
-* Possibilitam explorar melhor a distribuição de probabilidade
-* Não diferenciáveis em `\(\epsilon = 0\)`
-* Taxa de convergência constante
+| Mínimos Quadrados Ordinários      |	Mínimos Resíduos Absolutos           |
+|:----------------------------------|:-------------------------------------|
+| Não muito robusto                 | Robusto                              |
+| Solução Estável	                  | Solução instável e iterativa         |
+| Solução única     	              | Possíveis múltiplas soluções         |
+| BLUE                              | Não-linear                           |
 
 ---
 class: primary
@@ -112,14 +184,6 @@ class: primary
 
 
 
----
-class: primary
-
-## Regressão Linear vs. Quantílica
-
-$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
-
-`$$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$`
 
 ---
 class: primary
@@ -130,27 +194,12 @@ class: primary
 ![](https://miro.medium.com/max/856/1*h_iOn3gSUa2bk6o0foudDA.png)
 ]
 
-
 ---
 class: primary
 
-## RQ -- duas dimensões
-
-&lt;img src="images/qr1-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-class: primary
-
-## RQ -- transformações
+## Transformações
 
 &lt;img src="images/qr2-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-class: primary
-
-## Análise dos coeficientes da RQ
-
-&lt;img src="images/coef1-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: primary, center, middle
@@ -175,29 +224,6 @@ class: primary
 |:---------------------|--------------:|--------------:|--------------:|
 | Regressão linear (IP)|  802.017,63|  961.660,64|1.153.080,88|
 | Regressão quantílica |810.629,32|  946.467,87|1.186.954,14|
-
----
-class: primary
-
-## Comparação
-
-.pull-left[
-* Regressão Linear à média
-  + Solução única
-  + Maior Eficiência Estatística
-  + Sensível a *outliers*
-  + Sensível à heteroscedasticidade
-  + Não caracteriza outros quantis
-]
-.pull-right[
-* Regressão Quantílica
-  + Solução Iterativa
-  + Menor Eficiência Estatística
-  + Robusta a *outliers*
-  + Robusta a heteroscedasticidade
-  + Caracteriza outros quantis
-
-]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
