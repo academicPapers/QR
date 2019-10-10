@@ -352,7 +352,74 @@ class: primary
 ---
 class: primary
 
+## Outras distribuições de erros
+
+```{r lognormal_error, fig.height=3.5, dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
+set.seed(5)
+x <- runif(90, 0, 100)
+epsilon <- rlnorm(90, 0, 0.75)
+y <- 6 + .05*x + epsilon
+fit <- lm(y~x)
+fit1 <- rq(y~x, tau = .10)
+fit2 <- rq(y~x, tau = .25)
+fit3 <- rq(y~x, tau = .50)
+fit4 <- rq(y~x, tau = .75)
+fit5 <- rq(y~x, tau = .90)
+par(mar=c(5,4,2,6), bg = "light blue")
+plot(y~x, pch = 19, main = "Distribuição de erros lognormal.")
+abline(fit, lty = 2)
+abline(fit1, col = "yellow")
+abline(fit2, col = "red")
+abline(fit3, col = "green")
+abline(fit4, col = "blue")
+abline(fit5, col = "darkred")
+legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
+       legend=c(".10", ".25", ".50", ".75", ".90"),
+       col=c("yellow", "red", "green", "blue", "darkred"), lty = 1,
+       title= expression(~tau), text.font=4, bg='lightblue')
+```
+
+---
+class: primary
+
+## Erros normais heteroscedásticos
+
+```{r normal_het_error, fig.height=3.5, dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
+set.seed(1)
+x <- runif(90, 0, 100)
+epsilon <- rnorm(90, 0, 1+.05*x)
+y <- 6 + .1*x + epsilon
+fit <- lm(y~x)
+fit1 <- rq(y~x, tau = .10)
+fit2 <- rq(y~x, tau = .25)
+fit3 <- rq(y~x, tau = .50)
+fit4 <- rq(y~x, tau = .75)
+fit5 <- rq(y~x, tau = .90)
+par(mar=c(5,4,2,6), bg = "light blue")
+plot(y~x, pch = 19, main = "Distribuição de erros normal.")
+abline(fit, lty = 2)
+abline(fit1, col = "yellow")
+abline(fit2, col = "red")
+abline(fit3, col = "green")
+abline(fit4, col = "blue")
+abline(fit5, col = "darkred")
+legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
+       legend=c(".10", ".25", ".50", ".75", ".90"),
+       col=c("yellow", "red", "green", "blue", "darkred"), lty = 1,
+       title= expression(~tau), text.font=4, bg='lightblue')
+```
+
+
+---
+class: primary
+
 ## Transformações
+
+> Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg lotarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models.
+
+---
+class: primary
+
 
 ```{r qr2, fig.height=3.5, dev='svg'}
 qs <- 1:9/10
@@ -362,6 +429,14 @@ ggplot(dados, aes(log(area_total), log(valor))) +
   geom_quantile(quantiles = qs) + 
   geom_smooth(method="lm", se = FALSE, color = "red")
 ```
+
+
+---
+class: primary
+
+## Estimação melhor nos quantis centrais
+
+> Geralmente, a variação amostral aumenta quando o valor de $\tau$ se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
 
 ---
 class: primary, center, middle
@@ -411,4 +486,10 @@ P3 <- brformat(exp(p3))
 |:---------------------|--------------:|--------------:|--------------:|
 | Regressão linear (IP)|`r PP[, "lwr"]`|`r PP[, "fit"]`|`r PP[, "upr"]`|
 | Regressão quantílica |`r P2[, "fit"]`|`r P1[, "fit"]`|`r P3[, "fit"]`|
+
+---
+class: primary, center, middle
+
+# Obrigado!
+
 
