@@ -33,6 +33,9 @@ library(appraiseR)
 library(quantreg)
 library(broom)
 library(cowplot)
+library(rlist)
+library(tibble)
+tol <- .Machine$double.eps^(2/3)
 ```
 
 .pull-left[
@@ -66,16 +69,34 @@ background-size: contain
 class: primary
 # Histórico
 
-* Século XVIII: 
-  + Boscovich
-  + Laplace
-* Edgeworth (1888): propõe algorítmo para obter intercepto e inclinação da reta que minimiza a soma dos resíduos absolutos
-* Arrow e Hoffenberg (1959): aplicação da regressão à mediana em Economia.
-* Koenker e Basset (1978)
+* Boscovich (1760): propôs o seguinte problema
+  
+  Encontrar $\hat{\alpha}$ e $\hat{\beta}$ tal que:
+  
+  $$y_i = \hat{\alpha} + \hat{\beta}x_i + \hat{u}_i$$
+    Com $\sum \hat u_i = 0$ e $\sum |\hat u_i| = \text{min}!$
+--
 
+* Laplace(1789): resolveu matematicamente o problema proposto.
+--
+
+* Legendre(1805): mínimos quadrados
+--
+
+* Edgeworth (1887): propõe algorítmo para obter intercepto e inclinação da reta, descartando a restrição $\sum \hat u_i = 0$.
+--
+
+* Década de 40: Algoritmos Simplex
+--
+
+* Arrow e Hoffenberg (1959): aplicação da regressão à mediana em Economia.
+--
+
+* Koenker e Basset (1978): Regressão Quantílica
 
 ---
 class: primary
+
 # Estimativas amostrais
 
 ```{r}
@@ -119,6 +140,22 @@ ggplot(dados, aes(x = x, y = y, colour = tau)) +
 
 ---
 class: primary
+background-image: url(Quantis.svg)
+backgorund-size: contain
+
+```{r}
+# dat <- tibble::tibble(Valor = Cars93$Price[which(Cars93$Type == "Small")], 
+#                       Quadratic = (Valor - mean(Valor))^2, 
+#                       `.25` = tilted.abs(Valor, tau = .25),
+#                       Median = abs(Valor - median(Valor)),
+#                       `.75` = tilted.abs(Valor, tau = .75))
+# dat <- reshape2::melt(dat, id = 1)
+# ggplot(dat, aes(x = Valor, y = value, color = variable)) + geom_line() + ylim(0, 8)
+# knitr::include_graphics('Quantis.svg')
+```
+
+---
+class: primary
 
 ## Regressão Linear vs. Quantílica
 
@@ -151,6 +188,7 @@ class:primary
 
 ```{r}
 fit1 <- rq(valor ~ area_total, data = dados, tau = 0.1)
+#h1 <- which(abs(fit1$resid) < tol)
 fit_data <- augment(fit1)
 # library(gghighlight)
 # gghighlight_point(fit_data, aes(x=area_total, y=valor), .resid < 0, col="red") + 
@@ -378,13 +416,30 @@ legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
        col=c("yellow", "red", "green", "blue", "darkred"), lty = 1,
        title= expression(~tau), text.font=4, bg='lightblue')
 ```
+---
+class: primary
 
+```{r lognormal_coefs, fig.height=3.5, fig.show='hold', dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
+par(mfrow = c(1, 2), bg = "light blue")
+qs <- seq(0.025, .975, .025)
+fit <- rq(y~x, tau = qs)
+s <- summary(fit)
+x_graph <- seq(.05, .975, .025)
+sfun0 <- stepfun(x = x_graph, y = fit$coefficients[1, ], f = 0)
+plot(sfun0, xlim = c(0, 1), ylim = c(-5, 25), xaxs="i", yaxs="i", 
+     main = "Intercepto por quantis", xlab = "Quantis", ylab = "Intercepto",
+     do.points = FALSE, col = "red", lwd = 2)
+sfun1 <- stepfun(x = x_graph, y = fit$coefficients[2, ], f = 0)
+plot(sfun1, xlim = c(0, 1), ylim = c(-0.05, 0.3), xaxs="i", yaxs="i", 
+     main = "Inclinação por quantis", xlab = "Quantis", ylab = "Inclinação",
+     do.points = FALSE, col = "red", lwd = 2)
+```
 ---
 class: primary
 
 ## Erros normais heteroscedásticos
 
-```{r normal_het_error, fig.height=3.5, dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
+```{r lognormal_het_error, fig.height=3.5, dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
 set.seed(1)
 x <- runif(90, 0, 100)
 epsilon <- rnorm(90, 0, 1+.05*x)
@@ -408,6 +463,30 @@ legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
        col=c("yellow", "red", "green", "blue", "darkred"), lty = 1,
        title= expression(~tau), text.font=4, bg='lightblue')
 ```
+---
+class: primary
+
+```{r}
+qs <- seq(0.025, .975, .025)
+fit <- rq(y~x, tau = qs)
+s <- summary(fit)
+a <- list.select(s, coefficients, tau) %>% list.rbind()
+a <- as_tibble(a)
+```
+
+
+```{r normal_het_coefs, fig.height=3.5, fig.show='hold', dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
+par(mfrow = c(1, 2), bg = "light blue")
+x_graph <- seq(.05, .975, .025)
+sfun0 <- stepfun(x = x_graph, y = fit$coefficients[1, ], f = 0)
+plot(sfun0, xlim = c(0, 1), ylim = c(-5, 25), xaxs="i", yaxs="i", 
+     main = "Intercepto por quantis", xlab = "Quantis", ylab = "Intercepto",
+     do.points = FALSE, col = "red", lwd = 2)
+sfun1 <- stepfun(x = x_graph, y = fit$coefficients[2, ], f = 0)
+plot(sfun1, xlim = c(0, 1), ylim = c(-0.05, 0.3), xaxs="i", yaxs="i", 
+     main = "Inclinação por quantis", xlab = "Quantis", ylab = "Inclinação",
+     do.points = FALSE, col = "red", lwd = 2)
+```
 
 
 ---
@@ -415,8 +494,9 @@ class: primary
 
 ## Transformações
 
-> Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg lotarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models.
-
+> Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg logarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models.
+> 
+> `r tufte::quote_footer('--- NBR 14.353-02 [@NBR1465302], item 8.2.1')`
 ---
 class: primary
 
@@ -482,10 +562,10 @@ P2 <- brformat(exp(p2))
 P3 <- brformat(exp(p3))
 ```
 
-|                      | 10%           | 50% ou média  | 90%           | 
-|:---------------------|--------------:|--------------:|--------------:|
-| Regressão linear (IP)|`r PP[, "lwr"]`|`r PP[, "fit"]`|`r PP[, "upr"]`|
-| Regressão quantílica |`r P2[, "fit"]`|`r P1[, "fit"]`|`r P3[, "fit"]`|
+|   Método             | 10% / IP      |       IC inferior |  Estimativa Central |  IC Superior      | 90% / IP      | 
+|:---------------------|--------------:|------------------:|--------------------:|------------------:|--------------:|
+| Regressão linear     |`r PP[, "lwr"]`| `r P[, "lwr"]`    | `r PP[, "fit"]`     | `r P[, "upr"]`    |`r PP[, "upr"]`|
+| Regressão quantílica |`r P2[, "fit"]`| `r P1[, "lower"]` | `r P1[, "fit"]`     | `r P1[, "higher"]`|`r P3[, "fit"]`|
 
 ---
 class: primary, center, middle
