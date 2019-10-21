@@ -9,6 +9,11 @@ output:
     lib_dir: libs
     css: [default, cobreap.css]
     nature:
+      slideNumberFormat: |
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+          </div>
+        </div>`
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
@@ -16,6 +21,7 @@ output:
     seal: false
 ---
 class: title-slide
+count: false
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -56,6 +62,7 @@ tol <- .Machine$double.eps^(2/3)
 
 ---
 class: primary, center, middle
+count: false
 
 # Motivação
 
@@ -67,6 +74,7 @@ background-size: contain
 
 ---
 class: primary
+
 # Histórico
 
 * Boscovich (1760): propôs o seguinte problema
@@ -157,15 +165,251 @@ backgorund-size: contain
 ---
 class: primary
 
+## Outras funções de perda 
+
+.center2[
+![](https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png)
+]
+
+---
+class: primary
+
 ## Regressão Linear vs. Quantílica
 
-$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
+#### Regressão Linear
+
+$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2$$
+
+
+#### Regressão Quantílica
 
 $$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$
-$$\text{Escolhe-se} \qquad \hat\beta (\tau) \quad | \quad \text{res} \left\{\begin{matrix}
+Basicamente:
+
+$$\text{Procura-se} \qquad \hat\beta (\tau) \quad | \quad \text{res} \left\{\begin{matrix}
 \tau n > 0\\ 
 (1-\tau)n <0
 \end{matrix}\right.$$
+
+---
+class: primary
+
+### Interpretação geométrica
+
+O problema pode ser abordado geometricamente: constrói-se um vetor dos erros, e 
+minimiza-se a norma deste vetor. 
+
+Geometricamente os problemas são similares, porém a norma do vetor é definida de 
+forma diferente em cada método.
+
+#### Regressão Linear
+
+No caso da regressão linear, a norma é a euclidiana, ou L2:
+
+$$|| x ||_2 = \sqrt{\left(\sum x_i^2\right)} = \sqrt{x_1^2 + x_2^2 + \ldots + x_i^2} = \sqrt{x^Tx}$$
+$$e = \min_{\beta \in \mathfrak{R}^p} \sum  ||y - X\beta)||_2^2$$
+
+#### Regressão Quantílica
+
+No caso da regressão quantílica, a norma é a L1:
+
+$$|| x ||_1 = \sum_i |x_i| = |x_1| + |x_2| + \ldots + |x_i|$$
+
+---
+class: primary
+
+## Vantagens e desvantagens
+
+|   | **Mínimos Quadrados Ordinários**  |	**Mínimos Resíduos Absolutos**         |
+|:--|:----------------------------------|:---------------------------------------|
+|1  | Não muito robusto                 | Robusto                                |
+|2  | Solução Estável	                  | Solução instável e iterativa           |
+|3  | Solução Única     	              | Possíveis múltiplas soluções           |
+|4  | Problema da retransformação       | Invariante a transformações monotônicas|
+|5  | Eficiência Computacional          | Ineficiência computacional relativa    |
+
+---
+class: primary
+
+## 1. Robustez
+
+.center2[
+![](http://sfb649.wiwi.hu-berlin.de/fedc_homepage/xplore/tutorials/xaghtmlimg151.gif)
+]
+
+---
+class: primary
+
+## Cuidado!
+
+.center2[
+![](http://sfb649.wiwi.hu-berlin.de/fedc_homepage/xplore/tutorials/xaghtmlimg152.gif)
+]
+
+---
+class: primary
+
+## 2. Estabilidade da Solução
+
+.center2[
+![](https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png)
+]
+
+
+---
+class: primary
+
+## 3. Unicidade da Solução
+
+.center2[
+![](https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg)
+]
+
+---
+class: primary
+
+### 3.1 Média: solução única e analítica
+
+
+$$MSE = \sum \frac{1}{n}(y_i - c)^2 \\
+\arg \min_c MSE \rightarrow c = \mu \\
+\frac{\partial MSE}{\partial c} = 0 \\
+\frac{\partial MSE}{\partial c} = \frac{1}{n} \frac{\partial \sum (y_i - c)^2}{\partial c} = 0 \\
+\frac{\partial MSE}{\partial c} = \frac{1}{n} \sum (-2y_i + 2c) = 0 \\
+c = \frac{1}{n} \sum y_i = \mu$$
+
+---
+class: primary
+
+### 3.2 Mediana: Solução não-única com dados inventados
+
+```{r exemplo_1, fig.height=3.5, dev ='svg', fig.cap='Fonte: https://tinyurl.com/y6283end', results='hide'}
+par(bg = "light blue")
+x <- rep(1:10, each=2)
+y <- x/10 + 0:1
+plot(x,y, pch = 21, bg = 'grey', main = 'Dados Inventados')
+
+sad <- function(x,y,coef) { # mad is sad/n
+    yhat <- coef[1] + coef[2]*x
+    resid <- y - yhat
+    sum( abs( resid ) )
+}
+fit <- lm(y~x)
+abline(fit, col = "red", lwd = 2)
+
+fit0 <- rq(y~x)
+abline(fit0)
+
+fit1 <- lm( y~x, subset= c(1,20) )
+fit2 <- lm( y~x, subset= c(2,19) )
+fit3 <- lm( y~x, subset= c(2,20) )
+fit4 <- lm( y~x, subset= c(1,19) )
+
+fit5.coef <- c(0.5, 1/10)
+
+abline(fit1)
+abline(fit2)
+abline(fit3)
+abline(fit4)
+abline(fit5.coef)
+for (i in seq( -0.5, 0.5, by=0.1 ) ) {
+    abline( fit5.coef + c(i,0) )
+}
+
+tmp1 <- seq( coef(fit1)[1], coef(fit2)[1], len=10 )
+tmp2 <- seq( coef(fit1)[2], coef(fit2)[2], len=10 )
+
+for (i in seq_along(tmp1) ) {
+    abline( tmp1[i], tmp2[i] )
+}
+
+sad(x,y, coef(fit0))
+sad(x,y, coef(fit1))
+sad(x,y, coef(fit2))
+sad(x,y, coef(fit3))
+sad(x,y, coef(fit4))
+sad(x,y, fit5.coef )
+
+for (i in seq( -0.5, 0.5, by=0.1 ) ) {
+    print(sad(x,y, fit5.coef + c(i,0) ))
+}
+
+for (i in seq_along(tmp1) ) {
+    print(sad(x,y, c(tmp1[i], tmp2[i]) ) )
+}
+```
+
+---
+class: primary
+
+### 3.2 Mediana: Solução não-única com dados aleatórios
+
+```{r exemplo_2, fig.height=3.5, dev ='svg', fig.cap='Fonte: https://tinyurl.com/y6283end', results='hide'}
+# Exemplo 2
+set.seed(1)
+par(bg = "light blue")
+y2 <- y + rnorm(20,0,0.25)
+plot(x,y2, pch = 21, bg = 'grey', main = 'Dados aleatórios')
+fitnew <- rq(y2~x)  # note the still non-unique warning
+abline(fitnew)
+abline(coef(fitnew) + c(.1,0))
+abline(coef(fitnew) + c(0, 0.01) )
+sad( x,y2, coef(fitnew) )
+sad( x,y2, coef(fitnew)+c(.1,0))
+sad( x,y2, coef(fitnew)+c(0,0.01))
+```
+
+---
+class: primary
+
+## 4. Transformações
+
+### Regressão linear
+
+Na regressão linear, a média condicional da variável original não é obtida pela 
+simples retransformação da variável transformada por sua função inversa, a menos 
+que a função de transformação seja linear.
+
+$$E[f(Y)] \neq f(EY)$$
+--
+
+### Regressão Quantílica
+
+> Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg logarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models (Cade e Noon, 2003).
+
+
+$$Q_{f(Y)}(\tau) = f[Q_Y(\tau)]$$
+
+---
+class: primary
+
+## 5. Eficiência Computacional
+
+.center2[
+![A tartaruga de Laplace e a lebre Gaussiana.](laplacian_tortoise.png)
+]
+
+---
+class: primary
+
+# Comparativo de eficiência computacional
+
+.center2[
+![](comparativo_eficiencia.png)
+]
+
+--
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+> the message for that Gaussian hare who has been frolicking in the flowers, confident of victory, is clear. Laplace’s old tortoise, despite the house he wears on his back to protect him from inclement statistical weather, has a few new tricks and the race is far from over (Portnoy e Koenker, 1997).
+
+
+---
+class: primary, center, middle
+count: false
+
+# Regressão Quantílica
 
 ---
 class: primary
@@ -182,6 +426,13 @@ ggplot(dados, aes(area_total, valor)) +
   geom_quantile(quantiles = qs) + 
   geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
 ```
+
+---
+class: primary
+
+## Estimação melhor nos quantis centrais
+
+> Geralmente, a variação amostral aumenta quando o valor de $\tau$ se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
 
 ---
 class:primary
@@ -262,119 +513,6 @@ class: primary
 ```{r coef1, fig.height=3.5, dev='svg'}
 plot(summary(qr), parm="area_total")
 ```
-
----
-class: primary
-
-# Solução não-única
-
----
-class: primary
-
-```{r exemplo_1, fig.height=4, dev ='svg', fig.cap='Fonte: https://tinyurl.com/y6283end', results='hide'}
-par(bg = "light blue")
-x <- rep(1:10, each=2)
-y <- x/10 + 0:1
-plot(x,y, pch = 21, bg = 'grey', main = 'Dados Inventados')
-
-sad <- function(x,y,coef) { # mad is sad/n
-    yhat <- coef[1] + coef[2]*x
-    resid <- y - yhat
-    sum( abs( resid ) )
-}
-fit <- lm(y~x)
-abline(fit, col = "red", lwd = 2)
-
-fit0 <- rq(y~x)
-abline(fit0)
-
-fit1 <- lm( y~x, subset= c(1,20) )
-fit2 <- lm( y~x, subset= c(2,19) )
-fit3 <- lm( y~x, subset= c(2,20) )
-fit4 <- lm( y~x, subset= c(1,19) )
-
-fit5.coef <- c(0.5, 1/10)
-
-abline(fit1)
-abline(fit2)
-abline(fit3)
-abline(fit4)
-abline(fit5.coef)
-for (i in seq( -0.5, 0.5, by=0.1 ) ) {
-    abline( fit5.coef + c(i,0) )
-}
-
-tmp1 <- seq( coef(fit1)[1], coef(fit2)[1], len=10 )
-tmp2 <- seq( coef(fit1)[2], coef(fit2)[2], len=10 )
-
-for (i in seq_along(tmp1) ) {
-    abline( tmp1[i], tmp2[i] )
-}
-
-sad(x,y, coef(fit0))
-sad(x,y, coef(fit1))
-sad(x,y, coef(fit2))
-sad(x,y, coef(fit3))
-sad(x,y, coef(fit4))
-sad(x,y, fit5.coef )
-
-for (i in seq( -0.5, 0.5, by=0.1 ) ) {
-    print(sad(x,y, fit5.coef + c(i,0) ))
-}
-
-for (i in seq_along(tmp1) ) {
-    print(sad(x,y, c(tmp1[i], tmp2[i]) ) )
-}
-```
-
----
-class: primary
-
-```{r exemplo_2, fig.height=4, dev ='svg', fig.cap='Fonte: https://tinyurl.com/y6283end', results='hide'}
-# Exemplo 2
-set.seed(1)
-par(bg = "light blue")
-y2 <- y + rnorm(20,0,0.25)
-plot(x,y2, pch = 21, bg = 'grey', main = 'Dados aleatórios')
-fitnew <- rq(y2~x)  # note the still non-unique warning
-abline(fitnew)
-abline(coef(fitnew) + c(.1,0))
-abline(coef(fitnew) + c(0, 0.01) )
-sad( x,y2, coef(fitnew) )
-sad( x,y2, coef(fitnew)+c(.1,0))
-sad( x,y2, coef(fitnew)+c(0,0.01))
-```
-
----
-class: primary
-
-## Vantagens e desvantagens
-
-| Mínimos Quadrados Ordinários      |	Mínimos Resíduos Absolutos           |
-|:----------------------------------|:-------------------------------------|
-| Não muito robusto                 | Robusto                              |
-| Solução Estável	                  | Solução instável e iterativa         |
-| Solução única     	              | Possíveis múltiplas soluções         |
-| BLUE                              | Não-linear                           |
-
----
-class: primary
-
-## Problemas de convergência 
-
-.center2[
-![](https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png)
-]
-
----
-class: primary
-
-## Outras funções de perda 
-
-.center2[
-![](https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png)
-]
-
 
 
 
@@ -492,14 +630,6 @@ plot(sfun1, xlim = c(0, 1), ylim = c(-0.05, 0.3), xaxs="i", yaxs="i",
 ---
 class: primary
 
-## Transformações
-
-> Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg logarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models.
-> 
-> `r tufte::quote_footer('--- NBR 14.353-02 [@NBR1465302], item 8.2.1')`
----
-class: primary
-
 
 ```{r qr2, fig.height=3.5, dev='svg'}
 qs <- 1:9/10
@@ -510,18 +640,13 @@ ggplot(dados, aes(log(area_total), log(valor))) +
   geom_smooth(method="lm", se = FALSE, color = "red")
 ```
 
-
----
-class: primary
-
-## Estimação melhor nos quantis centrais
-
-> Geralmente, a variação amostral aumenta quando o valor de $\tau$ se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
-
 ---
 class: primary, center, middle
+count: false
 
-## RQ em $p$ dimensões
+## Estudo de Caso
+
+### RQ *vs.* OLS em $p$ dimensões
 
 ---
 class: center, middle
