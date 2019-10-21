@@ -263,6 +263,37 @@ class: primary
 ---
 class: primary
 
+## FAQ
+
+1.  [Non-uniqueness of Solutions] "The estimation of regression quantiles is a 
+linear programming problem.  And the optimal solution may not be unique. However, 
+rq() provides a single solution. My question is what are the additional 
+constraints to get the single solution? Because when we do the research, we can 
+write our own routine in different software like in SAS to estimate quantile 
+regression, does that mean people will get different solutions?"
+
+   From ?rq.fit.fn:
+
+   eps: tolerance parameter for convergence.  In cases of multiple optimal 
+   solutions there may be some discrepancy between solutions produced by method 
+   '"fn"' and method '"br"'.  This is due to the fact that '"fn"' tends to 
+   converge to a point near the centroid of the solution set, while '"br"' stops 
+   at a vertex of the set. 
+
+   There is already facility for doing QR in SAS and it is based _very_closely_ 
+   on my R package and uses essentially the same algorithms.
+
+2.  [Non-uniqueness redux] "And all these solutions is [sic] correct? Or do we need additional constraints to get the same solutions as derived in R?" 
+
+   Yes, they are all correct.  Just as any number between the two central order 
+   statistics is "a median" when the sample size is even and the order statistics 
+   are distinct.  The main point here is that the differences between solutions are 
+   of order 1/n and the inherent uncertainty about the estimates is of order 1/sqrt(n) so 
+   the former variability is essentially irrelevant.
+   
+---
+class: primary
+
 ## 4. Transformações
 
 ### Regressão linear
@@ -415,12 +446,33 @@ class: primary
 
 ## Predições
 
+Foram ajustados dois modelos para dados 50 de apartamentos em Florianópolis do 
+ano de 2015.
+
+Para a regressão quantílica, foi utilizado todo o conjunto de dados.
+
+Para a regressão linear, o conjunto de dados foi saneado e foram efetivamente
+utilizados 48 dados (-4%).
+
+--
 
 
-|   Método             | 10% / IP      |       IC inferior |  Estimativa Central |  IC Superior      | 90% / IP      | 
-|:---------------------|--------------:|------------------:|--------------------:|------------------:|--------------:|
-| Regressão linear     |  802.017,63|   924.768,13    |   961.660,64     | 1.000.024,94    |1.153.080,88|
-| Regressão quantílica |810.629,32|   886.472,34 |   946.467,87     | 1.010.523,85|1.186.954,14|
+
+|   Método             | 10% / IP      |       IC inferior |  Estimativa Central |  IC Superior      | 90% / IP      | Amplitude IC |
+|:---------------------|--------------:|------------------:|--------------------:|------------------:|--------------:|-------------:|
+| Regressão linear     |  802.017,63|   924.768,13    |   961.660,64     | 1.000.024,94    |1.153.080,88| 7,83% |      
+| Regressão quantílica |810.629,32|   886.472,34 |   946.467,87     | 1.010.523,85|1.186.954,14| 13,11%  |
+
+--
+
+A maior amplitude do IC para a RQ confirma a menor eficiência prevista pela teoria.
+
+&gt; The sample median is a statistically consistent estimator of `\(\mu\)`, but it is 
+only `\(2/\pi\)` as efficient as the sample mean.
+
+Ou seja, assumindo que a distribuição dos dados é simétrica, onde média e mediana
+coincidem, são necessário aproximadamente 36% menos dados para a regressão à média
+obter a mesma precisão que a regressão à mediana.
 
 ---
 class: primary, center, middle
