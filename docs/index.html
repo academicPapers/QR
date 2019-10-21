@@ -189,6 +189,7 @@ class: primary
 |3  | Solução Única     	              | Possíveis múltiplas soluções           |
 |4  | Problema da retransformação       | Invariante a transformações monotônicas|
 |5  | Eficiência Computacional          | Ineficiência computacional relativa    |
+|6  | MLE Distribuição Normal           | MLE Distribuição de Laplace            | 
 
 ---
 class: primary
@@ -232,6 +233,9 @@ class: primary
 
 ### 3.1 Média: solução única e analítica
 
+Se os regressores forem linearmente independentes, a solução existe e é única!
+
+--
 
 `$$MSE = \sum \frac{1}{n}(y_i - c)^2 \\
 \arg \min_c MSE \rightarrow c = \mu \\
@@ -239,6 +243,9 @@ class: primary
 \frac{\partial MSE}{\partial c} = \frac{1}{n} \frac{\partial \sum (y_i - c)^2}{\partial c} = 0 \\
 \frac{\partial MSE}{\partial c} = \frac{1}{n} \sum (-2y_i + 2c) = 0 \\
 c = \frac{1}{n} \sum y_i = \mu$$`
+--
+
+Este resultado pode ser generalizado para `\(\mathfrak{R}^p\)`.
 
 ---
 class: primary
@@ -336,7 +343,24 @@ class: primary
 
 &gt; the message for that Gaussian hare who has been frolicking in the flowers, confident of victory, is clear. Laplace’s old tortoise, despite the house he wears on his back to protect him from inclement statistical weather, has a few new tricks and the race is far from over (Portnoy e Koenker, 1997).
 
+---
+class: primary, middle
 
+## 6. Estimador Máxima Verossimilhança
+
+.pull-left[
+
+### Média
+
+&lt;img src="images/dist_normal-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+### Mediana
+
+&lt;img src="images/dist_Laplace-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+]
 ---
 class: primary, center, middle
 count: false

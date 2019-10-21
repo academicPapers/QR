@@ -41,6 +41,7 @@ library(broom)
 library(cowplot)
 library(rlist)
 library(tibble)
+library(mosaic)
 tol <- .Machine$double.eps^(2/3)
 ```
 
@@ -227,6 +228,7 @@ class: primary
 |3  | Solução Única     	              | Possíveis múltiplas soluções           |
 |4  | Problema da retransformação       | Invariante a transformações monotônicas|
 |5  | Eficiência Computacional          | Ineficiência computacional relativa    |
+|6  | MLE Distribuição Normal           | MLE Distribuição de Laplace            | 
 
 ---
 class: primary
@@ -270,6 +272,9 @@ class: primary
 
 ### 3.1 Média: solução única e analítica
 
+Se os regressores forem linearmente independentes, a solução existe e é única!
+
+--
 
 $$MSE = \sum \frac{1}{n}(y_i - c)^2 \\
 \arg \min_c MSE \rightarrow c = \mu \\
@@ -277,6 +282,9 @@ $$MSE = \sum \frac{1}{n}(y_i - c)^2 \\
 \frac{\partial MSE}{\partial c} = \frac{1}{n} \frac{\partial \sum (y_i - c)^2}{\partial c} = 0 \\
 \frac{\partial MSE}{\partial c} = \frac{1}{n} \sum (-2y_i + 2c) = 0 \\
 c = \frac{1}{n} \sum y_i = \mu$$
+--
+
+Este resultado pode ser generalizado para $\mathfrak{R}^p$.
 
 ---
 class: primary
@@ -435,7 +443,38 @@ class: primary
 
 > the message for that Gaussian hare who has been frolicking in the flowers, confident of victory, is clear. Laplace’s old tortoise, despite the house he wears on his back to protect him from inclement statistical weather, has a few new tricks and the race is far from over (Portnoy e Koenker, 1997).
 
+---
+class: primary, middle
 
+## 6. Estimador Máxima Verossimilhança
+
+.pull-left[
+
+### Média
+
+```{r dist_normal, fig.height=3.5, dev='svg'}
+xcnorm(0, return = "plot", system = "gg") %>%
+  gf_labs(title = "Distribuição Normal")
+```
+]
+
+.pull-right[
+
+### Mediana
+
+```{r dist_Laplace, fig.height=3.5, dev='svg'}
+library(LaplacesDemon)
+#Plot Probability Functions
+x <- seq(from=-5, to=5, by=0.1)
+plot(x, dlaplace(x,0,0.5), ylim=c(0,1), type="l", main="Distribuição de Laplace",
+     ylab="density", col="red")
+lines(x, dlaplace(x,0,1), type="l", col="green")
+lines(x, dlaplace(x,0,2), type="l", col="blue")
+legend(2, 0.9, expression(paste(mu==0, ", ", lambda==0.5),
+     paste(mu==0, ", ", lambda==1), paste(mu==0, ", ", lambda==2)),
+     lty=c(1,1,1), col=c("red","green","blue"))
+```
+]
 ---
 class: primary, center, middle
 count: false
