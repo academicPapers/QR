@@ -318,6 +318,7 @@ que a função de transformação seja linear.
 
 
 `$$Q_{f(Y)}(\tau) = f[Q_Y(\tau)]$$`
+
 ---
 class: primary
 
@@ -360,26 +361,30 @@ class: primary
 ---
 class: primary, middle
 
-## 6. Estimador Máxima Verossimilhança
+### 6. Estimador Máxima Verossimilhança
 
 .pull-left[
 
-### Média
+#### Média
 
 &lt;img src="images/dist_normal-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
 
 `$$\hat \mu = \frac{1}{n}\sum x_i$$`
 `$$\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2$$`
+`$$f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right )$$`
+
 ]
 
 .pull-right[
 
-### Mediana
+#### Mediana
 
 &lt;img src="images/dist_Laplace-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
 
 `$$\hat \mu = \arg\min_c \sum |x_i - c|$$`
 `$$\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu|$$`
+
+`$$f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )$$`
 ]
 
 ---
