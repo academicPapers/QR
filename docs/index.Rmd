@@ -418,6 +418,36 @@ $$E[f(Y)] \neq f(EY)$$
 
 
 $$Q_{f(Y)}(\tau) = f[Q_Y(\tau)]$$
+---
+class: primary
+
+## RQ - dados originais
+
+```{r qr1, fig.height=3.5, dev='svg'}
+dados <- centro_2015@data
+dados$padrao <- as.numeric(dados$padrao)
+qs <- 1:9/10
+qr <- rq(valor ~ area_total, data = dados, tau = qs)
+ggplot(dados, aes(area_total, valor)) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
+```
+
+---
+class: primary
+
+## RQ - dados transformados
+
+```{r qr2, fig.height=3.5, dev='svg'}
+qs <- 1:9/10
+qr2 <- rq(log(valor) ~ log(area_total), data = dados, tau = qs)
+ggplot(dados, aes(log(area_total), log(valor))) + 
+  geom_point() + 
+  geom_quantile(quantiles = qs) + 
+  geom_smooth(method="lm", se = FALSE, color = "red")
+```
+
 
 ---
 class: primary
@@ -456,6 +486,9 @@ class: primary, middle
 xcnorm(0, return = "plot", system = "gg") %>%
   gf_labs(title = "Distribuição Normal")
 ```
+
+$$\hat \mu = \frac{1}{n}\sum x_i$$
+$$\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2$$
 ]
 
 .pull-right[
@@ -474,35 +507,17 @@ legend(2, 0.9, expression(paste(mu==0, ", ", lambda==0.5),
      paste(mu==0, ", ", lambda==1), paste(mu==0, ", ", lambda==2)),
      lty=c(1,1,1), col=c("red","green","blue"))
 ```
+
+$$\hat \mu = \arg\min_c \sum |x_i - c|$$
+$$\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu|$$
 ]
+
 ---
 class: primary, center, middle
 count: false
 
 # Regressão Quantílica
 
----
-class: primary
-
-## RQ - duas dimensões
-
-```{r qr1, fig.height=3.5, dev='svg'}
-dados <- centro_2015@data
-dados$padrao <- as.numeric(dados$padrao)
-qs <- 1:9/10
-qr <- rq(valor ~ area_total, data = dados, tau = qs)
-ggplot(dados, aes(area_total, valor)) + 
-  geom_point() + 
-  geom_quantile(quantiles = qs) + 
-  geom_smooth(method="lm", se = FALSE, level = .80, color = "red")
-```
-
----
-class: primary
-
-## Estimação melhor nos quantis centrais
-
-> Geralmente, a variação amostral aumenta quando o valor de $\tau$ se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
 
 ---
 class:primary
@@ -584,7 +599,12 @@ class: primary
 plot(summary(qr), parm="area_total")
 ```
 
+---
+class: primary
 
+## Estimação melhor nos quantis centrais
+
+> Geralmente, a variação amostral aumenta quando o valor de $\tau$ se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
 
 ---
 class: primary
@@ -624,8 +644,12 @@ legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
        col=c("yellow", "red", "green", "blue", "darkred"), lty = 1,
        title= expression(~tau), text.font=4, bg='lightblue')
 ```
+
+
 ---
 class: primary
+
+## Erros lognormais - coeficientes.
 
 ```{r lognormal_coefs, fig.height=3.5, fig.show='hold', dev = "svg", fig.cap = "Adaptado de Cade e Noon (2003)."}
 par(mfrow = c(1, 2), bg = "light blue")
@@ -642,6 +666,7 @@ plot(sfun1, xlim = c(0, 1), ylim = c(-0.05, 0.3), xaxs="i", yaxs="i",
      main = "Inclinação por quantis", xlab = "Quantis", ylab = "Inclinação",
      do.points = FALSE, col = "red", lwd = 2)
 ```
+
 ---
 class: primary
 
@@ -671,8 +696,11 @@ legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
        col=c("yellow", "red", "green", "blue", "darkred"), lty = 1,
        title= expression(~tau), text.font=4, bg='lightblue')
 ```
+
 ---
 class: primary
+
+## Erros normais heteroscedásticos - coeficientes
 
 ```{r}
 qs <- seq(0.025, .975, .025)
@@ -696,20 +724,6 @@ plot(sfun1, xlim = c(0, 1), ylim = c(-0.05, 0.3), xaxs="i", yaxs="i",
      do.points = FALSE, col = "red", lwd = 2)
 ```
 
-
----
-class: primary
-
-
-```{r qr2, fig.height=3.5, dev='svg'}
-qs <- 1:9/10
-qr2 <- rq(log(valor) ~ log(area_total), data = dados, tau = qs)
-ggplot(dados, aes(log(area_total), log(valor))) + 
-  geom_point() + 
-  geom_quantile(quantiles = qs) + 
-  geom_smooth(method="lm", se = FALSE, color = "red")
-```
-
 ---
 class: primary, center, middle
 count: false
@@ -731,11 +745,12 @@ fit_2 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
             log(dist_b_mar) + rec(padrao), data = dados, tau = .1)
 fit_3 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
             log(dist_b_mar) + rec(padrao), data = dados, tau = .9)
+qs <- 1:9/10
 fit_qr <- rq(log(valor) ~ area_total + quartos + suites + garagens + 
             log(dist_b_mar) + rec(padrao), data = dados, tau = qs)
 ```
 
-```{r coefs, out.width = "100%", fig.height=4.5, dev='svg'}
+```{r coefs, fig.height=5.5, dev='svg'}
 plot(summary(fit_qr))
 ```
 
@@ -782,8 +797,8 @@ A maior amplitude do IC para a RQ confirma a menor eficiência prevista pela teo
 only $2/\pi$ as efficient as the sample mean.
 
 Ou seja, assumindo que a distribuição dos dados é simétrica, onde média e mediana
-coincidem, são necessário aproximadamente 36% menos dados para a regressão à média
-obter a mesma precisão que a regressão à mediana.
+coincidem, são necessário aproximadamente 57% mais dados para a regressão à mediana
+obter a mesma precisão que a regressão linear.
 
 ---
 class: primary, center, middle
