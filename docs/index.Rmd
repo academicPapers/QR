@@ -89,7 +89,9 @@ class: primary
 * Laplace(1789): resolveu matematicamente o problema proposto.
 --
 
-* Legendre(1805): mínimos quadrados
+* Legendre(1805): Nouvelles méthodes pour la determination des orbites des comètes. Primeira introduão do método dos mínimos quadrados
+
+* Gauss (1809): Theoria Motus Corporum Coelestium. Ligou MQO à distribuição normal.
 --
 
 * Edgeworth (1887): propõe algorítmo para obter intercepto e inclinação da reta, descartando a restrição $\sum \hat u_i = 0$.
