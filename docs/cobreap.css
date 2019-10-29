@@ -16,7 +16,7 @@ h1, h2, h3 {
 
 h4 {
   font-weight: normal;
-  color: red;
+  color: #104E8B;
   text-shadow: none;
 }
 
@@ -43,4 +43,22 @@ h4 {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: red;
 }

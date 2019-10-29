@@ -11,6 +11,7 @@
     <textarea id="source">
 
 class: title-slide
+count: false
 
 
 
@@ -32,6 +33,7 @@ class: title-slide
 
 ---
 class: primary, center, middle
+count: false
 
 # Motivação
 
@@ -43,18 +45,39 @@ background-size: contain
 
 ---
 class: primary
+
 # Histórico
 
-* Século XVIII: 
-  + Boscovich
-  + Laplace
-* Edgeworth (1888): propõe algorítmo para obter intercepto e inclinação da reta que minimiza a soma dos resíduos absolutos
-* Arrow e Hoffenberg (1959): aplicação da regressão à mediana em Economia.
-* Koenker e Basset (1978)
+* Boscovich (1760): propôs o seguinte problema
+  
+  Encontrar `\(\hat{\alpha}\)` e `\(\hat{\beta}\)` tal que:
+  
+  `$$y_i = \hat{\alpha} + \hat{\beta}x_i + \hat{u}_i$$`
+    Com `\(\sum \hat u_i = 0\)` e `\(\sum |\hat u_i| = \text{min}!\)`
+--
 
+* Laplace(1789): resolveu matematicamente o problema proposto.
+--
+
+* Legendre(1805): Nouvelles méthodes pour la determination des orbites des comètes. Primeira introduão do método dos mínimos quadrados
+
+* Gauss (1809): Theoria Motus Corporum Coelestium. Ligou MQO à distribuição normal.
+--
+
+* Edgeworth (1887): propõe algorítmo para obter intercepto e inclinação da reta, descartando a restrição `\(\sum \hat u_i = 0\)`.
+--
+
+* Década de 40: Algoritmos Simplex
+--
+
+* Arrow e Hoffenberg (1959): aplicação da regressão à mediana em Economia.
+--
+
+* Koenker e Basset (1978): Regressão Quantílica
 
 ---
 class: primary
+
 # Estimativas amostrais
 
 &lt;table&gt;
@@ -98,13 +121,36 @@ class: primary
 
 ---
 class: primary
+background-image: url(Quantis.svg)
+backgorund-size: contain
+
+
+
+---
+class: primary
+
+## Outras funções de perda 
+
+.center2[
+![](https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png)
+]
+
+---
+class: primary
 
 ## Regressão Linear vs. Quantílica
 
-$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
+#### Regressão Linear
+
+`$$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2$$`
+
+
+#### Regressão Quantílica
 
 `$$\min_{\xi \in \mathfrak{R}^p } \sum \rho_\tau (y_i - \xi(x_i, \beta))$$`
-`$$\text{Escolhe-se} \qquad \hat\beta (\tau) \quad | \quad \text{res} \left\{\begin{matrix}
+Basicamente:
+
+`$$\text{Procura-se} \qquad \hat\beta (\tau) \quad | \quad \text{res} \left\{\begin{matrix}
 \tau n &gt; 0\\ 
 (1-\tau)n &lt;0
 \end{matrix}\right.$$`
@@ -112,9 +158,243 @@ $$\min_{\mu \in \mathfrak{R}^p} \sum  (y_i - \mu(x_i, \beta))^2 $$
 ---
 class: primary
 
-## RQ - duas dimensões
+### Interpretação geométrica
+
+O problema pode ser abordado geometricamente: constrói-se um vetor dos erros, e 
+minimiza-se a norma deste vetor. 
+
+Geometricamente os problemas são similares, porém a norma do vetor é definida de 
+forma diferente em cada método.
+
+#### Regressão Linear
+
+No caso da regressão linear, a norma é a euclidiana, ou L2:
+
+`$$|| x ||_2 = \sqrt{\left(\sum x_i^2\right)} = \sqrt{x_1^2 + x_2^2 + \ldots + x_i^2} = \sqrt{x^Tx}$$`
+`$$e = \min_{\beta \in \mathfrak{R}^p} \sum  ||y - X\beta)||_2^2$$`
+
+#### Regressão Quantílica
+
+No caso da regressão quantílica, a norma é a L1:
+
+`$$|| x ||_1 = \sum_i |x_i| = |x_1| + |x_2| + \ldots + |x_i|$$`
+
+---
+class: primary
+
+## Vantagens e desvantagens
+
+|   | **Mínimos Quadrados Ordinários**  |	**Mínimos Resíduos Absolutos**         |
+|:--|:----------------------------------|:---------------------------------------|
+|1  | Não muito robusto                 | Robusto                                |
+|2  | Solução Estável	                  | Solução instável e iterativa           |
+|3  | Solução Única     	              | Possíveis múltiplas soluções           |
+|4  | Problema da retransformação       | Invariante a transformações monotônicas|
+|5  | Eficiência Computacional          | Ineficiência computacional relativa    |
+|6  | MLE Distribuição Normal           | MLE Distribuição de Laplace            | 
+
+---
+class: primary
+
+## 1. Robustez
+
+.center2[
+![](http://sfb649.wiwi.hu-berlin.de/fedc_homepage/xplore/tutorials/xaghtmlimg151.gif)
+]
+
+---
+class: primary
+
+## Cuidado!
+
+.center2[
+![](http://sfb649.wiwi.hu-berlin.de/fedc_homepage/xplore/tutorials/xaghtmlimg152.gif)
+]
+
+---
+class: primary
+
+## 2. Estabilidade da Solução
+
+.center2[
+![](https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png)
+]
+
+
+---
+class: primary
+
+## 3. Unicidade da Solução
+
+.center2[
+![](https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg)
+]
+
+---
+class: primary
+
+### 3.1 Média: solução única e analítica
+
+Se os regressores forem linearmente independentes, a solução existe e é única!
+
+--
+
+`$$MSE = \sum \frac{1}{n}(y_i - c)^2 \\
+\arg \min_c MSE \rightarrow c = \mu \\
+\frac{\partial MSE}{\partial c} = 0 \\
+\frac{\partial MSE}{\partial c} = \frac{1}{n} \frac{\partial \sum (y_i - c)^2}{\partial c} = 0 \\
+\frac{\partial MSE}{\partial c} = \frac{1}{n} \sum (-2y_i + 2c) = 0 \\
+c = \frac{1}{n} \sum y_i = \mu$$`
+--
+
+Este resultado pode ser generalizado para `\(\mathfrak{R}^p\)`.
+
+---
+class: primary
+
+### 3.2 Mediana: Solução não-única com dados inventados
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/exemplo_1-1.svg" alt="Fonte: https://tinyurl.com/y6283end" width="80%" /&gt;
+&lt;p class="caption"&gt;Fonte: https://tinyurl.com/y6283end&lt;/p&gt;
+&lt;/div&gt;
+
+---
+class: primary
+
+### 3.2 Mediana: Solução não-única com dados aleatórios
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/exemplo_2-1.svg" alt="Fonte: https://tinyurl.com/y6283end" width="80%" /&gt;
+&lt;p class="caption"&gt;Fonte: https://tinyurl.com/y6283end&lt;/p&gt;
+&lt;/div&gt;
+
+---
+class: primary
+
+## FAQ
+
+1.  [Non-uniqueness of Solutions] "The estimation of regression quantiles is a 
+linear programming problem.  And the optimal solution may not be unique. However, 
+rq() provides a single solution. My question is what are the additional 
+constraints to get the single solution? Because when we do the research, we can 
+write our own routine in different software like in SAS to estimate quantile 
+regression, does that mean people will get different solutions?"
+
+   From ?rq.fit.fn:
+
+   eps: tolerance parameter for convergence.  In cases of multiple optimal 
+   solutions there may be some discrepancy between solutions produced by method 
+   '"fn"' and method '"br"'.  This is due to the fact that '"fn"' tends to 
+   converge to a point near the centroid of the solution set, while '"br"' stops 
+   at a vertex of the set. 
+
+   There is already facility for doing QR in SAS and it is based _very_closely_ 
+   on my R package and uses essentially the same algorithms.
+
+2.  [Non-uniqueness redux] "And all these solutions is [sic] correct? Or do we need additional constraints to get the same solutions as derived in R?" 
+
+   Yes, they are all correct.  Just as any number between the two central order 
+   statistics is "a median" when the sample size is even and the order statistics 
+   are distinct.  The main point here is that the differences between solutions are 
+   of order 1/n and the inherent uncertainty about the estimates is of order 1/sqrt(n) so 
+   the former variability is essentially irrelevant.
+   
+---
+class: primary
+
+## 4. Transformações
+
+### Regressão linear
+
+Na regressão linear, a média condicional da variável original não é obtida pela 
+simples retransformação da variável transformada por sua função inversa, a menos 
+que a função de transformação seja linear.
+
+`$$E[f(Y)] \neq f(EY)$$`
+--
+
+### Regressão Quantílica
+
+&gt; Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg logarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models (Cade e Noon, 2003).
+
+
+`$$Q_{f(Y)}(\tau) = f[Q_Y(\tau)]$$`
+
+---
+class: primary
+
+## RQ - dados originais
 
 &lt;img src="images/qr1-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+
+## RQ - dados transformados
+
+&lt;img src="images/qr2-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: primary
+
+## 5. Eficiência Computacional
+
+.center2[
+![A tartaruga de Laplace e a lebre Gaussiana.](laplacian_tortoise.png)
+]
+
+---
+class: primary
+
+# Comparativo de eficiência computacional
+
+.center2[
+![](comparativo_eficiencia.png)
+]
+
+--
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+&gt; the message for that Gaussian hare who has been frolicking in the flowers, confident of victory, is clear. Laplace’s old tortoise, despite the house he wears on his back to protect him from inclement statistical weather, has a few new tricks and the race is far from over (Portnoy e Koenker, 1997).
+
+---
+class: primary, middle
+
+### 6. Estimador Máxima Verossimilhança
+
+.pull-left[
+
+#### Média
+
+&lt;img src="images/dist_normal-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+`$$\hat \mu = \frac{1}{n}\sum x_i$$`
+`$$\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2$$`
+`$$f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right )$$`
+
+]
+
+.pull-right[
+
+#### Mediana
+
+&lt;img src="images/dist_Laplace-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
+
+`$$\hat \mu = \arg\min_c \sum |x_i - c|$$`
+`$$\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu|$$`
+
+`$$f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )$$`
+]
+
+---
+class: primary, center, middle
+count: false
+
+# Regressão Quantílica
+
 
 ---
 class:primary
@@ -134,56 +414,9 @@ class: primary
 ---
 class: primary
 
-# Solução não-única
+## Estimação melhor nos quantis centrais
 
----
-class: primary
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="images/exemplo_1-1.svg" alt="Fonte: https://tinyurl.com/y6283end" width="80%" /&gt;
-&lt;p class="caption"&gt;Fonte: https://tinyurl.com/y6283end&lt;/p&gt;
-&lt;/div&gt;
-
----
-class: primary
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="images/exemplo_2-1.svg" alt="Fonte: https://tinyurl.com/y6283end" width="80%" /&gt;
-&lt;p class="caption"&gt;Fonte: https://tinyurl.com/y6283end&lt;/p&gt;
-&lt;/div&gt;
-
----
-class: primary
-
-## Vantagens e desvantagens
-
-| Mínimos Quadrados Ordinários      |	Mínimos Resíduos Absolutos           |
-|:----------------------------------|:-------------------------------------|
-| Não muito robusto                 | Robusto                              |
-| Solução Estável	                  | Solução instável e iterativa         |
-| Solução única     	              | Possíveis múltiplas soluções         |
-| BLUE                              | Não-linear                           |
-
----
-class: primary
-
-## Problemas de convergência 
-
-.center2[
-![](https://miro.medium.com/max/1050/1*JTC4ReFwSeAt3kvTLq1YoA.png)
-]
-
----
-class: primary
-
-## Outras funções de perda 
-
-.center2[
-![](https://miro.medium.com/max/720/1*BploIBOUrhbgdoB1BK_sOg.png)
-]
-
-
-
+&gt; Geralmente, a variação amostral aumenta quando o valor de `\(\tau\)` se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
 
 ---
 class: primary
@@ -204,61 +437,87 @@ class: primary
 &lt;p class="caption"&gt;Adaptado de Cade e Noon (2003).&lt;/p&gt;
 &lt;/div&gt;
 
+
+---
+class: primary
+
+## Erros lognormais - coeficientes.
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/lognormal_coefs-1.svg" alt="Adaptado de Cade e Noon (2003)." width="80%" /&gt;
+&lt;p class="caption"&gt;Adaptado de Cade e Noon (2003).&lt;/p&gt;
+&lt;/div&gt;
+
 ---
 class: primary
 
 ## Erros normais heteroscedásticos
 
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="images/normal_het_error-1.svg" alt="Adaptado de Cade e Noon (2003)." width="80%" /&gt;
+&lt;img src="images/lognormal_het_error-1.svg" alt="Adaptado de Cade e Noon (2003)." width="80%" /&gt;
 &lt;p class="caption"&gt;Adaptado de Cade e Noon (2003).&lt;/p&gt;
 &lt;/div&gt;
 
-
 ---
 class: primary
 
-## Transformações
-
-&gt; Regression quantiles, like the usual 1-sample quantiles with no predictor variables, retain their statistical propertires under any linear or nonlinear monotonic transformation of y as a consequence of this ordering property; that is, they are equivariant under monotonic transformation of y (Koenker and Machado 1999). Thus, it is possible to use a nonlinear transformation (eg lotarithmic) of y to estimate linear regression quantiles and then back transform the estimates to the original scale (a nonlinear function) without any loss of information. This, of course, is not true with means, including those from regression models.
-
----
-class: primary
+## Erros normais heteroscedásticos - coeficientes
 
 
-&lt;img src="images/qr2-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
 
 
----
-class: primary
-
-## Estimação melhor nos quantis centrais
-
-&gt; Geralmente, a variação amostral aumenta quando o valor de `\(\tau\)` se aproxima de 0 ou 1, mas isto é específico de cada distribuição amostral, modelo, tamanho da amostra e número de parâmetros. Estimações longe do centro da distribuição - a mediana ou o 50º percentil - usualmente não pode ser feita tão precisa.
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="images/normal_het_coefs-1.svg" alt="Adaptado de Cade e Noon (2003)." width="80%" /&gt;
+&lt;p class="caption"&gt;Adaptado de Cade e Noon (2003).&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 class: primary, center, middle
+count: false
 
-## RQ em `\(p\)` dimensões
+## Estudo de Caso
+
+### RQ *vs.* OLS em `\(p\)` dimensões
 
 ---
 class: center, middle
 
 
 
-&lt;img src="images/coefs-1.svg" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/coefs-1.svg" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: primary
 
 ## Predições
 
+Foram ajustados dois modelos para dados 50 de apartamentos em Florianópolis do 
+ano de 2015.
+
+Para a regressão quantílica, foi utilizado todo o conjunto de dados.
+
+Para a regressão linear, o conjunto de dados foi saneado e foram efetivamente
+utilizados 48 dados (-4%).
+
+--
 
 
-|                      | 10%           | 50% ou média  | 90%           | 
-|:---------------------|--------------:|--------------:|--------------:|
-| Regressão linear (IP)|  802.017,63|  961.660,64|1.153.080,88|
-| Regressão quantílica |810.629,32|  946.467,87|1.186.954,14|
+
+|   Método             | 10% / IP      |       IC inferior |  Estimativa Central |  IC Superior      | 90% / IP      | Amplitude IC |
+|:---------------------|--------------:|------------------:|--------------------:|------------------:|--------------:|-------------:|
+| Regressão linear     |  802.017,63|   924.768,13    |   961.660,64     | 1.000.024,94    |1.153.080,88| 7,83% |      
+| Regressão quantílica |810.629,32|   886.472,34 |   946.467,87     | 1.010.523,85|1.186.954,14| 13,11%  |
+
+--
+
+A maior amplitude do IC para a RQ confirma a menor eficiência prevista pela teoria.
+
+&gt; The sample median is a statistically consistent estimator of `\(\mu\)`, but it is 
+only `\(2/\pi\)` as efficient as the sample mean.
+
+Ou seja, assumindo que a distribuição dos dados é normal, onde média e mediana
+coincidem, são necessários aproximadamente 57% mais dados para a regressão à mediana
+obter a mesma precisão que a regressão linear.
 
 ---
 class: primary, center, middle
@@ -268,6 +527,7 @@ class: primary, center, middle
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
+"slideNumberFormat": "<div class=\"progress-bar-container\">   <div class=\"progress-bar\" style=\"width: calc(%current% / %total% * 100%);\">   </div> </div>` ",
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false,
