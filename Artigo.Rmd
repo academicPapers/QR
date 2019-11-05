@@ -1,19 +1,30 @@
 ---
 title: "Regressão Quantílica"
+author:
+- Luiz Fernando Palin Droubi^[SPU/SC, lfpdroubi@gmail.com]
+- Carlos Augusto Zilli^[IFSC, carloszilli@gmail.com]
+- Murilo Damian Ribeiro^[UFSC, murilodamianr@gmail.com ]
+- Norberto Hochheim^[UFSC, hochheim@gmail.com]
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
 output:
   pdf_document:
     includes:
       in_header: preamble.tex
     keep_tex: yes
+    latex_engine: xelatex
     number_sections: yes
+    toc: no
   word_document: default
   html_document:
     fig_caption: yes
     keep_md: yes
-classoption: a4paper
+classoption: a4paper, 12pt
 documentclass: article
+geometry: left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm
 link-citations: yes
+linkcolor: red
+urlcolor: magenta
+citecolor: green
 csl: ABNT_UFPR_2011-Mendeley.csl
 subtitle: Aplicações na Engenharia de Avaliações
 bibliography: bibliography.bib
@@ -35,12 +46,21 @@ library(mosaic)
 library(LaplacesDemon)
 ```
 
+# Introdução
+
+Segundo Koenker [-@mim, 371], o gráfico mais importante da história da estatística
+é o gráfico de Galton, por nós reproduzido na figura \ref{fig:galton}.
+
+O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à média. 
+
+![Regressão à média (Galton, 1885)](refs/image-002.png)
+
 # Breve Histórico
 
-Boscovich propôs a Laplace em 1760 -- portanto ainda antes da introdução do método
-dos mínimos quadrados por Legendre em 1805[^1], no seu trabalho intitulado 
-*Nouvelles méthodes pour la determination des orbites des comètes* --, o seguinte 
-problema:
+Boscovich propôs em 1760 [@tortoise, 281] -- portanto ainda antes da introdução 
+do método dos mínimos quadrados por Legendre  em 1805[^1], no seu trabalho 
+intitulado  *Nouvelles méthodes pour la determination des orbites des comètes* --, 
+o seguinte problema:
 
 Encontrar $\hat \alpha$ e $\hat \beta$ tais que:
 
@@ -48,33 +68,35 @@ $$y_i = \hat \alpha + \hat \beta x_i + \hat u_i$$
 
 com $\sum \hat u_i = 0$ e $\sum |\hat u_i| = \text{min!}$.
 
-Laplace resolveu o problema matematicamente em 1789. 
+Laplace resolveu o problema matematicamente em 1789 [@tortoise, 281]. 
 
-Posteriormente, com a chegada do *methodes de moins carrés*, ou seja, do método 
+Posteriormente, com a chegada do *méthode de moindre carré*, ou seja, do método 
 dos mínimos quadrados ordinários, o método dos mínimos erros absolutos de Laplace 
-ficou em segundo plano.
-
-Até que Edgeworth, em 1887 propõe o primeiro algoritmo capaz de obter o intercepto 
-e o coeficiente angular da reta do método dos mínimos desvios absolutos, relaxando 
-a restrição de que a soma dos resíduos seja igual a zero ($\sum \hat u_i = 0$).
+ficou em segundo plano, até que Edgeworth, em 1887 propõe o primeiro algoritmo capaz de obter o intercepto e o coeficiente angular da reta do método 
+dos mínimos desvios absolutos, relaxando a restrição de que a soma dos resíduos 
+seja igual a zero ($\sum \hat u_i = 0$)  [@tortoise, 281].
 
 Na década de 40 surgiram os primeiros algoritmos simplex destinados à otimização, 
-algoritmos estes que se ajustas às necessidades do métodos dos mínimos desvios 
-absolutos, que não possui solução analítica, mas iterativa.
+algoritmos estes que se ajustam às necessidades do métodos dos mínimos desvios 
+absolutos, que não possui solução analítica, mas iterativa. A primeira aplicação 
+do método dos mínimos desvios absolutos se deve a Arrow e Hoffenberg, em 1959.[@tortoise, 281].
 
-A primeira aplicação do método dos mínimos desvios absolutos se deve a Arrow e 
-Hoffenberg, em 1959.
-
-Em 1978, Koenker e Basset generalizaram o problema de minimização do erro médio 
-absoluto, o que equivale à regressão à mediana, ao problema de encontrar os 
-diversos quantis de distribuição através da aplicação de uma função de perda 
-correspondente àquele quantil, chegando-se assim à regressão quantílica.
+Koenker e Basset [-@koenker1978] generalizaram o problema de minimização 
+do erro médio absoluto, o que equivale à regressão à mediana, ao problema de 
+encontrar os diversos quantis de distribuição através da aplicação de uma função 
+de perda assimétrica, correspondente àquele quantil, chegando-se assim à regressão quantílica.
 
 [^1]: Gauss ligou o método dos mínimos quadrados à distribuição normal
 em seu trabalho intitulado *Theoria Motus Corporum Coelestium* de 1809
 mas a origem do método se deve ao trabalho pioneiro de Legendre. Houve 
 discordâncias entre os dois na disputa pela invenção do método, e outros
-achados na época. Ver a este respeito 
+achados na época. Ver a este respeito @STIGLER197731.
+
+# Referencial teórico
+
+## Estimação de quantis
+
+Existem diversas formas de se obter os quantis de uma amostra.
 
 ## O problema de estimar quantis como um problema de minimização
 
@@ -91,7 +113,14 @@ aplicação de uma função de perda assimétrica ($\rho_\tau(.)$) em lugar da f
 módulo (ver figura 1):
 
 $$Q_\tau(Y) = \arg \min_c \sum_{i = 1}^n \rho_\tau(y_i - c)$$
-![Função de perda ou custo.](DmKq7.png)
+
+```{r, fig.cap= "Função de perda ou custo."}
+knitr::include_graphics("DmKq7.png")
+```
+
+\bcenter Fonte: @qr.
+\ecenter
+
 
 ## Regressão linear e quantílica
 
@@ -105,14 +134,14 @@ f(X), a que minimiza o erro médio quadrático de Y dado X ($\mathbb{E}[(Y - f(X
 é a função de regressão $\mu(t) = \mathbb{E}(Y|X=t)$ [@matloff2017, 49-50].
 
 Analogamente, pode-se demonstrar que a mediana condicional é a função que minimiza
-o erro médio absoluto de Y dado X ($\mathbb{E}(|Y-f(X)|)$).
+o erro médio absoluto de Y dado X ($\mathbb{E}(|Y-f(X)|)$) [@matloff2017, 260-261].
 
-### A regressão linear possui solução única e analítica
+### Unicidade da solução
 
 Pode-se demonstrar que a regressão linear, ou seja, a minimização de $\mathbb{E}[(Y - X\beta)^2]$
 possui uma única solução e esta solução pode ser encontrada analiticamente, bastando
 para isso efetuar a derivação parcial deste termo e igualando-o a zero, obtendo-se
-assum um único solução para o cálculo do valor de $\beta$.
+assum um único solução para o cálculo do valor de $\beta$ [ver @matloff2017, 49-50].
 
 O mesmo não se pode dizer da regressão à mediana a mais genericamente da 
 regressão quantílica. Nesta abordagem, há múltiplas soluções possíveis, assim
@@ -142,15 +171,17 @@ $$Q_{f(Y)}(\tau) = f(Q_Y(\tau))$$
 
 ## Estimador de máxima verossimilhança
 
-Pode-se demonstrar que, quando a distribuição é normal o estimador de máxima verossimilhança
-para o parâmetro $\mu$ da distribuição é a média amostral.
+Pode-se demonstrar que, quando a distribuição é normal o estimador de máxima 
+verossimilhança para o parâmetro $\mu$ da distribuição é a média amostral.
 
 Analogamente, se a distribuição dos dados for a distribuição de Laplace, o estimador
 de máxima verossimilhança para o parâmetro é a mediana.
 
 Isto implica que, se a distribuição dos dados é normal, são necessários $\pi/2$ 
-mais dados para que a estimativa de $\mu$ através da mediana seja tão eficiente 
-quanto a estimativa através da média.
+(1,57) vezes mais dados para que a estimativa de $\mu$ através da mediana seja 
+tão eficiente quanto a estimativa através da média. Isto implica, por sua vez, 
+que intervalos de confiança obtidos para a regressão quantílica são 25% mais 
+largos do que os intervalos de confiança para a regressão linear [@koenker2000, 354].
 
 No entanto, se a distribuição dos dados for a distribuição de Laplace, pode-se
 demonstrar que são necessários duas vezes mais dados para que a média estime
@@ -185,6 +216,10 @@ $$\hat \mu = \arg\min_c \sum |x_i - c|$$
 $$\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu|$$
 
 $$f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )$$
+
+## Inferência
+
+## Aplicações da regressão quantílica
 
 
 

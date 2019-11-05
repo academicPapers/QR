@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper, 12pt]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -21,10 +21,16 @@
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\usepackage[left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 \hypersetup{unicode=true,
             pdftitle={Regressão Quantílica},
-            pdfborder={0 0 0},
+            pdfauthor={Luiz Fernando Palin Droubi; Carlos Augusto Zilli; Murilo Damian Ribeiro; Norberto Hochheim},
+            colorlinks=true,
+            linkcolor=red,
+            citecolor=green,
+            urlcolor=magenta,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{graphicx,grffile}
@@ -76,36 +82,75 @@
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
   \subtitle{Aplicações na Engenharia de Avaliações}
-  \author{}
-    \preauthor{}\postauthor{}
+  \author{Luiz Fernando Palin Droubi\footnote{SPU/SC,
+  \href{mailto:lfpdroubi@gmail.com}{\nolinkurl{lfpdroubi@gmail.com}}} \\ Carlos Augusto Zilli\footnote{IFSC,
+  \href{mailto:carloszilli@gmail.com}{\nolinkurl{carloszilli@gmail.com}}} \\ Murilo Damian Ribeiro\footnote{UFSC,
+  \href{mailto:murilodamianr@gmail.com}{\nolinkurl{murilodamianr@gmail.com}}
+} \\ Norberto Hochheim\footnote{UFSC,
+  \href{mailto:hochheim@gmail.com}{\nolinkurl{hochheim@gmail.com}}}}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{28/10/2019}
+    \date{05/11/2019}
 
 \usepackage[brazil]{babel}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{subfig}
 \usepackage{caption}
+\usepackage{lastpage}
+\setlength{\parindent}{1.25cm} % Default is 15pt.
+\usepackage{indentfirst}
+\usepackage{fontspec} % para Arial
+\setmainfont{Arial}
 \newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
 \let\proglang=\textsf
 \let\code=\texttt
+\newcommand{\bcenter}{\begin{center}}
+\newcommand{\ecenter}{\end{center}}
+\usepackage{fancyhdr}
+% Turn on the style
+\pagestyle{fancy}
+% Clear the header and footer
+\fancyhead{}
+\fancyfoot{}
+% Set the right side of the footer to be the page number
+\fancyfoot[R]{\thepage~/~\pageref{LastPage}}
 
 \begin{document}
 \maketitle
 
-\hypertarget{breve-histuxf3rico}{%
-\section{Breve Histórico}\label{breve-histuxf3rico}}
+\hypertarget{introducao}{%
+\section{Introdução}\label{introducao}}
 
-Boscovich propôs a Laplace em 1760 -- portanto ainda antes da introdução
-do método dos mínimos quadrados por Legendre em 1805\footnote{Gauss
-  ligou o método dos mínimos quadrados à distribuição normal em seu
-  trabalho intitulado \emph{Theoria Motus Corporum Coelestium} de 1809
-  mas a origem do método se deve ao trabalho pioneiro de Legendre. Houve
-  discordâncias entre os dois na disputa pela invenção do método, e
-  outros achados na época. Ver a este respeito}, no seu trabalho
-intitulado \emph{Nouvelles méthodes pour la determination des orbites
-des comètes} --, o seguinte problema:
+Segundo Koenker (\protect\hyperlink{ref-mim}{2009}, p. 371), o gráfico
+mais importante da história da estatística é o gráfico de Galton, por
+nós reproduzido na figura \ref{fig:galton}.
+
+O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à
+média.
+
+\begin{figure}
+\centering
+\includegraphics{refs/image-002.png}
+\caption{Regressão à média (Galton, 1885)}
+\end{figure}
+
+\hypertarget{breve-historico}{%
+\section{Breve Histórico}\label{breve-historico}}
+
+Boscovich propôs em 1760 (PORTNOY; KOENKER,
+\protect\hyperlink{ref-tortoise}{1997}, p. 281) -- portanto ainda antes
+da introdução do método dos mínimos quadrados por Legendre em
+1805\footnote{Gauss ligou o método dos mínimos quadrados à distribuição
+  normal em seu trabalho intitulado \emph{Theoria Motus Corporum
+  Coelestium} de 1809 mas a origem do método se deve ao trabalho
+  pioneiro de Legendre. Houve discordâncias entre os dois na disputa
+  pela invenção do método, e outros achados na época. Ver a este
+  respeito STIGLER (\protect\hyperlink{ref-STIGLER197731}{1977}).}, no
+seu trabalho intitulado \emph{Nouvelles méthodes pour la determination
+des orbites des comètes} --, o seguinte problema:
 
 Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
@@ -113,34 +158,43 @@ Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
 com \(\sum \hat u_i = 0\) e \(\sum |\hat u_i| = \text{min!}\).
 
-Laplace resolveu o problema matematicamente em 1789.
+Laplace resolveu o problema matematicamente em 1789 (PORTNOY; KOENKER,
+\protect\hyperlink{ref-tortoise}{1997}, p. 281).
 
-Posteriormente, com a chegada do \emph{methodes de moins carrés}, ou
+Posteriormente, com a chegada do \emph{méthode de moindre carré}, ou
 seja, do método dos mínimos quadrados ordinários, o método dos mínimos
-erros absolutos de Laplace ficou em segundo plano.
-
-Até que Edgeworth, em 1887 propõe o primeiro algoritmo capaz de obter o
-intercepto e o coeficiente angular da reta do método dos mínimos desvios
-absolutos, relaxando a restrição de que a soma dos resíduos seja igual a
-zero (\(\sum \hat u_i = 0\)).
+erros absolutos de Laplace ficou em segundo plano, até que Edgeworth, em
+1887 propõe o primeiro algoritmo capaz de obter o intercepto e o
+coeficiente angular da reta do método dos mínimos desvios absolutos,
+relaxando a restrição de que a soma dos resíduos seja igual a zero
+(\(\sum \hat u_i = 0\)) (PORTNOY; KOENKER,
+\protect\hyperlink{ref-tortoise}{1997}, p. 281).
 
 Na década de 40 surgiram os primeiros algoritmos simplex destinados à
-otimização, algoritmos estes que se ajustas às necessidades do métodos
+otimização, algoritmos estes que se ajustam às necessidades do métodos
 dos mínimos desvios absolutos, que não possui solução analítica, mas
-iterativa.
+iterativa. A primeira aplicação do método dos mínimos desvios absolutos
+se deve a Arrow e Hoffenberg, em 1959.(PORTNOY; KOENKER,
+\protect\hyperlink{ref-tortoise}{1997}, p. 281).
 
-A primeira aplicação do método dos mínimos desvios absolutos se deve a
-Arrow e Hoffenberg, em 1959.
-
-Em 1978, Koenker e Basset generalizaram o problema de minimização do
-erro médio absoluto, o que equivale à regressão à mediana, ao problema
-de encontrar os diversos quantis de distribuição através da aplicação de
-uma função de perda correspondente àquele quantil, chegando-se assim à
+Koenker e Basset (\protect\hyperlink{ref-koenker1978}{1978})
+generalizaram o problema de minimização do erro médio absoluto, o que
+equivale à regressão à mediana, ao problema de encontrar os diversos
+quantis de distribuição através da aplicação de uma função de perda
+assimétrica, correspondente àquele quantil, chegando-se assim à
 regressão quantílica.
 
-\hypertarget{o-problema-de-estimar-quantis-como-um-problema-de-minimizauxe7uxe3o}{%
+\hypertarget{referencial-teorico}{%
+\section{Referencial teórico}\label{referencial-teorico}}
+
+\hypertarget{estimacao-de-quantis}{%
+\subsection{Estimação de quantis}\label{estimacao-de-quantis}}
+
+Existem diversas formas de se obter os quantis de uma amostra.
+
+\hypertarget{o-problema-de-estimar-quantis-como-um-problema-de-minimizacao}{%
 \subsection{O problema de estimar quantis como um problema de
-minimização}\label{o-problema-de-estimar-quantis-como-um-problema-de-minimizauxe7uxe3o}}
+minimização}\label{o-problema-de-estimar-quantis-como-um-problema-de-minimizacao}}
 
 Pode-se demonstrar que, assim como a média aritmética \(\mu\) de uma
 variável aleatória tem a propriedade de minimizar a soma dos desvios
@@ -158,11 +212,22 @@ porém com a aplicação de uma função de perda assimétrica
 (\(\rho_\tau(.)\)) em lugar da função módulo (ver figura 1):
 
 \[Q_\tau(Y) = \arg \min_c \sum_{i = 1}^n \rho_\tau(y_i - c)\]
-\includegraphics{DmKq7.png}
 
-\hypertarget{regressuxe3o-linear-e-quantuxedlica}{%
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{DmKq7} 
+
+}
+
+\caption{Função de perda ou custo.}\label{fig:unnamed-chunk-1}
+\end{figure}
+
+\bcenter Fonte: KOENKER; HALLOCK (\protect\hyperlink{ref-qr}{2001}).
+\ecenter
+
+\hypertarget{regressao-linear-e-quantilica}{%
 \subsection{Regressão linear e
-quantílica}\label{regressuxe3o-linear-e-quantuxedlica}}
+quantílica}\label{regressao-linear-e-quantilica}}
 
 A regressão linear pode ser vista como uma forma de minimização, assim
 como a média de uma população pode ser visto como o problema de
@@ -178,17 +243,18 @@ função de regressão \(\mu(t) = \mathbb{E}(Y|X=t)\) (MATLOFF,
 
 Analogamente, pode-se demonstrar que a mediana condicional é a função
 que minimiza o erro médio absoluto de Y dado X
-(\(\mathbb{E}(|Y-f(X)|)\)).
+(\(\mathbb{E}(|Y-f(X)|)\)) (MATLOFF,
+\protect\hyperlink{ref-matloff2017}{2017}, pp. 260--261).
 
-\hypertarget{a-regressuxe3o-linear-possui-soluuxe7uxe3o-uxfanica-e-analuxedtica}{%
-\subsubsection{A regressão linear possui solução única e
-analítica}\label{a-regressuxe3o-linear-possui-soluuxe7uxe3o-uxfanica-e-analuxedtica}}
+\hypertarget{unicidade-da-solucao}{%
+\subsubsection{Unicidade da solução}\label{unicidade-da-solucao}}
 
 Pode-se demonstrar que a regressão linear, ou seja, a minimização de
 \(\mathbb{E}[(Y - X\beta)^2]\) possui uma única solução e esta solução
 pode ser encontrada analiticamente, bastando para isso efetuar a
 derivação parcial deste termo e igualando-o a zero, obtendo-se assum um
-único solução para o cálculo do valor de \(\beta\).
+único solução para o cálculo do valor de \(\beta\) (ver MATLOFF,
+\protect\hyperlink{ref-matloff2017}{2017}, pp. 49--50).
 
 O mesmo não se pode dizer da regressão à mediana a mais genericamente da
 regressão quantílica. Nesta abordagem, há múltiplas soluções possíveis,
@@ -210,22 +276,21 @@ presume-se que as múltiplas soluções possíveis, para os casos práticos
 estão dentro da margem de erro para a primeira estimativa encontrada
 pelo algoritmo.
 
-\hypertarget{robustez-da-soluuxe7uxe3o}{%
-\subsection{Robustez da solução}\label{robustez-da-soluuxe7uxe3o}}
+\hypertarget{robustez-da-solucao}{%
+\subsection{Robustez da solução}\label{robustez-da-solucao}}
 
-\hypertarget{transformauxe7uxe3o-e-retransformauxe7uxe3o}{%
+\hypertarget{transformacao-e-retransformacao}{%
 \subsection{Transformação e
-retransformação}\label{transformauxe7uxe3o-e-retransformauxe7uxe3o}}
+retransformação}\label{transformacao-e-retransformacao}}
 
 \[Q_{f(Y)}(\tau) = f(Q_Y(\tau))\]
 
-\hypertarget{eficiuxeancia-computacional}{%
-\subsection{Eficiência
-computacional}\label{eficiuxeancia-computacional}}
+\hypertarget{eficiencia-computacional}{%
+\subsection{Eficiência computacional}\label{eficiencia-computacional}}
 
-\hypertarget{estimador-de-muxe1xima-verossimilhanuxe7a}{%
+\hypertarget{estimador-de-maxima-verossimilhanca}{%
 \subsection{Estimador de máxima
-verossimilhança}\label{estimador-de-muxe1xima-verossimilhanuxe7a}}
+verossimilhança}\label{estimador-de-maxima-verossimilhanca}}
 
 Pode-se demonstrar que, quando a distribuição é normal o estimador de
 máxima verossimilhança para o parâmetro \(\mu\) da distribuição é a
@@ -235,15 +300,19 @@ Analogamente, se a distribuição dos dados for a distribuição de Laplace,
 o estimador de máxima verossimilhança para o parâmetro é a mediana.
 
 Isto implica que, se a distribuição dos dados é normal, são necessários
-\(\pi/2\) mais dados para que a estimativa de \(\mu\) através da mediana
-seja tão eficiente quanto a estimativa através da média.
+\(\pi/2\) (1,57) vezes mais dados para que a estimativa de \(\mu\)
+através da mediana seja tão eficiente quanto a estimativa através da
+média. Isto implica, por sua vez, que intervalos de confiança obtidos
+para a regressão quantílica são 25\% mais largos do que os intervalos de
+confiança para a regressão linear (KOENKER,
+\protect\hyperlink{ref-koenker2000}{2000}, p. 354).
 
 No entanto, se a distribuição dos dados for a distribuição de Laplace,
 pode-se demonstrar que são necessários duas vezes mais dados para que a
 média estime \(\mu\) com a mesma precisão da mediana.
 
-\hypertarget{muxe9dia}{%
-\paragraph{Média}\label{muxe9dia}}
+\hypertarget{media}{%
+\paragraph{Média}\label{media}}
 
 \begin{figure}[H]
 
@@ -275,14 +344,21 @@ média estime \(\mu\) com a mesma precisão da mediana.
 
 \[f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )\]
 
+\hypertarget{inferencia}{%
+\subsection{Inferência}\label{inferencia}}
+
+\hypertarget{aplicacoes-da-regressao-quantilica}{%
+\subsection{Aplicações da regressão
+quantílica}\label{aplicacoes-da-regressao-quantilica}}
+
 \hypertarget{estudos-de-caso}{%
 \section{Estudos de Caso}\label{estudos-de-caso}}
 
 Para os estudos de caso foram utilizados os dados disponíveis em
 HOCHHEIM (\protect\hyperlink{ref-hochheim}{2015}).
 
-\hypertarget{duas-dimensuxf5es}{%
-\subsection{Duas dimensões}\label{duas-dimensuxf5es}}
+\hypertarget{duas-dimensoes}{%
+\subsection{Duas dimensões}\label{duas-dimensoes}}
 
 Assim como na regressão linear, é mais fácil aa compreensão da regressão
 quantílica através de exemplos em duas dimensões, e depois generalizar
@@ -375,8 +451,8 @@ claro.)
 \caption{Variação dos coeficientes de regressão quantílica (variáveis transformadas).}\label{fig:coef2}
 \end{figure}
 
-\hypertarget{anuxe1lise-multivariada}{%
-\subsection{Análise Multivariada}\label{anuxe1lise-multivariada}}
+\hypertarget{analise-multivariada}{%
+\subsection{Análise Multivariada}\label{analise-multivariada}}
 
 Para os dados obtidos de Hochheim
 (\protect\hyperlink{ref-hochheim}{2015}, pp. 22--23) foram ajustados
@@ -508,8 +584,8 @@ respectivamente: R\$ 781.253,06 e R\$ 841.110,17.
 Os limites inferior e superior do IC para o quantil 0,9 são,
 respectivamente: R\$ 1.116.547,53 e R\$ 1.261.800,41.
 
-\hypertarget{referuxeancias}{%
-\section*{Referências}\label{referuxeancias}}
+\hypertarget{referencias}{%
+\section*{Referências}\label{referencias}}
 \addcontentsline{toc}{section}{Referências}
 
 \hypertarget{refs}{}
@@ -517,9 +593,44 @@ respectivamente: R\$ 1.116.547,53 e R\$ 1.261.800,41.
 HOCHHEIM, N. \textbf{Engenharia de avaliações - módulo básico}.
 Florianópolis: IBAPE - SC, 2015.
 
+\leavevmode\hypertarget{ref-koenker2000}{}%
+KOENKER, R. Galton, edgeworth, frisch, and prospects for quantile
+regression in econometrics. \textbf{Journal of Econometrics}, v. 95, n.
+2, p. 347--374, 2000. Disponível em:
+\textless{}\url{http://www.sciencedirect.com/science/article/pii/S0304407699000433}\textgreater{}..
+
+\leavevmode\hypertarget{ref-mim}{}%
+KOENKER, R. The median is the message: Wilson and hilfertys experiments
+on the law of errors. \textbf{The American Statistician}, v. 63, n. 1,
+p. 20--25, 2009. Taylor \& Francis. Disponível em:
+\textless{}\url{https://doi.org/10.1198/tast.2009.0004}\textgreater{}..
+
+\leavevmode\hypertarget{ref-qr}{}%
+KOENKER, R.; HALLOCK, K. F. Quantile regression. \textbf{Journal of
+Economic Perspectives}, v. 15, n. 4, p. 143--156, 2001. Disponível em:
+\textless{}\url{http://www.aeaweb.org/articles?id=10.1257/jep.15.4.143}\textgreater{}..
+
+\leavevmode\hypertarget{ref-koenker1978}{}%
+KOENKER, R. W.; BASSETT, G. Regression quantiles. \textbf{Econometrica},
+v. 46, n. 1, p. 33--50, 1978. Disponível em:
+\textless{}\url{https://EconPapers.repec.org/RePEc:ecm:emetrp:v:46:y:1978:i:1:p:33-50}\textgreater{}..
+
 \leavevmode\hypertarget{ref-matloff2017}{}%
 MATLOFF, N. \textbf{From linear models to machine learning: Regression
 and classification, with R examples}. Chapman \& Hall, 2017.
+
+\leavevmode\hypertarget{ref-tortoise}{}%
+PORTNOY, S.; KOENKER, R. The gaussian hare and the laplacian tortoise:
+Computability of squared- error versus absolute-error estimators.
+\textbf{Statistical Science}, v. 12, n. 4, p. 279--296, 1997. Institute
+of Mathematical Statistics. Disponível em:
+\textless{}\url{http://www.jstor.org/stable/2246216}\textgreater{}..
+
+\leavevmode\hypertarget{ref-STIGLER197731}{}%
+STIGLER, S. M. An attack on gauss, published by legendre in 1820.
+\textbf{Historia Mathematica}, v. 4, n. 1, p. 31--35, 1977. Disponível
+em:
+\textless{}\url{http://www.sciencedirect.com/science/article/pii/0315086077900325}\textgreater{}..
 
 
 \end{document}
