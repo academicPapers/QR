@@ -92,7 +92,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{05/11/2019}
+    \date{06/11/2019}
 
 \usepackage[brazil]{babel}
 \usepackage{graphicx}
@@ -126,19 +126,28 @@
 
 Segundo Koenker (\protect\hyperlink{ref-mim}{2009}, p. 371), o gráfico
 mais importante da história da estatística é o gráfico de Galton, por
-nós reproduzido na figura \ref{fig:galton}.
+nós reproduzido na figura 1.
 
 O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à
-média.
+média, cuja importância até hoje se faz presente em diversos estudos
+científicos, que estabelecem grupos de controle e tratamento para isolar
+os efeitos do tratamento pesquisado do efeito do fenômeno da regressão à
+média (ou reversão à média).
 
 \begin{figure}
 \centering
-\includegraphics{refs/image-002.png}
+\includegraphics{refs/image_Galton.png}
 \caption{Regressão à média (Galton, 1885)}
 \end{figure}
 
-\hypertarget{breve-historico}{%
-\section{Breve Histórico}\label{breve-historico}}
+Segundo Koenker (\protect\hyperlink{ref-koenker2000}{2000}), a
+característica essencial da regressão linear clássica, derivada deste
+gráfico, é que o efeito do covariante na variável resposta é
+inteiramente capturado pela seguinte expressão:
+
+\[\mathbb{E}(Y|X = x) = x'\beta\] enquanto a aleatoriedade remanescente
+de \(Y\) dado \(X\) é modela por um termo de erro aditivo independente
+de \(X\). \# Breve Histórico
 
 Boscovich propôs em 1760 (PORTNOY; KOENKER,
 \protect\hyperlink{ref-tortoise}{1997}, p. 281) -- portanto ainda antes
@@ -305,7 +314,8 @@ através da mediana seja tão eficiente quanto a estimativa através da
 média. Isto implica, por sua vez, que intervalos de confiança obtidos
 para a regressão quantílica são 25\% mais largos do que os intervalos de
 confiança para a regressão linear (KOENKER,
-\protect\hyperlink{ref-koenker2000}{2000}, p. 354).
+\protect\hyperlink{ref-koenker2000}{2000}, p. 354; DASGUPTA,
+\protect\hyperlink{ref-dasGupta}{2008}, p. 92).
 
 No entanto, se a distribuição dos dados for a distribuição de Laplace,
 pode-se demonstrar que são necessários duas vezes mais dados para que a
@@ -496,7 +506,7 @@ básicas dos modelos de regressão linear e de regressão à mediana
  area\_total & 0.001 & 0.002 \\ 
   & (0.001, 0.002) & (0.001, 0.003) \\ 
   & t = 5.113 & t = 2.300 \\ 
-  & p = 0.00001$^{***}$ & p = 0.027$^{**}$ \\ 
+  & p = 0.00001$^{***}$ & p = 0.027$^{***}$ \\ 
   & & \\ 
  quartos & 0.164 & 0.162 \\ 
   & (0.118, 0.209) & (0.107, 0.217) \\ 
@@ -506,12 +516,12 @@ básicas dos modelos de regressão linear e de regressão à mediana
  suites & 0.061 & 0.080 \\ 
   & (0.018, 0.104) & (0.020, 0.139) \\ 
   & t = 1.810 & t = 1.712 \\ 
-  & p = 0.078$^{*}$ & p = 0.095$^{*}$ \\ 
+  & p = 0.078$^{***}$ & p = 0.095$^{***}$ \\ 
   & & \\ 
  garagens & 0.209 & 0.152 \\ 
   & (0.166, 0.252) & (0.075, 0.230) \\ 
   & t = 6.247 & t = 2.520 \\ 
-  & p = 0.00000$^{***}$ & p = 0.016$^{**}$ \\ 
+  & p = 0.00000$^{***}$ & p = 0.016$^{***}$ \\ 
   & & \\ 
  log(dist\_b\_mar) & $-$0.141 & $-$0.146 \\ 
   & ($-$0.176, $-$0.106) & ($-$0.210, $-$0.081) \\ 
@@ -536,7 +546,7 @@ Residual Std. Error & 0.136 (df = 41) &  \\
 F Statistic & 148.921$^{***}$ (df = 6; 41) &  \\ 
 \hline 
 \hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.3; $^{**}$p$<$0.2; $^{***}$p$<$0.1} \\ 
 \end{tabular} 
 \end{table}
 
@@ -589,6 +599,10 @@ respectivamente: R\$ 1.116.547,53 e R\$ 1.261.800,41.
 \addcontentsline{toc}{section}{Referências}
 
 \hypertarget{refs}{}
+\leavevmode\hypertarget{ref-dasGupta}{}%
+DASGUPTA, A. \textbf{Asymtotic theory of statistics and probability}.
+Springer, 2008.
+
 \leavevmode\hypertarget{ref-hochheim}{}%
 HOCHHEIM, N. \textbf{Engenharia de avaliações - módulo básico}.
 Florianópolis: IBAPE - SC, 2015.
@@ -620,14 +634,14 @@ MATLOFF, N. \textbf{From linear models to machine learning: Regression
 and classification, with R examples}. Chapman \& Hall, 2017.
 
 \leavevmode\hypertarget{ref-tortoise}{}%
-PORTNOY, S.; KOENKER, R. The gaussian hare and the laplacian tortoise:
+PORTNOY, S.; KOENKER, R. The Gaussian Hare and the Laplacian Tortoise:
 Computability of squared- error versus absolute-error estimators.
 \textbf{Statistical Science}, v. 12, n. 4, p. 279--296, 1997. Institute
 of Mathematical Statistics. Disponível em:
 \textless{}\url{http://www.jstor.org/stable/2246216}\textgreater{}..
 
 \leavevmode\hypertarget{ref-STIGLER197731}{}%
-STIGLER, S. M. An attack on gauss, published by legendre in 1820.
+STIGLER, S. M. An attack on Gauss, published by Legendre in 1820.
 \textbf{Historia Mathematica}, v. 4, n. 1, p. 31--35, 1977. Disponível
 em:
 \textless{}\url{http://www.sciencedirect.com/science/article/pii/0315086077900325}\textgreater{}..

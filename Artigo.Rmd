@@ -49,12 +49,23 @@ library(LaplacesDemon)
 # Introdução
 
 Segundo Koenker [-@mim, 371], o gráfico mais importante da história da estatística
-é o gráfico de Galton, por nós reproduzido na figura \ref{fig:galton}.
+é o gráfico de Galton, por nós reproduzido na figura 1.
 
-O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à média. 
+O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à média, cuja
+importância até hoje se faz presente em diversos estudos científicos, que 
+estabelecem grupos de controle e tratamento para isolar os efeitos do 
+tratamento pesquisado do efeito do fenômeno da regressão à média (ou reversão
+à média).
 
-![Regressão à média (Galton, 1885)](refs/image-002.png)
+![Regressão à média (Galton, 1885)](refs/image_Galton.png)
 
+Segundo Koenker [-@koenker2000], a característica essencial da regressão linear
+clássica, derivada deste gráfico, é que o efeito do covariante na variável 
+resposta é inteiramente capturado pela seguinte expressão:
+
+$$\mathbb{E}(Y|X = x) = x'\beta$$
+enquanto a aleatoriedade remanescente de $Y$ dado $X$ é modela por um termo de 
+erro aditivo independente de $X$.
 # Breve Histórico
 
 Boscovich propôs em 1760 [@tortoise, 281] -- portanto ainda antes da introdução 
@@ -181,7 +192,7 @@ Isto implica que, se a distribuição dos dados é normal, são necessários $\p
 (1,57) vezes mais dados para que a estimativa de $\mu$ através da mediana seja 
 tão eficiente quanto a estimativa através da média. Isto implica, por sua vez, 
 que intervalos de confiança obtidos para a regressão quantílica são 25% mais 
-largos do que os intervalos de confiança para a regressão linear [@koenker2000, 354].
+largos do que os intervalos de confiança para a regressão linear [@koenker2000, 354; @dasGupta, 92].
 
 No entanto, se a distribuição dos dados for a distribuição de Laplace, pode-se
 demonstrar que são necessários duas vezes mais dados para que a média estime
@@ -313,7 +324,7 @@ fit_3 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
 ```{r, results='asis'}
 stargazer(fit, fit_1, type = type, header = FALSE, label = "tab:fits",
           title = "Comparação entre os modelos de regressão linear e regressão à mediana.",
-          report = "vcstp*", ci = TRUE, ci.level = .80)
+          report = "vcstp*", ci = TRUE, ci.level = .80, star.cutoffs = c(0.30, 0.20, 0.10))
 ```
 
 ```{r}
