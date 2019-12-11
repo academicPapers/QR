@@ -6,11 +6,16 @@
 \usepackage{lastpage}
 \setlength{\parindent}{1.25cm} % Default is 15pt.
 \usepackage{indentfirst}
-\usepackage{fontspec} % para Arial
-\setmainfont{Arial}
-\newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
-\let\proglang=\textsf
-\let\code=\texttt
+% \usepackage{helvet}
+% \renewcommand{\familydefault}{\sfdefault}
+% \usepackage{newtxtext,newtxmath} % mais nova para Times.
+\usepackage{mathptmx} % para Times New Roman (preferível newtxtext)
+% \usepackage{Times} % para Times New Roman (obsoleto)
+% \usepackage{fontspec} % para Arial e/ou Times (xelatex ou luatex)
+% \setmainfont{Arial}
+% \newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
+% \let\proglang=\textsf
+% \let\code=\texttt
 \newcommand{\bcenter}{\begin{center}}
 \newcommand{\ecenter}{\end{center}}
 \usepackage{fancyhdr}

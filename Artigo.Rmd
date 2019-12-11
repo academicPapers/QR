@@ -7,13 +7,11 @@ author:
 - Norberto Hochheim^[UFSC, hochheim@gmail.com]
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
 output:
-  pdf_document:
+  pdf_document: 
     includes:
       in_header: preamble.tex
     keep_tex: yes
-    latex_engine: xelatex
     number_sections: yes
-    toc: no
   word_document: default
   html_document:
     fig_caption: yes
@@ -46,7 +44,67 @@ library(mosaic)
 library(LaplacesDemon)
 ```
 
+# Resumo {-}
+
+A NBR 14.653-02 recomenda que, na Engenharia de Avaliações de imóveis urbanos, 
+para o tratamento dos dados, seja utilizada metodologia científica, mesmo no
+tratamento de dados por fatores, o que usualmente é feito através do método da
+regressão linear, ainda que a norma também cite outros métodos, como a regressão 
+espacial, a  análise envoltória de dados e as redes neurais artificiais.
+No entanto, através destes métodos, o que se obtém são coeficientes ou fatores 
+**médios** da contribuição de uma característica do imóvel na formação do valor 
+final. Ocorre que a contribuição de uma determinada característica para a formação
+do valor final dos imóveis pode ser diferente para os diferentes quantis da 
+distribuição de probabilidades. É possível até que uma determinada característica 
+que se mostre insignificante no método da regressão linear seja significativa na 
+regressão quantílica, já que na regressão linear o que se estima é se, **em média**,
+uma determinada característica tem influência na formação do valor total de um 
+imóvel. Ocorre que uma determinada característica pode influenciar positivamente
+o preço de venda dos imóveis de maior valor e negativamente o preço de venda dos 
+imóveis de menor valor (ou *vice versa*), sendo que, **em média**, o seu efeito 
+seja nulo, o que no entanto não quer dizer que aquela variável não tenha qualquer 
+influência na formação de preço dos imóveis do mercado em análise. Em suma, esta 
+diferente contribuição das características no valor final dos imóveis, atualmente, 
+é ignorada, sendo apenas utilizado o valor médio, sendo que diferentes efeitos das 
+características em imóveis de valores diferentes são negligenciadas. A regressão 
+quantílica é um método que permite estimar a real influência de cada 
+característica ao longo de toda a distribuição de probabilidades dos imóveis de 
+um mercado, o que pode se demonstrar útil na avaliação de imóveis urbanos em
+determinados mercados o que atualmente pode passar despercebido aos olhos do 
+avaliador acostumado com os métodos estatísticos clássicos.
+
 # Introdução
+
+@Zietz mostra que os conflitos a respeito da contribuição de uma determinada 
+característica na formação dos preços de venda de imóveis residenciais podem ser 
+esclarecidos através da regressão quantílica. Diferentes valores para os 
+coeficientes de regressão linear para algumas características podem ser encontrados 
+ao longo da distribuição de preços de venda de imóveis. Ou seja, algumas 
+características dos imóveis residenciais podem ser mais valorizados por compradores 
+de imóveis de mais alto valor do que por compradores de imóveis de menor valor.
+
+Segundo @Zietz, variáveis como área construída, área do lote e número de
+banheiros tem um impacto maior nos imóveis de maior valor de venda, enquanto outras
+variáveis parecem ter um comportamento constante para todos os preços de venda
+de imóveis, como garagens e distância ao centro, entre outras.
+
+A regressão quantílica permite que a influência de uma característica qualquer de
+um imóvel tenha efeitos diferentes para diferentes faixas de valores de imóveis.
+
+@QReco mostra...
+
+```{r trutas, fig.cap="Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: [@QReco].", out.width="100%"}
+knitr::include_graphics("images/-000.png")
+```
+
+
+
+# Regressão Quantílica
+
+
+## Breve Histórico
+
+@stigler1986
 
 Segundo Koenker [-@mim, 371], o gráfico mais importante da história da estatística
 é o gráfico de Galton, por nós reproduzido na figura 1.
@@ -57,7 +115,7 @@ estabelecem grupos de controle e tratamento para isolar os efeitos do
 tratamento pesquisado do efeito do fenômeno da regressão à média (ou reversão
 à média).
 
-![Regressão à média (Galton, 1885)](refs/image_Galton.png)
+![Regressão à média (Galton, 1885)](image_Galton.png)
 
 Segundo Koenker [-@koenker2000], a característica essencial da regressão linear
 clássica, derivada deste gráfico, é que o efeito do covariante na variável 
@@ -66,7 +124,6 @@ resposta é inteiramente capturado pela seguinte expressão:
 $$\mathbb{E}(Y|X = x) = x'\beta$$
 enquanto a aleatoriedade remanescente de $Y$ dado $X$ é modela por um termo de 
 erro aditivo independente de $X$.
-# Breve Histórico
 
 Boscovich propôs em 1760 [@tortoise, 281] -- portanto ainda antes da introdução 
 do método dos mínimos quadrados por Legendre  em 1805[^1], no seu trabalho 
@@ -81,7 +138,7 @@ com $\sum \hat u_i = 0$ e $\sum |\hat u_i| = \text{min!}$.
 
 Laplace resolveu o problema matematicamente em 1789 [@tortoise, 281]. 
 
-Posteriormente, com a chegada do *méthode de moindre carré*, ou seja, do método 
+Posteriormente, com a chegada do *méthode des moindres carrés*, ou seja, do método 
 dos mínimos quadrados ordinários, o método dos mínimos erros absolutos de Laplace 
 ficou em segundo plano, até que Edgeworth, em 1887 propõe o primeiro algoritmo capaz de obter o intercepto e o coeficiente angular da reta do método 
 dos mínimos desvios absolutos, relaxando a restrição de que a soma dos resíduos 
@@ -101,15 +158,15 @@ de perda assimétrica, correspondente àquele quantil, chegando-se assim à regr
 em seu trabalho intitulado *Theoria Motus Corporum Coelestium* de 1809
 mas a origem do método se deve ao trabalho pioneiro de Legendre. Houve 
 discordâncias entre os dois na disputa pela invenção do método, e outros
-achados na época. Ver a este respeito @STIGLER197731.
+achados na época. Ver a este respeito @STIGLER197731 e @stigler1981.
 
-# Referencial teórico
+## Referencial teórico
 
-## Estimação de quantis
+### Estimação de quantis
 
 Existem diversas formas de se obter os quantis de uma amostra.
 
-## O problema de estimar quantis como um problema de minimização
+### O problema de estimar quantis como um problema de minimização
 
 Pode-se demonstrar que, assim como a média aritmética $\mu$ de uma variável aleatória 
 tem a propriedade de minimizar a soma dos desvios quadráticos de cada observação 
@@ -133,7 +190,7 @@ knitr::include_graphics("DmKq7.png")
 \ecenter
 
 
-## Regressão linear e quantílica
+### Regressão linear e quantílica
 
 A regressão linear pode ser vista como uma forma de minimização, assim como a 
 média de uma população pode ser visto como o problema de minimização descrito acima.
@@ -147,7 +204,7 @@ f(X), a que minimiza o erro médio quadrático de Y dado X ($\mathbb{E}[(Y - f(X
 Analogamente, pode-se demonstrar que a mediana condicional é a função que minimiza
 o erro médio absoluto de Y dado X ($\mathbb{E}(|Y-f(X)|)$) [@matloff2017, 260-261].
 
-### Unicidade da solução
+#### Unicidade da solução
 
 Pode-se demonstrar que a regressão linear, ou seja, a minimização de $\mathbb{E}[(Y - X\beta)^2]$
 possui uma única solução e esta solução pode ser encontrada analiticamente, bastando
@@ -172,15 +229,15 @@ de tamanho $1/\sqrt{n}$. Assim, presume-se que as múltiplas soluções possíve
 os casos práticos estão dentro da margem de erro para a primeira estimativa encontrada
 pelo algoritmo.
 
-## Robustez da solução
+#### Robustez da solução
 
-## Transformação e retransformação
+#### Transformação e retransformação
 
 $$Q_{f(Y)}(\tau) = f(Q_Y(\tau))$$
 
-## Eficiência computacional
+#### Eficiência computacional
 
-## Estimador de máxima verossimilhança
+#### Estimador de máxima verossimilhança
 
 Pode-se demonstrar que, quando a distribuição é normal o estimador de máxima 
 verossimilhança para o parâmetro $\mu$ da distribuição é a média amostral.
@@ -228,10 +285,13 @@ $$\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu|$$
 
 $$f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )$$
 
-## Inferência
+### Inferência
 
 ## Aplicações da regressão quantílica
 
+### Na Engenharia de Avaliações
+
+@Zietz mostra...
 
 
 # Estudos de Caso
