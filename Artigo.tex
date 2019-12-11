@@ -29,10 +29,13 @@
             pdfauthor={Luiz Fernando Palin Droubi; Carlos Augusto Zilli; Murilo Damian Ribeiro; Norberto Hochheim},
             colorlinks=true,
             linkcolor=red,
-            citecolor=green,
+            citecolor=blue,
             urlcolor=magenta,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage[style=abnt]{biblatex}
+
+\addbibresource{bibliography.bib}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -95,6 +98,7 @@
     \date{11/12/2019}
 
 \usepackage[brazil]{babel}
+% \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{subfig}
@@ -164,27 +168,27 @@ acostumado com os métodos estatísticos clássicos.
 \hypertarget{introducao}{%
 \section{Introdução}\label{introducao}}
 
-ZIETZ et al. (\protect\hyperlink{ref-Zietz}{2008}) mostra que os
-conflitos a respeito da contribuição de uma determinada característica
-na formação dos preços de venda de imóveis residenciais podem ser
-esclarecidos através da regressão quantílica. Diferentes valores para os
-coeficientes de regressão linear para algumas características podem ser
-encontrados ao longo da distribuição de preços de venda de imóveis. Ou
-seja, algumas características dos imóveis residenciais podem ser mais
-valorizados por compradores de imóveis de mais alto valor do que por
-compradores de imóveis de menor valor.
+\textcite{Zietz} mostra que os conflitos a respeito da contribuição de
+uma determinada característica na formação dos preços de venda de
+imóveis residenciais podem ser esclarecidos através da regressão
+quantílica. Diferentes valores para os coeficientes de regressão linear
+para algumas características podem ser encontrados ao longo da
+distribuição de preços de venda de imóveis. Ou seja, algumas
+características dos imóveis residenciais podem ser mais valorizados por
+compradores de imóveis de mais alto valor do que por compradores de
+imóveis de menor valor.
 
-Segundo ZIETZ et al. (\protect\hyperlink{ref-Zietz}{2008}), variáveis
-como área construída, área do lote e número de banheiros tem um impacto
-maior nos imóveis de maior valor de venda, enquanto outras variáveis
-parecem ter um comportamento constante para todos os preços de venda de
-imóveis, como garagens e distância ao centro, entre outras.
+Segundo \textcite{Zietz}, variáveis como área construída, área do lote e
+número de banheiros tem um impacto maior nos imóveis de maior valor de
+venda, enquanto outras variáveis parecem ter um comportamento constante
+para todos os preços de venda de imóveis, como garagens e distância ao
+centro, entre outras.
 
 A regressão quantílica permite que a influência de uma característica
 qualquer de um imóvel tenha efeitos diferentes para diferentes faixas de
 valores de imóveis.
 
-CADE; NOON (\protect\hyperlink{ref-QReco}{2003}) mostra\ldots{}
+\textcite{QReco} mostra\ldots{}
 
 \begin{figure}[H]
 
@@ -192,7 +196,7 @@ CADE; NOON (\protect\hyperlink{ref-QReco}{2003}) mostra\ldots{}
 
 }
 
-\caption{Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: [@QReco].}\label{fig:trutas}
+\caption{Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: \textcite{QReco}.}\label{fig:trutas}
 \end{figure}
 
 \hypertarget{regressao-quantilica}{%
@@ -201,11 +205,11 @@ CADE; NOON (\protect\hyperlink{ref-QReco}{2003}) mostra\ldots{}
 \hypertarget{breve-historico}{%
 \subsection{Breve Histórico}\label{breve-historico}}
 
-STIGLER (\protect\hyperlink{ref-stigler1986}{1986})
+\textcite{stigler1986}
 
-Segundo Koenker (\protect\hyperlink{ref-mim}{2009}, p. 371), o gráfico
-mais importante da história da estatística é o gráfico de Galton, por
-nós reproduzido na figura 1.
+Segundo Koenker \autocite*[371]{mim}, o gráfico mais importante da
+história da estatística é o gráfico de Galton, por nós reproduzido na
+figura 1.
 
 O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à
 média, cuja importância até hoje se faz presente em diversos estudos
@@ -219,27 +223,25 @@ média (ou reversão à média).
 \caption{Regressão à média (Galton, 1885)}
 \end{figure}
 
-Segundo Koenker (\protect\hyperlink{ref-koenker2000}{2000}), a
-característica essencial da regressão linear clássica, derivada deste
-gráfico, é que o efeito do covariante na variável resposta é
-inteiramente capturado pela seguinte expressão:
+Segundo Koenker \autocite*{koenker2000}, a característica essencial da
+regressão linear clássica, derivada deste gráfico, é que o efeito do
+covariante na variável resposta é inteiramente capturado pela seguinte
+expressão:
 
 \[\mathbb{E}(Y|X = x) = x'\beta\] enquanto a aleatoriedade remanescente
 de \(Y\) dado \(X\) é modela por um termo de erro aditivo independente
 de \(X\).
 
-Boscovich propôs em 1760 (PORTNOY; KOENKER,
-\protect\hyperlink{ref-tortoise}{1997}, p. 281) -- portanto ainda antes
-da introdução do método dos mínimos quadrados por Legendre em
+Boscovich propôs em 1760 \autocite[281]{tortoise} -- portanto ainda
+antes da introdução do método dos mínimos quadrados por Legendre em
 1805\footnote{Gauss ligou o método dos mínimos quadrados à distribuição
   normal em seu trabalho intitulado \emph{Theoria Motus Corporum
   Coelestium} de 1809 mas a origem do método se deve ao trabalho
   pioneiro de Legendre. Houve discordâncias entre os dois na disputa
   pela invenção do método, e outros achados na época. Ver a este
-  respeito STIGLER (\protect\hyperlink{ref-STIGLER197731}{1977}) e
-  STIGLER (\protect\hyperlink{ref-stigler1981}{1981}).}, no seu trabalho
-intitulado \emph{Nouvelles méthodes pour la determination des orbites
-des comètes} --, o seguinte problema:
+  respeito \textcite{STIGLER197731} e \textcite{stigler1981}.}, no seu
+trabalho intitulado \emph{Nouvelles méthodes pour la determination des
+orbites des comètes} --, o seguinte problema:
 
 Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
@@ -247,8 +249,8 @@ Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
 com \(\sum \hat u_i = 0\) e \(\sum |\hat u_i| = \text{min!}\).
 
-Laplace resolveu o problema matematicamente em 1789 (PORTNOY; KOENKER,
-\protect\hyperlink{ref-tortoise}{1997}, p. 281).
+Laplace resolveu o problema matematicamente em 1789
+\autocite[281]{tortoise}.
 
 Posteriormente, com a chegada do \emph{méthode des moindres carrés}, ou
 seja, do método dos mínimos quadrados ordinários, o método dos mínimos
@@ -256,22 +258,19 @@ erros absolutos de Laplace ficou em segundo plano, até que Edgeworth, em
 1887 propõe o primeiro algoritmo capaz de obter o intercepto e o
 coeficiente angular da reta do método dos mínimos desvios absolutos,
 relaxando a restrição de que a soma dos resíduos seja igual a zero
-(\(\sum \hat u_i = 0\)) (PORTNOY; KOENKER,
-\protect\hyperlink{ref-tortoise}{1997}, p. 281).
+(\(\sum \hat u_i = 0\)) \autocite[281]{tortoise}.
 
 Na década de 40 surgiram os primeiros algoritmos simplex destinados à
 otimização, algoritmos estes que se ajustam às necessidades do métodos
 dos mínimos desvios absolutos, que não possui solução analítica, mas
 iterativa. A primeira aplicação do método dos mínimos desvios absolutos
-se deve a Arrow e Hoffenberg, em 1959.(PORTNOY; KOENKER,
-\protect\hyperlink{ref-tortoise}{1997}, p. 281).
+se deve a Arrow e Hoffenberg, em 1959.\autocite[281]{tortoise}.
 
-Koenker e Basset (\protect\hyperlink{ref-koenker1978}{1978})
-generalizaram o problema de minimização do erro médio absoluto, o que
-equivale à regressão à mediana, ao problema de encontrar os diversos
-quantis de distribuição através da aplicação de uma função de perda
-assimétrica, correspondente àquele quantil, chegando-se assim à
-regressão quantílica.
+Koenker e Basset \autocite*{koenker1978} generalizaram o problema de
+minimização do erro médio absoluto, o que equivale à regressão à
+mediana, ao problema de encontrar os diversos quantis de distribuição
+através da aplicação de uma função de perda assimétrica, correspondente
+àquele quantil, chegando-se assim à regressão quantílica.
 
 \hypertarget{referencial-teorico}{%
 \subsection{Referencial teórico}\label{referencial-teorico}}
@@ -287,11 +286,10 @@ minimização}\label{o-problema-de-estimar-quantis-como-um-problema-de-minimizac
 
 Pode-se demonstrar que, assim como a média aritmética \(\mu\) de uma
 variável aleatória tem a propriedade de minimizar a soma dos desvios
-quadráticos de cada observação em relação a ela (MATLOFF,
-\protect\hyperlink{ref-matloff2017}{2017}, p. 50), a mediana tem a
-propriedade de minimizar a soma dos desvios médios absolutos de cada
-observação (MATLOFF, \protect\hyperlink{ref-matloff2017}{2017}, p. 260).
-Ou seja:
+quadráticos de cada observação em relação a ela
+\autocite[50]{matloff2017}, a mediana tem a propriedade de minimizar a
+soma dos desvios médios absolutos de cada observação
+\autocite[260]{matloff2017}. Ou seja:
 
 \[\mu(Y) = \mathbb{E}Y = \arg \min_c \sum_{i = 1}^n \frac{1}{n}(y_i - c)^2\]
 \[Me = \arg \min_c \sum_{i = 1}^n \frac{1}{n}|y_i - c|\] Sabe-se que a
@@ -311,8 +309,7 @@ porém com a aplicação de uma função de perda assimétrica
 \caption{Função de perda ou custo.}\label{fig:unnamed-chunk-1}
 \end{figure}
 
-\bcenter Fonte: KOENKER; HALLOCK (\protect\hyperlink{ref-qr}{2001}).
-\ecenter
+\bcenter Fonte: \textcite{qr}. \ecenter
 
 \hypertarget{regressao-linear-e-quantilica}{%
 \subsubsection{Regressão linear e
@@ -327,13 +324,12 @@ relação a um escalar, desta vez se minimiza o erro em prever uma
 variável Y em relação a {]} uma função de outra variável X, f(X).
 Pode-se demonstrar que entre todas as funções f(X), a que minimiza o
 erro médio quadrático de Y dado X (\(\mathbb{E}[(Y - f(X))^2]\)) é a
-função de regressão \(\mu(t) = \mathbb{E}(Y|X=t)\) (MATLOFF,
-\protect\hyperlink{ref-matloff2017}{2017}, pp. 49--50).
+função de regressão \(\mu(t) = \mathbb{E}(Y|X=t)\)
+\autocite[49-50]{matloff2017}.
 
 Analogamente, pode-se demonstrar que a mediana condicional é a função
 que minimiza o erro médio absoluto de Y dado X
-(\(\mathbb{E}(|Y-f(X)|)\)) (MATLOFF,
-\protect\hyperlink{ref-matloff2017}{2017}, pp. 260--261).
+(\(\mathbb{E}(|Y-f(X)|)\)) \autocite[260-261]{matloff2017}.
 
 \hypertarget{unicidade-da-solucao}{%
 \paragraph{Unicidade da solução}\label{unicidade-da-solucao}}
@@ -342,8 +338,8 @@ Pode-se demonstrar que a regressão linear, ou seja, a minimização de
 \(\mathbb{E}[(Y - X\beta)^2]\) possui uma única solução e esta solução
 pode ser encontrada analiticamente, bastando para isso efetuar a
 derivação parcial deste termo e igualando-o a zero, obtendo-se assum um
-único solução para o cálculo do valor de \(\beta\) (ver MATLOFF,
-\protect\hyperlink{ref-matloff2017}{2017}, pp. 49--50).
+único solução para o cálculo do valor de \(\beta\)
+\autocite[ver][49-50]{matloff2017}.
 
 O mesmo não se pode dizer da regressão à mediana a mais genericamente da
 regressão quantílica. Nesta abordagem, há múltiplas soluções possíveis,
@@ -393,9 +389,8 @@ Isto implica que, se a distribuição dos dados é normal, são necessários
 através da mediana seja tão eficiente quanto a estimativa através da
 média. Isto implica, por sua vez, que intervalos de confiança obtidos
 para a regressão quantílica são 25\% mais largos do que os intervalos de
-confiança para a regressão linear (KOENKER,
-\protect\hyperlink{ref-koenker2000}{2000}, p. 354; DASGUPTA,
-\protect\hyperlink{ref-dasGupta}{2008}, p. 92).
+confiança para a regressão linear
+\autocites[354]{koenker2000}[92]{dasGupta}.
 
 No entanto, se a distribuição dos dados for a distribuição de Laplace,
 pode-se demonstrar que são necessários duas vezes mais dados para que a
@@ -445,13 +440,13 @@ quantílica}\label{aplicacoes-da-regressao-quantilica}}
 \subsubsection{Na Engenharia de
 Avaliações}\label{na-engenharia-de-avaliacoes}}
 
-ZIETZ et al. (\protect\hyperlink{ref-Zietz}{2008}) mostra\ldots{}
+\textcite{Zietz} mostra\ldots{}
 
 \hypertarget{estudos-de-caso}{%
 \section{Estudos de Caso}\label{estudos-de-caso}}
 
 Para os estudos de caso foram utilizados os dados disponíveis em
-HOCHHEIM (\protect\hyperlink{ref-hochheim}{2015}).
+\textcite{hochheim}.
 
 \hypertarget{duas-dimensoes}{%
 \subsection{Duas dimensões}\label{duas-dimensoes}}
@@ -528,8 +523,8 @@ podem ser considerados estatisticamente diferentes do coeficiente da
 regressão linear. Também se pode notar nesta figura como o estimador de
 regressão linear, para uma variável normalmente distribuída e na
 ausência de heteroscedasticidade, é mais eficiente do que o estimador da
-regressão quantílica, como a teoria já prevê (ver MATLOFF
-(\protect\hyperlink{ref-matloff2017}{2017}), 238).
+regressão quantílica, como a teoria já prevê (ver
+\textcite{matloff2017}, 238).
 
 (Zilli, não sei se tu pesquisou isso na revisão bibliográfica, mas acho
 que se não, era bom colocar! Colocar algo do tipo: as vantagens e
@@ -550,11 +545,10 @@ claro.)
 \hypertarget{analise-multivariada}{%
 \subsection{Análise Multivariada}\label{analise-multivariada}}
 
-Para os dados obtidos de Hochheim
-(\protect\hyperlink{ref-hochheim}{2015}, pp. 22--23) foram ajustados
-dois modelos, um de regressão linear, com os dados saneados, e outro de
-regressão quantílica, utilizando-se a totalidade dos dados, para os
-quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
+Para os dados obtidos de Hochheim \autocite*[22-23]{hochheim} foram
+ajustados dois modelos, um de regressão linear, com os dados saneados, e
+outro de regressão quantílica, utilizando-se a totalidade dos dados,
+para os quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
 
 Na figura \ref{fig:coefs} podem ser vistos os valores dos coeficientes
 de cada variável para os diferentes quantis. Pode-se perceber, mais uma
@@ -680,80 +674,7 @@ respectivamente: R\$ 781.253,06 e R\$ 841.110,17.
 Os limites inferior e superior do IC para o quantil 0,9 são,
 respectivamente: R\$ 1.116.547,53 e R\$ 1.261.800,41.
 
-\hypertarget{referencias}{%
-\section*{Referências}\label{referencias}}
-\addcontentsline{toc}{section}{Referências}
-
-\hypertarget{refs}{}
-\leavevmode\hypertarget{ref-QReco}{}%
-CADE, B. S.; NOON, B. R. A gentle introduction to quantile regression
-for ecologists. \textbf{Frontiers in Ecology and the Environment}, v. 1,
-n. 8, p. 412--420, 2003. Ecological Society of America. Disponível em:
-\textless{}\url{http://www.jstor.org/stable/3868138}\textgreater{}..
-
-\leavevmode\hypertarget{ref-dasGupta}{}%
-DASGUPTA, A. \textbf{Asymtotic theory of statistics and probability}.
-Springer, 2008.
-
-\leavevmode\hypertarget{ref-hochheim}{}%
-HOCHHEIM, N. \textbf{Engenharia de avaliações - módulo básico}.
-Florianópolis: IBAPE - SC, 2015.
-
-\leavevmode\hypertarget{ref-koenker2000}{}%
-KOENKER, R. Galton, edgeworth, frisch, and prospects for quantile
-regression in econometrics. \textbf{Journal of Econometrics}, v. 95, n.
-2, p. 347--374, 2000. Disponível em:
-\textless{}\url{http://www.sciencedirect.com/science/article/pii/S0304407699000433}\textgreater{}..
-
-\leavevmode\hypertarget{ref-mim}{}%
-KOENKER, R. The median is the message: Wilson and hilfertys experiments
-on the law of errors. \textbf{The American Statistician}, v. 63, n. 1,
-p. 20--25, 2009. Taylor \& Francis. Disponível em:
-\textless{}\url{https://doi.org/10.1198/tast.2009.0004}\textgreater{}..
-
-\leavevmode\hypertarget{ref-qr}{}%
-KOENKER, R.; HALLOCK, K. F. Quantile regression. \textbf{Journal of
-Economic Perspectives}, v. 15, n. 4, p. 143--156, 2001. Disponível em:
-\textless{}\url{http://www.aeaweb.org/articles?id=10.1257/jep.15.4.143}\textgreater{}..
-
-\leavevmode\hypertarget{ref-koenker1978}{}%
-KOENKER, R. W.; BASSETT, G. Regression quantiles. \textbf{Econometrica},
-v. 46, n. 1, p. 33--50, 1978. Disponível em:
-\textless{}\url{https://EconPapers.repec.org/RePEc:ecm:emetrp:v:46:y:1978:i:1:p:33-50}\textgreater{}..
-
-\leavevmode\hypertarget{ref-matloff2017}{}%
-MATLOFF, N. \textbf{From linear models to machine learning: Regression
-and classification, with R examples}. Chapman \& Hall, 2017.
-
-\leavevmode\hypertarget{ref-tortoise}{}%
-PORTNOY, S.; KOENKER, R. The Gaussian Hare and the Laplacian Tortoise:
-Computability of squared- error versus absolute-error estimators.
-\textbf{Statistical Science}, v. 12, n. 4, p. 279--296, 1997. Institute
-of Mathematical Statistics. Disponível em:
-\textless{}\url{http://www.jstor.org/stable/2246216}\textgreater{}..
-
-\leavevmode\hypertarget{ref-STIGLER197731}{}%
-STIGLER, S. M. An attack on Gauss, published by Legendre in 1820.
-\textbf{Historia Mathematica}, v. 4, n. 1, p. 31--35, 1977. Disponível
-em:
-\textless{}\url{http://www.sciencedirect.com/science/article/pii/0315086077900325}\textgreater{}..
-
-\leavevmode\hypertarget{ref-stigler1981}{}%
-STIGLER, S. M. Gauss and the invention of least squares. \textbf{Ann.
-Statist.}, v. 9, n. 3, p. 465--474, 1981. The Institute of Mathematical
-Statistics. Disponível em:
-\textless{}\url{https://doi.org/10.1214/aos/1176345451}\textgreater{}..
-
-\leavevmode\hypertarget{ref-stigler1986}{}%
-STIGLER, S. M. \textbf{The history of statistics: The measurement of
-uncertainty before 1900}. Cambridge, Mass., \& London, England: The
-Belknap Press of Harvard University Press, 1986.
-
-\leavevmode\hypertarget{ref-Zietz}{}%
-ZIETZ, J.; ZIETZ, E.; SIRMANS, G. Determinants of house prices: A
-quantile regression approach. \textbf{The Journal of Real Estate Finance
-and Economics}, v. 37, n. 4, p. 317--333, 2008. Disponível em:
-\textless{}\url{https://EconPapers.repec.org/RePEc:kap:jrefec:v:37:y:2008:i:4:p:317-333}\textgreater{}..
+\printbibliography[title=Referências]
 
 
 \end{document}

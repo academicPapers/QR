@@ -12,6 +12,7 @@ output:
       in_header: preamble.tex
     keep_tex: yes
     number_sections: yes
+    citation_package: biblatex
   word_document: default
   html_document:
     fig_caption: yes
@@ -22,8 +23,8 @@ geometry: left=3.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm
 link-citations: yes
 linkcolor: red
 urlcolor: magenta
-citecolor: green
-csl: ABNT_UFPR_2011-Mendeley.csl
+citecolor: blue
+biblio-style: abnt
 subtitle: Aplicações na Engenharia de Avaliações
 bibliography: bibliography.bib
 ---
@@ -93,7 +94,7 @@ um imóvel tenha efeitos diferentes para diferentes faixas de valores de imóvei
 
 @QReco mostra...
 
-```{r trutas, fig.cap="Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: [@QReco].", out.width="100%"}
+```{r trutas, fig.cap="Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: \\textcite{QReco}.", out.width="100%"}
 knitr::include_graphics("images/-000.png")
 ```
 

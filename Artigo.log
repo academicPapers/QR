@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.6)  11 DEC 2019 19:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.6)  11 DEC 2019 21:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -360,8 +360,8 @@ Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
-) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen120
 \Hy@linkcounter=\count103
@@ -425,7 +425,401 @@ Now handling font encoding PU ...
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 34.
 Package hyperref Info: Option `breaklinks' set `true' on input line 34.
-(/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count113
+) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count114
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count115
+\c@listtotal=\count116
+\c@listcount=\count117
+\c@liststart=\count118
+\c@liststop=\count119
+\c@citecount=\count120
+\c@citetotal=\count121
+\c@multicitecount=\count122
+\c@multicitetotal=\count123
+\c@instcount=\count124
+\c@maxnames=\count125
+\c@minnames=\count126
+\c@maxitems=\count127
+\c@minitems=\count128
+\c@citecounter=\count129
+\c@maxcitecounter=\count130
+\c@savedcitecounter=\count131
+\c@uniquelist=\count132
+\c@uniquename=\count133
+\c@refsection=\count134
+\c@refsegment=\count135
+\c@maxextratitle=\count136
+\c@maxextratitleyear=\count137
+\c@maxextraname=\count138
+\c@maxextradate=\count139
+\c@maxextraalpha=\count140
+\c@abbrvpenalty=\count141
+\c@highnamepenalty=\count142
+\c@lownamepenalty=\count143
+\c@maxparens=\count144
+\c@parenlevel=\count145
+\blx@tempcnta=\count146
+\blx@tempcntb=\count147
+\blx@tempcntc=\count148
+\blx@maxsection=\count149
+\blx@maxsegment@0=\count150
+\blx@notetype=\count151
+\blx@parenlevel@text=\count152
+\blx@parenlevel@foot=\count153
+\blx@sectionciteorder@0=\count154
+\blx@entrysetcounter=\count155
+\labelnumberwidth=\skip47
+\labelalphawidth=\skip48
+\biblabelsep=\skip49
+\bibitemsep=\skip50
+\bibnamesep=\skip51
+\bibinitsep=\skip52
+\bibparsep=\skip53
+\bibhang=\skip54
+\blx@bcfin=\read1
+\blx@bcfout=\write3
+\blx@langwohyphens=\language4
+\c@mincomprange=\count156
+\c@maxcomprange=\count157
+\c@mincompwidth=\count158
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'abnt.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count159
+\c@savedafterword=\count160
+\c@annotator=\count161
+\c@savedannotator=\count162
+\c@author=\count163
+\c@savedauthor=\count164
+\c@bookauthor=\count165
+\c@savedbookauthor=\count166
+\c@commentator=\count167
+\c@savedcommentator=\count168
+\c@editor=\count169
+\c@savededitor=\count170
+\c@editora=\count171
+\c@savededitora=\count172
+\c@editorb=\count173
+\c@savededitorb=\count174
+\c@editorc=\count175
+\c@savededitorc=\count176
+\c@foreword=\count177
+\c@savedforeword=\count178
+\c@holder=\count179
+\c@savedholder=\count180
+\c@introduction=\count181
+\c@savedintroduction=\count182
+\c@namea=\count183
+\c@savednamea=\count184
+\c@nameb=\count185
+\c@savednameb=\count186
+\c@namec=\count187
+\c@savednamec=\count188
+\c@translator=\count189
+\c@savedtranslator=\count190
+\c@shortauthor=\count191
+\c@savedshortauthor=\count192
+\c@shorteditor=\count193
+\c@savedshorteditor=\count194
+\c@labelname=\count195
+\c@savedlabelname=\count196
+\c@institution=\count197
+\c@savedinstitution=\count198
+\c@lista=\count199
+\c@savedlista=\count266
+\c@listb=\count267
+\c@savedlistb=\count268
+\c@listc=\count269
+\c@savedlistc=\count270
+\c@listd=\count271
+\c@savedlistd=\count272
+\c@liste=\count273
+\c@savedliste=\count274
+\c@listf=\count275
+\c@savedlistf=\count276
+\c@location=\count277
+\c@savedlocation=\count278
+\c@organization=\count279
+\c@savedorganization=\count280
+\c@origlocation=\count281
+\c@savedoriglocation=\count282
+\c@origpublisher=\count283
+\c@savedorigpublisher=\count284
+\c@publisher=\count285
+\c@savedpublisher=\count286
+\c@language=\count287
+\c@savedlanguage=\count288
+\c@origlanguage=\count289
+\c@savedoriglanguage=\count290
+\c@pageref=\count291
+\c@savedpageref=\count292
+\shorthandwidth=\skip55
+\shortjournalwidth=\skip56
+\shortserieswidth=\skip57
+\shorttitlewidth=\skip58
+\shortauthorwidth=\skip59
+\shorteditorwidth=\skip60
+\locallabelnumberwidth=\skip61
+\locallabelalphawidth=\skip62
+\localshorthandwidth=\skip63
+\localshortjournalwidth=\skip64
+\localshortserieswidth=\skip65
+\localshorttitlewidth=\skip66
+\localshortauthorwidth=\skip67
+\localshorteditorwidth=\skip68
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count293
+\c@textcitetotal=\count294
+\c@textcitemaxnames=\count295
+\c@biburlbigbreakpenalty=\count296
+\c@biburlbreakpenalty=\count297
+\c@biburlnumpenalty=\count298
+\c@biburlucpenalty=\count299
+\c@biburllcpenalty=\count300
+\biburlbigskip=\muskip12
+\biburlnumskip=\muskip13
+\biburlucskip=\muskip14
+\biburllcskip=\muskip15
+\c@smartand=\count301
+)
+Package biblatex Info: Trying to load bibliography style 'abnt'...
+Package biblatex Info: ... file 'abnt.bbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/abnt.bbx
+File: abnt.bbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/home
+/droubi/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2019-05-28 L3 programming layer (loader) 
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2019-05-28 L3 programming layer (code)
+\c_max_int=\count302
+\l_tmpa_int=\count303
+\l_tmpb_int=\count304
+\g_tmpa_int=\count305
+\g_tmpb_int=\count306
+\g__kernel_prg_map_int=\count307
+\c__ior_term_ior=\count308
+\c_log_iow=\count309
+\l_iow_line_count_int=\count310
+\l__iow_line_target_int=\count311
+\l__iow_one_indent_int=\count312
+\l__iow_indent_int=\count313
+\c_zero_dim=\dimen124
+\c_max_dim=\dimen125
+\l_tmpa_dim=\dimen126
+\l_tmpb_dim=\dimen127
+\g_tmpa_dim=\dimen128
+\g_tmpb_dim=\dimen129
+\c_zero_skip=\skip69
+\c_max_skip=\skip70
+\l_tmpa_skip=\skip71
+\l_tmpb_skip=\skip72
+\g_tmpa_skip=\skip73
+\g_tmpb_skip=\skip74
+\c_zero_muskip=\muskip16
+\c_max_muskip=\muskip17
+\l_tmpa_muskip=\muskip18
+\l_tmpb_muskip=\muskip19
+\g_tmpa_muskip=\muskip20
+\g_tmpb_muskip=\muskip21
+\l_keys_choice_int=\count314
+\l__intarray_loop_int=\count315
+\c__intarray_sp_dim=\dimen130
+\g__intarray_font_int=\count316
+\c__fp_leading_shift_int=\count317
+\c__fp_middle_shift_int=\count318
+\c__fp_trailing_shift_int=\count319
+\c__fp_big_leading_shift_int=\count320
+\c__fp_big_middle_shift_int=\count321
+\c__fp_big_trailing_shift_int=\count322
+\c__fp_Bigg_leading_shift_int=\count323
+\c__fp_Bigg_middle_shift_int=\count324
+\c__fp_Bigg_trailing_shift_int=\count325
+\c__kernel_randint_max_int=\count326
+\g__fp_array_int=\count327
+\l__fp_array_loop_int=\count328
+\l__sort_length_int=\count329
+\l__sort_min_int=\count330
+\l__sort_top_int=\count331
+\l__sort_max_int=\count332
+\l__sort_true_max_int=\count333
+\l__sort_block_int=\count334
+\l__sort_begin_int=\count335
+\l__sort_end_int=\count336
+\l__sort_A_int=\count337
+\l__sort_B_int=\count338
+\l__sort_C_int=\count339
+\l__tl_analysis_normal_int=\count340
+\l__tl_analysis_index_int=\count341
+\l__tl_analysis_nesting_int=\count342
+\l__tl_analysis_type_int=\count343
+\l__regex_internal_a_int=\count344
+\l__regex_internal_b_int=\count345
+\l__regex_internal_c_int=\count346
+\l__regex_balance_int=\count347
+\l__regex_group_level_int=\count348
+\l__regex_mode_int=\count349
+\c__regex_cs_in_class_mode_int=\count350
+\c__regex_cs_mode_int=\count351
+\l__regex_catcodes_int=\count352
+\l__regex_default_catcodes_int=\count353
+\c__regex_catcode_D_int=\count354
+\c__regex_catcode_S_int=\count355
+\c__regex_catcode_L_int=\count356
+\c__regex_catcode_O_int=\count357
+\c__regex_catcode_A_int=\count358
+\c__regex_all_catcodes_int=\count359
+\l__regex_show_lines_int=\count360
+\l__regex_min_state_int=\count361
+\l__regex_max_state_int=\count362
+\l__regex_left_state_int=\count363
+\l__regex_right_state_int=\count364
+\l__regex_capturing_group_int=\count365
+\l__regex_min_pos_int=\count366
+\l__regex_max_pos_int=\count367
+\l__regex_curr_pos_int=\count368
+\l__regex_start_pos_int=\count369
+\l__regex_success_pos_int=\count370
+\l__regex_curr_char_int=\count371
+\l__regex_curr_catcode_int=\count372
+\l__regex_last_char_int=\count373
+\l__regex_case_changed_char_int=\count374
+\l__regex_curr_state_int=\count375
+\l__regex_step_int=\count376
+\l__regex_min_active_int=\count377
+\l__regex_max_active_int=\count378
+\l__regex_replacement_csnames_int=\count379
+\l__regex_match_count_int=\count380
+\l__regex_min_submatch_int=\count381
+\l__regex_submatch_int=\count382
+\l__regex_zeroth_submatch_int=\count383
+\g__regex_trace_regex_int=\count384
+\c_empty_box=\box29
+\l_tmpa_box=\box30
+\l_tmpb_box=\box31
+\g_tmpa_box=\box32
+\g_tmpb_box=\box33
+\l__box_top_dim=\dimen131
+\l__box_bottom_dim=\dimen132
+\l__box_left_dim=\dimen133
+\l__box_right_dim=\dimen134
+\l__box_top_new_dim=\dimen135
+\l__box_bottom_new_dim=\dimen136
+\l__box_left_new_dim=\dimen137
+\l__box_right_new_dim=\dimen138
+\l__box_internal_box=\box34
+\l__coffin_internal_box=\box35
+\l__coffin_internal_dim=\dimen139
+\l__coffin_offset_x_dim=\dimen140
+\l__coffin_offset_y_dim=\dimen141
+\l__coffin_x_dim=\dimen142
+\l__coffin_y_dim=\dimen143
+\l__coffin_x_prime_dim=\dimen144
+\l__coffin_y_prime_dim=\dimen145
+\c_empty_coffin=\box36
+\l__coffin_aligned_coffin=\box37
+\l__coffin_aligned_internal_coffin=\box38
+\l_tmpa_coffin=\box39
+\l_tmpb_coffin=\box40
+\g_tmpa_coffin=\box41
+\g_tmpb_coffin=\box42
+\l__coffin_bounding_shift_dim=\dimen146
+\l__coffin_left_corner_dim=\dimen147
+\l__coffin_right_corner_dim=\dimen148
+\l__coffin_bottom_corner_dim=\dimen149
+\l__coffin_top_corner_dim=\dimen150
+\l__coffin_scaled_total_height_dim=\dimen151
+\l__coffin_scaled_width_dim=\dimen152
+\c__coffin_empty_coffin=\box43
+\l__coffin_display_coffin=\box44
+\l__coffin_display_coord_coffin=\box45
+\l__coffin_display_pole_coffin=\box46
+\l__coffin_display_offset_dim=\dimen153
+\l__coffin_display_x_dim=\dimen154
+\l__coffin_display_y_dim=\dimen155
+\g__file_internal_ior=\read2
+\l__seq_internal_a_int=\count385
+\l__seq_internal_b_int=\count386
+\c__deprecation_minus_one=\count387
+) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
+File: l3pdfmode.def 2019-04-06 v L3 Experimental driver: PDF mode
+\l__driver_internal_box=\box47
+\l__driver_color_stack_int=\count388
+))
+Package: xparse 2019-05-28 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count389
+\g__xparse_grabber_int=\count390
+\l__xparse_m_args_int=\count391
+\l__xparse_v_nesting_int=\count392
+) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/xpatch/xpatch.sty
+Package: xpatch 2012/10/02 v0.3 Extending etoolbox patching commands
+)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count393
+\c@bbx:relatedtotal=\count394
+))
+Package biblatex Info: Trying to load citation style 'abnt'...
+Package biblatex Info: ... file 'abnt.cbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/abnt.cbx
+File: abnt.cbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+Package biblatex Info: Trying to load citation style 'authoryear-comp'...
+Package biblatex Info: ... file 'authoryear-comp.cbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/cbx/authoryear-comp.cbx
+File: authoryear-comp.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\footcites'.
+Package biblatex Info: Redefining '\footcitetexts'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcites'.
+Package biblatex Info: Redefining '\citetitle'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\citeauthor'.
+Package biblatex Info: Redefining '\citeyear'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
@@ -438,8 +832,8 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen124
-\Gin@req@width=\dimen125
+\Gin@req@height=\dimen156
+\Gin@req@width=\dimen157
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/oberdiek/grffile.sty
 Package: grffile 2017/06/30 v1.18 Extended file name support for graphics (HO)
 Package grffile Info: Option `multidot' is set to `true'.
@@ -448,9 +842,9 @@ Package grffile Info: Option `space' is set to `true'.
 Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip47
-\thanksmargin=\skip48
-\droptitle=\skip49
+\thanksmarkwidth=\skip75
+\thanksmargin=\skip76
+\droptitle=\skip77
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2019/05/04 3.31 The Babel package
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/switch.def
@@ -459,20 +853,20 @@ File: switch.def 2019/05/04 3.31 Babel switching mechanism
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2019/05/04 3.31 Babel common definitions
-\babel@savecnt=\count113
-\U@D=\dimen126
+\babel@savecnt=\count395
+\U@D=\dimen158
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@dirlevel=\count114
+\bbl@dirlevel=\count396
 )
 \l@brazil = a dialect from \language\l@portuges 
 Package babel Info: Making " an active character on input line 145.
 )) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count115
+\c@float@type=\count397
 \float@exts=\toks24
-\float@box=\box29
+\float@box=\box48
 \@float@everytoks=\toks25
-\@floatcapt=\box30
+\@floatcapt=\box49
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
@@ -480,32 +874,32 @@ Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 64.
-\captionmargin=\dimen127
-\captionmargin@=\dimen128
-\captionwidth=\dimen129
-\caption@tempdima=\dimen130
-\caption@indent=\dimen131
-\caption@parindent=\dimen132
-\caption@hangindent=\dimen133
+\captionmargin=\dimen159
+\captionmargin@=\dimen160
+\captionwidth=\dimen161
+\caption@tempdima=\dimen162
+\caption@indent=\dimen163
+\caption@parindent=\dimen164
+\caption@hangindent=\dimen165
 )
-\c@caption@flags=\count116
-\c@ContinuedFloat=\count117
+\c@caption@flags=\count398
+\c@ContinuedFloat=\count399
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 )
-\c@KVtest=\count118
-\sf@farskip=\skip50
-\sf@captopadj=\dimen134
-\sf@capskip=\skip51
-\sf@nearskip=\skip52
-\c@subfigure=\count119
-\c@subfigure@save=\count120
-\c@lofdepth=\count121
-\c@subtable=\count122
-\c@subtable@save=\count123
-\c@lotdepth=\count124
-\sf@top=\skip53
-\sf@bottom=\skip54
+\c@KVtest=\count400
+\sf@farskip=\skip78
+\sf@captopadj=\dimen166
+\sf@capskip=\skip79
+\sf@nearskip=\skip80
+\c@subfigure=\count401
+\c@subfigure@save=\count402
+\c@lofdepth=\count403
+\c@subtable=\count404
+\c@subtable@save=\count405
+\c@lotdepth=\count406
+\sf@top=\skip81
+\sf@bottom=\skip82
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/tools/indentfirst.sty
@@ -548,42 +942,49 @@ LaTeX Info: Redefining \hbar on input line 50.
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
 s
-\f@nch@headwidth=\skip55
-\f@nch@O@elh=\skip56
-\f@nch@O@erh=\skip57
-\f@nch@O@olh=\skip58
-\f@nch@O@orh=\skip59
-\f@nch@O@elf=\skip60
-\f@nch@O@erf=\skip61
-\f@nch@O@olf=\skip62
-\f@nch@O@orf=\skip63
-) (./Artigo.aux)
+\f@nch@headwidth=\skip83
+\f@nch@O@elh=\skip84
+\f@nch@O@erh=\skip85
+\f@nch@O@olh=\skip86
+\f@nch@O@orh=\skip87
+\f@nch@O@elf=\skip88
+\f@nch@O@erf=\skip89
+\f@nch@O@olf=\skip90
+\f@nch@O@orf=\skip91
+)
+
+Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
+(biblatex)                Loading 'csquotes' recommended.
+
+\@quotelevel=\count407
+\@quotereset=\count408
+(./Artigo.aux)
 \openout1 = `Artigo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 126.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 130.
 
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 126.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 130.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -621,7 +1022,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box31
+\AtBeginShipoutBox=\box50
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -631,21 +1032,100 @@ Package color Info: Driver file: pdftex.def on input line 147.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ))
-Package hyperref Info: Link coloring ON on input line 126.
+Package hyperref Info: Link coloring ON on input line 130.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count125
+\c@section@level=\count409
 )
-LaTeX Info: Redefining \ref on input line 126.
-LaTeX Info: Redefining \pageref on input line 126.
-LaTeX Info: Redefining \nameref on input line 126.
+LaTeX Info: Redefining \ref on input line 130.
+LaTeX Info: Redefining \pageref on input line 130.
+LaTeX Info: Redefining \nameref on input line 130.
 (./Artigo.out) (./Artigo.out)
-\@outlinefile=\write3
-\openout3 = `Artigo.out'.
+\@outlinefile=\write4
+\openout4 = `Artigo.out'.
 
+Package biblatex Info: Trying to load language 'brazil' -> 'brazil-abnt'...
+Package biblatex Info: ... file 'brazil-abnt.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/brazil-abnt.lbx
+File: brazil-abnt.lbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+
+Package biblatex Warning: File 'brazilian-abnt-abnt.lbx' not found!
+(biblatex)                Ignoring mapping 'brazilian-abnt' -> 'brazilian-abnt-
+abnt'.
+
+Package biblatex Info: Trying to load language 'brazilian-abnt'...
+Package biblatex Info: ... file 'brazilian-abnt.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/brazilian-abnt.lbx
+File: brazilian-abnt.lbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+Package biblatex Info: Trying to load language 'brazilian' -> 'brazilian-abnt'.
+..
+Package biblatex Info: ... file 'brazilian-abnt.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/brazilian-abnt.lbx
+File: brazilian-abnt.lbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+Package biblatex Info: Trying to load language 'brazilian'...
+Package biblatex Info: ... file 'brazilian.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazilian.lbx
+File: brazilian.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)))
+Package biblatex Info: Trying to load language 'brazilian-abnt'...
+Package biblatex Info: ... file 'brazilian-abnt.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/brazilian-abnt.lbx
+File: brazilian-abnt.lbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+Package biblatex Info: Trying to load language 'brazilian' -> 'brazilian-abnt'.
+..
+Package biblatex Info: ... file 'brazilian-abnt.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/brazilian-abnt.lbx
+File: brazilian-abnt.lbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+Package biblatex Info: Trying to load language 'brazilian'...
+Package biblatex Info: ... file 'brazilian.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazilian.lbx
+File: brazilian.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'brazil'...
+Package biblatex Info: ... file 'brazil.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazil.lbx
+File: brazil.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'brazilian'...
+Package biblatex Info: ... file 'brazilian.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazilian.lbx
+File: brazilian.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)))
+Package biblatex Info: Trying to load language 'brazil'...
+Package biblatex Info: ... file 'brazil.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazil.lbx
+File: brazil.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'brazilian' -> 'brazilian-abnt'.
+..
+Package biblatex Info: ... file 'brazilian-abnt.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex-abnt/brazilian-abnt.lbx
+File: brazilian-abnt.lbx 2018-11-17 v3.4 ABNT BibLaTeX citation style
+Package biblatex Info: Trying to load language 'brazilian'...
+Package biblatex Info: ... file 'brazilian.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazilian.lbx
+File: brazilian.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'brazil'...
+Package biblatex Info: ... file 'brazil.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazil.lbx
+File: brazil.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'brazilian'...
+Package biblatex Info: ... file 'brazilian.lbx' found.
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/biblatex/lbx/brazilian.lbx
+File: brazilian.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+))))))
+Package biblatex Info: Input encoding 'utf8' detected.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `Artigo.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'Artigo.bbl' found.
+(./Artigo.bbl)
+Package biblatex Info: Reference section=0 on input line 130.
+Package biblatex Info: Reference segment=0 on input line 130.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -666,154 +1146,157 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 126.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 12
-7.
+(lastpage)             ! on input line 130.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 13
+1.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 12
-7.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 13
+1.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 12
-7.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 13
+1.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 12
-7.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 13
+1.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 127.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 131.
 
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 131.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 131.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 131.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 131.
 
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 131.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 131.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 131.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 134.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 139.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 143.
 [1
 
 {/home/droubi/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<images/-000.png, id=93, 1773.62625pt x 1543.7675pt>
+<images/-000.png, id=92, 1773.62625pt x 1543.7675pt>
 File: images/-000.png Graphic file (type png)
 <use images/-000.png>
-Package pdftex.def Info: images/-000.png  used on input line 191.
+Package pdftex.def Info: images/-000.png  used on input line 195.
 (pdftex.def)             Requested size: 426.78859pt x 371.47757pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 199.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 199.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 199.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 202.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 206.
 [2 <./images/-000.png (PNG copy)>]
-<image_Galton.png, id=106, 4257.9075pt x 6772.30125pt>
+<image_Galton.png, id=110, 4257.9075pt x 6772.30125pt>
 File: image_Galton.png Graphic file (type png)
 <use image_Galton.png>
-Package pdftex.def Info: image_Galton.png  used on input line 218.
+Package pdftex.def Info: image_Galton.png  used on input line 222.
 (pdftex.def)             Requested size: 426.79025pt x 678.81987pt.
 
-LaTeX Warning: Float too large for page by 0.53677pt on input line 220.
+LaTeX Warning: Float too large for page by 0.53677pt on input line 224.
 
 [3] [4 <./image_Galton.png>]
-<DmKq7.png, id=144, 316.18124pt x 242.9075pt>
+<DmKq7.png, id=158, 316.18124pt x 242.9075pt>
 File: DmKq7.png Graphic file (type png)
 <use DmKq7.png>
-Package pdftex.def Info: DmKq7.png  used on input line 307.
+Package pdftex.def Info: DmKq7.png  used on input line 305.
 (pdftex.def)             Requested size: 298.77354pt x 229.53395pt.
 [5] [6 <./DmKq7.png>]
-<images/dist_normal-1.png, id=174, 469.755pt x 325.215pt>
+<images/dist_normal-1.png, id=194, 469.755pt x 325.215pt>
 File: images/dist_normal-1.png Graphic file (type png)
 <use images/dist_normal-1.png>
-Package pdftex.def Info: images/dist_normal-1.png  used on input line 409.
+Package pdftex.def Info: images/dist_normal-1.png  used on input line 404.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
 [7]
-<images/dist_Laplace-1.png, id=192, 469.755pt x 325.215pt>
+<images/dist_Laplace-1.png, id=212, 469.755pt x 325.215pt>
 File: images/dist_Laplace-1.png Graphic file (type png)
 <use images/dist_Laplace-1.png>
-Package pdftex.def Info: images/dist_Laplace-1.png  used on input line 425.
+Package pdftex.def Info: images/dist_Laplace-1.png  used on input line 420.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
 [8 <./images/dist_normal-1.png (PNG copy)> <./images/dist_Laplace-1.png (PNG co
 py)>]
-<images/qr1-1.png, id=207, 469.755pt x 325.215pt>
+<images/qr1-1.png, id=229, 469.755pt x 325.215pt>
 File: images/qr1-1.png Graphic file (type png)
 <use images/qr1-1.png>
-Package pdftex.def Info: images/qr1-1.png  used on input line 482.
+Package pdftex.def Info: images/qr1-1.png  used on input line 477.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
 [9]
-<images/qr2-1.png, id=221, 469.755pt x 325.215pt>
+<images/qr2-1.png, id=243, 469.755pt x 325.215pt>
 File: images/qr2-1.png Graphic file (type png)
 <use images/qr2-1.png>
-Package pdftex.def Info: images/qr2-1.png  used on input line 497.
+Package pdftex.def Info: images/qr2-1.png  used on input line 492.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-<images/coef1-1.png, id=223, 469.755pt x 325.215pt>
+<images/coef1-1.png, id=245, 469.755pt x 325.215pt>
 File: images/coef1-1.png Graphic file (type png)
 <use images/coef1-1.png>
-Package pdftex.def Info: images/coef1-1.png  used on input line 518.
+Package pdftex.def Info: images/coef1-1.png  used on input line 513.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
 [10 <./images/qr1-1.png (PNG copy)> <./images/qr2-1.png (PNG copy)>]
-<images/coef2-1.png, id=233, 469.755pt x 325.215pt>
+<images/coef2-1.png, id=256, 469.755pt x 325.215pt>
 File: images/coef2-1.png Graphic file (type png)
 <use images/coef2-1.png>
-Package pdftex.def Info: images/coef2-1.png  used on input line 543.
+Package pdftex.def Info: images/coef2-1.png  used on input line 538.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
 [11 <./images/coef1-1.png (PNG copy)> <./images/coef2-1.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 563.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 557.
 
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/coefs-1.png, id=243, 469.755pt x 325.215pt>
+<images/coefs-1.png, id=266, 469.755pt x 325.215pt>
 File: images/coefs-1.png Graphic file (type png)
 <use images/coefs-1.png>
-Package pdftex.def Info: images/coefs-1.png  used on input line 568.
+Package pdftex.def Info: images/coefs-1.png  used on input line 562.
 (pdftex.def)             Requested size: 426.78961pt x 295.46973pt.
 
-LaTeX Warning: Float too large for page by 33.00975pt on input line 637.
+LaTeX Warning: Float too large for page by 33.00975pt on input line 631.
 
 [12 <./images/coefs-1.png (PNG copy)>] [13] [14] 
 AED: lastpage setting LastPage
 [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 759.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 759.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 680.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 680.
 (./Artigo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 759.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 759.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 680.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 680.
 Package rerunfilecheck Info: File `Artigo.out' has not changed.
-(rerunfilecheck)             Checksum: 0EA47CE7EEE84AB1EE7FB43D6F0950CC;2669.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 759.
+(rerunfilecheck)             Checksum: A72E524233FCC4A6466A7AA51DCB57E7;2565.
+Package logreq Info: Writing requests to 'Artigo.run.xml'.
+\openout1 = `Artigo.run.xml'.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 680.
  ) 
 Here is how much of TeX's memory you used:
- 12610 strings out of 494533
- 181551 string characters out of 6176309
- 274244 words of memory out of 5000000
- 15999 multiletter control sequences out of 15000+600000
- 78479 words of font info for 135 fonts, out of 8000000 for 9000
+ 29693 strings out of 494533
+ 519125 string characters out of 6176309
+ 997625 words of memory out of 5000000
+ 32976 multiletter control sequences out of 15000+600000
+ 607177 words of font info for 145 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 44i,12n,43p,456b,405s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,76p,911b,4018s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/droubi/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/droubi/
 .TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</home/droubi/.TinyTeX/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/droubi/.TinyTeX/texmf-dist/
@@ -826,10 +1309,10 @@ ol/usyr.pfb></home/droubi/.TinyTeX/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><
 /home/droubi/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/droubi
 /.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/droubi/.TinyTeX/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Artigo.pdf (15 pages, 4132122 bytes).
+Output written on Artigo.pdf (15 pages, 4132152 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
- 302 compressed objects within 4 object streams
- 92 named destinations out of 1000 (max. 500000)
- 179 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 371 PDF objects out of 1000 (max. 8388607)
+ 325 compressed objects within 4 object streams
+ 90 named destinations out of 1000 (max. 500000)
+ 171 words of extra memory for PDF output out of 10000 (max. 10000000)
 
