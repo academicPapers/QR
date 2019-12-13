@@ -25,7 +25,7 @@ linkcolor: red
 urlcolor: magenta
 citecolor: blue
 biblio-style: abnt
-subtitle: Aplicações na Engenharia de Avaliações
+subtitle: Quando utilizar!?
 bibliography: bibliography.bib
 ---
 
@@ -43,6 +43,7 @@ theme_set(theme_stata())
 library(stargazer)
 library(mosaic)
 library(LaplacesDemon)
+library(truncnorm)
 ```
 
 # Resumo {-}
@@ -92,44 +93,125 @@ de imóveis, como garagens e distância ao centro, entre outras.
 A regressão quantílica permite que a influência de uma característica qualquer de
 um imóvel tenha efeitos diferentes para diferentes faixas de valores de imóveis.
 
-@QReco mostra...
+É possível perceber em alguns casos como o mostrado na figura \ref{fig:trutas},
+que com a regressão linear pode-se chegar à conclusão de que não há qualquer 
+correlação entre duas variáveis, já que, em média, o efeito do regressor é 
+nulo ($\beta = 0$), o que pode ser visto na reta tracejada na figura, que é a reta 
+de regressão linear.
 
-```{r trutas, fig.cap="Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: \\textcite{QReco}.", out.width="100%"}
+No entanto, como bem observaram \textcite[412-413]{QReco}, se os autores somente 
+tivessem se baseado na regressão linear, eles teriam erroneamente concluído que
+não há relação alguma entre as variávies $X$ e $y$. Na realidade, a relação pode
+ser percebida apenas nos quantis superiores dos dados. Fisicamente, o que deve 
+ser deduzido é que, com o aumento do quociente largura/profundidade de um canal,
+limita-se a densidade de trutas no canal. Esta limitação não é percebida nos 
+quantis inferiores dos dados. Por isso, em média, o efeito é nulo, mas claramente
+o efeito pode ser percebido nos quantis superiores.
+
+```{r trutas, fig.cap="Mudanças na densidade de trutas ($y$) em função do quociente largura/profundidade de um canal ($X$). Fonte: \\textcite[413]{QReco}.", out.width="100%"}
 knitr::include_graphics("images/-000.png")
 ```
 
+O mesmo comportamento poderia ser encontrado na Engenharia de Avaliações. Imagine-se
+que ao analisar um mercado de lotes urbanos o Engenheiro de Avaliações se depare
+com os dados mostrados na figura \ref{fig:urb}. Ao analisar os dados através da
+regressão linear à média (reta tracejada), o Engenheiro poderia, erroneamente
+concluir que a área não teria nenhum efeito sobre o valor unitário dos lotes, 
+quando na realidade o que ocorre é que o efeito da variável área é o de aumentar
+suavemente o valor unitário dos lotes de menor valor, e diminuir de uma forma
+um pouco mais agressiva o valor unitário dos lotes dos quantis superiores. 
+
+Em suma, globalmente, o efeito médio é zero, o que não significa que a variável 
+não possua qualquer significância na formação de valor dos imóveis.
+
+```{r urb, fig.cap="Dados gerados randomicamente para ilustrar a importância da regressão quantílica na Engenharia de Avaliações. Fonte: do Autor.", out.width="100%"}
+set.seed(5)
+x = rtruncnorm(500, a = 125, b = 600, mean = 360, sd = 100)
+b0 = 2500 # intercept chosen at your choice
+b1 = 0 # coef chosen at your choice
+h = function(x) 250 - .25*x # h performs heteroscedasticity function (here I used a linear one)
+i = function(x) b0 + .25*x # lower bound limit
+y = rtruncnorm(500, a = i(x), mean = b0, sd = h(x))
+#y = b0 + b1*x + eps - h(x)
+dados <- data.frame(VU = y, Area = x)
+#X <- X[which(X[, "y"] > 2400), ]
+fit <- lm(VU ~ Area, data = dados)
+fit1 <- rq(VU ~ Area, tau = .10, data = dados)
+fit2 <- rq(VU ~ Area, tau = .25, data = dados)
+fit3 <- rq(VU ~ Area, tau = .50, data = dados)
+fit4 <- rq(VU ~ Area, tau = .75, data = dados)
+fit5 <- rq(VU ~ Area, tau = .90, data = dados)
+fit6 <- rq(VU ~ Area, tau = .95, data = dados)
+par(mar=c(5,5,2,6), bg = "light blue")
+plot(VU ~ Area, data = dados, main = "A importância de analisar todos os quantis",
+     xlab = expression("Área"~(m^2)),
+     ylab = expression("VU (R$/"~m^2~")"))
+abline(fit, lty = 2, lwd = 2)
+abline(fit1, col = "yellow")
+abline(fit2, col = "red")
+abline(fit3, col = "green")
+abline(fit4, col = "blue")
+abline(fit5, col = "darkred")
+abline(fit6, col = "darkblue")
+legend('topleft', xpd = TRUE, inset=c(1,0), bty = "n",
+       legend=c(".10", ".25", ".50", ".75", ".90", "0.95", "mean"),
+       col = c("yellow", "red", "green", "blue", "darkred", "darkblue", "black"), 
+       lty = c(rep(1, 6), 2),
+       lwd = c(rep(1,6), 2),
+       title= expression(~tau), text.font=4, bg='lightblue')
+```
 
 
-# Regressão Quantílica
+# Revisão Bibliográfica
 
 
 ## Breve Histórico
 
 @stigler1986
 
-Segundo Koenker [-@mim, 371], o gráfico mais importante da história da estatística
-é o gráfico de Galton, por nós reproduzido na figura 1.
+Segundo @koenker2000 [p. 347], o gráfico mais importante da história da 
+estatística é o gráfico de Galton, reproduzido na figura 1.
 
 O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à média, cuja
-importância até hoje se faz presente em diversos estudos científicos, que 
-estabelecem grupos de controle e tratamento para isolar os efeitos do 
-tratamento pesquisado do efeito do fenômeno da regressão à média (ou reversão
-à média).
+importância até hoje se faz presente em diversos estudos científicos. Em estudos
+clínicos para a aferição do real efeito de um novo medicamento, por exemplo, há 
+necessidade de se estabelecerem dois grupos de pacientes (chamados de grupos de 
+controle e de grupo de tratamento) para isolar os efeitos do tratamento pesquisado 
+do efeito do regressão à média (ou reversão à média) [ver @james1973]. Nestes
+estudos, apenas as pessoas do grupo de tratamento realmente são tratadas com o 
+mediamento em teste. Desta maneira, a diferença das médias entre os grupos é 
+isolada da variação biológica natural e da variação devido aos erros de aferição,
+que estão sujeitos à regressão à média.
 
-![Regressão à média (Galton, 1885)](image_Galton.png)
 
-Segundo Koenker [-@koenker2000], a característica essencial da regressão linear
+![Regressão à média (Galton, 1885). Fonte: \textcite[348]{koenker2000}](image_Galton.png)
+
+Segundo @koenker2000 [p. 349], a característica essencial da regressão linear 
 clássica, derivada deste gráfico, é que o efeito do covariante na variável 
-resposta é inteiramente capturado pela seguinte expressão:
+resposta é inteiramente capturado pela expressão abaixo, uma simples "mudança de 
+local", enquanto a aleatoriedade remanescente de $Y$ dado $X$ é modelada por um 
+termo de erro aditivo independente de $X$.
 
 $$\mathbb{E}(Y|X = x) = x'\beta$$
-enquanto a aleatoriedade remanescente de $Y$ dado $X$ é modela por um termo de 
-erro aditivo independente de $X$.
 
-Boscovich propôs em 1760 [@tortoise, 281] -- portanto ainda antes da introdução 
-do método dos mínimos quadrados por Legendre  em 1805[^1], no seu trabalho 
-intitulado  *Nouvelles méthodes pour la determination des orbites des comètes* --, 
-o seguinte problema:
+Talvez prevendo que o seu método fizesse os seus colegas estatísticos se aterem
+apenas ao estudo das médias,  @galton [p. 62] [*apud* @koenker2000, p. 350]
+repreendeu seus colegas estatísticos que:
+
+> limited their inquiries to Averages, and do not seem to revel in more 
+> comprehensive views. Their souls seem as dull to the charm of variety as that 
+> of a native of one of our flat English counties, whose retrospect of Switzerland
+> was that, if the mountains could be thrown into its lakes, two nuisances would
+> be got rid of at once.
+
+Ironicamente, contudo, apesar da repreensão de Galton, muito provavelmente foi o
+seu método o principal responsável por restringir o escopo das investigações 
+estatísticas à comparação de médias por décadas [@koenker2000, 350].
+
+Muito anterior ao descobrimento por @galton do fenômeno da regressão à média e
+do método dos mínimos quadrados por @legendre1805 [^1], segundo @tortoise [p. 281], 
+Boscovich propôs em 1760, o seguinte problema, onde buscava estimar a elipsidade 
+da terra, prevista na obra-prima de Isaac Newton [-@newton],  em :
 
 Encontrar $\hat \alpha$ e $\hat \beta$ tais que:
 
@@ -141,27 +223,31 @@ Laplace resolveu o problema matematicamente em 1789 [@tortoise, 281].
 
 Posteriormente, com a chegada do *méthode des moindres carrés*, ou seja, do método 
 dos mínimos quadrados ordinários, o método dos mínimos erros absolutos de Laplace 
-ficou em segundo plano, até que Edgeworth, em 1887 propõe o primeiro algoritmo capaz de obter o intercepto e o coeficiente angular da reta do método 
+ficou em segundo plano, até que Edgeworth, em 1887 propõe o primeiro algoritmo 
+capaz de obter o intercepto e o coeficiente angular da reta do método 
 dos mínimos desvios absolutos, relaxando a restrição de que a soma dos resíduos 
 seja igual a zero ($\sum \hat u_i = 0$)  [@tortoise, 281].
 
 Na década de 40 surgiram os primeiros algoritmos simplex destinados à otimização, 
 algoritmos estes que se ajustam às necessidades do métodos dos mínimos desvios 
 absolutos, que não possui solução analítica, mas iterativa. A primeira aplicação 
-do método dos mínimos desvios absolutos se deve a Arrow e Hoffenberg, em 1959.[@tortoise, 281].
+do método dos mínimos desvios absolutos se deve a Arrow e Hoffenberg, em 1959 [@tortoise, 281].
 
-Koenker e Basset [-@koenker1978] generalizaram o problema de minimização 
-do erro médio absoluto, o que equivale à regressão à mediana, ao problema de 
-encontrar os diversos quantis de distribuição através da aplicação de uma função 
-de perda assimétrica, correspondente àquele quantil, chegando-se assim à regressão quantílica.
+@koenker1978 generalizaram o problema de minimização do erro médio absoluto, o 
+que equivale à regressão à mediana, ao problema de encontrar os diversos quantis 
+de distribuição através da aplicação de uma função de perda assimétrica, 
+correspondente àquele quantil, chegando-se assim à regressão quantílica.
 
-[^1]: Gauss ligou o método dos mínimos quadrados à distribuição normal
-em seu trabalho intitulado *Theoria Motus Corporum Coelestium* de 1809
-mas a origem do método se deve ao trabalho pioneiro de Legendre. Houve 
-discordâncias entre os dois na disputa pela invenção do método, e outros
-achados na época. Ver a este respeito @STIGLER197731 e @stigler1981.
+[^1]: @gauss1809 ligou o método dos mínimos quadrados à distribuição normal
+mas a origem do método se deve ao trabalho pioneiro de @legendre1805. Houve 
+discordâncias entre os dois na disputa pela invenção do método, entre outros
+achados na época. Ver a este respeito @STIGLER197731; @stigler1981 e @stigler1986.
 
 ## Referencial teórico
+
+### Interpretação Geométrica
+
+#### O gráfico dual
 
 ### Estimação de quantis
 

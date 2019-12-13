@@ -95,8 +95,10 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{11/12/2019}
+    \date{13/12/2019}
 
+\usepackage{expl3}
+\expandafter\def\csname ver@l3regex.sty\endcsname{} 
 \usepackage[brazil]{babel}
 % \usepackage{natbib}
 \usepackage{graphicx}
@@ -188,7 +190,21 @@ A regressão quantílica permite que a influência de uma característica
 qualquer de um imóvel tenha efeitos diferentes para diferentes faixas de
 valores de imóveis.
 
-\textcite{QReco} mostra\ldots{}
+É possível perceber em alguns casos como o mostrado na figura
+\ref{fig:trutas}, que com a regressão linear pode-se chegar à conclusão
+de que não há qualquer correlação entre duas variáveis, já que, em
+média, o efeito do regressor é nulo (\(\beta = 0\)), o que pode ser
+visto na reta tracejada na figura, que é a reta de regressão linear.
+
+No entanto, como bem observaram \textcite[412-413]{QReco}, se os autores
+somente tivessem se baseado na regressão linear, eles teriam
+erroneamente concluído que não há relação alguma entre as variávies
+\(X\) e \(y\). Na realidade, a relação pode ser percebida apenas nos
+quantis superiores dos dados. Fisicamente, o que deve ser deduzido é
+que, com o aumento do quociente largura/profundidade de um canal,
+limita-se a densidade de trutas no canal. Esta limitação não é percebida
+nos quantis inferiores dos dados. Por isso, em média, o efeito é nulo,
+mas claramente o efeito pode ser percebido nos quantis superiores.
 
 \begin{figure}[H]
 
@@ -196,52 +212,102 @@ valores de imóveis.
 
 }
 
-\caption{Mudanças na densidade de trutas ($y$) em função do quociente da largura sobre altura de um canal ($X$). Fonte: \textcite{QReco}.}\label{fig:trutas}
+\caption{Mudanças na densidade de trutas ($y$) em função do quociente largura/profundidade de um canal ($X$). Fonte: \textcite[413]{QReco}.}\label{fig:trutas}
 \end{figure}
 
-\hypertarget{regressao-quantilica}{%
-\section{Regressão Quantílica}\label{regressao-quantilica}}
+O mesmo comportamento poderia ser encontrado na Engenharia de
+Avaliações. Imagine-se que ao analisar um mercado de lotes urbanos o
+Engenheiro de Avaliações se depare com os dados mostrados na figura
+\ref{fig:urb}. Ao analisar os dados através da regressão linear à média
+(reta tracejada), o Engenheiro poderia, erroneamente concluir que a área
+não teria nenhum efeito sobre o valor unitário dos lotes, quando na
+realidade o que ocorre é que o efeito da variável área é o de aumentar
+suavemente o valor unitário dos lotes de menor valor, e diminuir de uma
+forma um pouco mais agressiva o valor unitário dos lotes dos quantis
+superiores.
+
+Em suma, globalmente, o efeito médio é zero, o que não significa que a
+variável não possua qualquer significância na formação de valor dos
+imóveis.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{images/urb-1} 
+
+}
+
+\caption{Dados gerados randomicamente para ilustrar a importância da regressão quantílica na Engenharia de Avaliações. Fonte: do Autor.}\label{fig:urb}
+\end{figure}
+
+\hypertarget{revisao-bibliografica}{%
+\section{Revisão Bibliográfica}\label{revisao-bibliografica}}
 
 \hypertarget{breve-historico}{%
 \subsection{Breve Histórico}\label{breve-historico}}
 
 \textcite{stigler1986}
 
-Segundo Koenker \autocite*[371]{mim}, o gráfico mais importante da
-história da estatística é o gráfico de Galton, por nós reproduzido na
-figura 1.
+Segundo \textcite[p.~347]{koenker2000}, o gráfico mais importante da
+história da estatística é o gráfico de Galton, reproduzido na figura 1.
 
 O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à
 média, cuja importância até hoje se faz presente em diversos estudos
-científicos, que estabelecem grupos de controle e tratamento para isolar
-os efeitos do tratamento pesquisado do efeito do fenômeno da regressão à
-média (ou reversão à média).
+científicos. Em estudos clínicos para a aferição do real efeito de um
+novo medicamento, por exemplo, há necessidade de se estabelecerem dois
+grupos de pacientes (chamados de grupos de controle e de grupo de
+tratamento) para isolar os efeitos do tratamento pesquisado do efeito do
+regressão à média (ou reversão à média) \autocite[ver][]{james1973}.
+Nestes estudos, apenas as pessoas do grupo de tratamento realmente são
+tratadas com o mediamento em teste. Desta maneira, a diferença das
+médias entre os grupos é isolada da variação biológica natural e da
+variação devido aos erros de aferição, que estão sujeitos à regressão à
+média.
 
 \begin{figure}
 \centering
 \includegraphics{image_Galton.png}
-\caption{Regressão à média (Galton, 1885)}
+\caption{Regressão à média (Galton, 1885). Fonte:
+\textcite[348]{koenker2000}}
 \end{figure}
 
-Segundo Koenker \autocite*{koenker2000}, a característica essencial da
+Segundo \textcite[p.~349]{koenker2000}, a característica essencial da
 regressão linear clássica, derivada deste gráfico, é que o efeito do
-covariante na variável resposta é inteiramente capturado pela seguinte
-expressão:
+covariante na variável resposta é inteiramente capturado pela expressão
+abaixo, uma simples ``mudança de local'', enquanto a aleatoriedade
+remanescente de \(Y\) dado \(X\) é modelada por um termo de erro aditivo
+independente de \(X\).
 
-\[\mathbb{E}(Y|X = x) = x'\beta\] enquanto a aleatoriedade remanescente
-de \(Y\) dado \(X\) é modela por um termo de erro aditivo independente
-de \(X\).
+\[\mathbb{E}(Y|X = x) = x'\beta\]
 
-Boscovich propôs em 1760 \autocite[281]{tortoise} -- portanto ainda
-antes da introdução do método dos mínimos quadrados por Legendre em
-1805\footnote{Gauss ligou o método dos mínimos quadrados à distribuição
-  normal em seu trabalho intitulado \emph{Theoria Motus Corporum
-  Coelestium} de 1809 mas a origem do método se deve ao trabalho
-  pioneiro de Legendre. Houve discordâncias entre os dois na disputa
-  pela invenção do método, e outros achados na época. Ver a este
-  respeito \textcite{STIGLER197731} e \textcite{stigler1981}.}, no seu
-trabalho intitulado \emph{Nouvelles méthodes pour la determination des
-orbites des comètes} --, o seguinte problema:
+Talvez prevendo que o seu método fizesse os seus colegas estatísticos se
+aterem apenas ao estudo das médias, \textcite[p.~62]{galton}
+\autocite[\emph{apud}][p.~350]{koenker2000} repreendeu seus colegas
+estatísticos que:
+
+\begin{quote}
+limited their inquiries to Averages, and do not seem to revel in more
+comprehensive views. Their souls seem as dull to the charm of variety as
+that of a native of one of our flat English counties, whose retrospect
+of Switzerland was that, if the mountains could be thrown into its
+lakes, two nuisances would be got rid of at once.
+\end{quote}
+
+Ironicamente, contudo, apesar da repreensão de Galton, muito
+provavelmente foi o seu método o principal responsável por restringir o
+escopo das investigações estatísticas à comparação de médias por décadas
+\autocite[350]{koenker2000}.
+
+Muito anterior ao descobrimento por \textcite{galton} do fenômeno da
+regressão à média e do método dos mínimos quadrados por
+\textcite{legendre1805} \footnote{\textcite{gauss1809} ligou o método
+  dos mínimos quadrados à distribuição normal mas a origem do método se
+  deve ao trabalho pioneiro de \textcite{legendre1805}. Houve
+  discordâncias entre os dois na disputa pela invenção do método, entre
+  outros achados na época. Ver a este respeito \textcite{STIGLER197731};
+  \textcite{stigler1981} e \textcite{stigler1986}.}, segundo
+\textcite[p.~281]{tortoise}, Boscovich propôs em 1760, o seguinte
+problema, onde buscava estimar a elipsidade da terra, prevista na
+obra-prima de Isaac Newton \autocite*{newton}, em :
 
 Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
@@ -264,16 +330,23 @@ Na década de 40 surgiram os primeiros algoritmos simplex destinados à
 otimização, algoritmos estes que se ajustam às necessidades do métodos
 dos mínimos desvios absolutos, que não possui solução analítica, mas
 iterativa. A primeira aplicação do método dos mínimos desvios absolutos
-se deve a Arrow e Hoffenberg, em 1959.\autocite[281]{tortoise}.
+se deve a Arrow e Hoffenberg, em 1959 \autocite[281]{tortoise}.
 
-Koenker e Basset \autocite*{koenker1978} generalizaram o problema de
-minimização do erro médio absoluto, o que equivale à regressão à
-mediana, ao problema de encontrar os diversos quantis de distribuição
-através da aplicação de uma função de perda assimétrica, correspondente
-àquele quantil, chegando-se assim à regressão quantílica.
+\textcite{koenker1978} generalizaram o problema de minimização do erro
+médio absoluto, o que equivale à regressão à mediana, ao problema de
+encontrar os diversos quantis de distribuição através da aplicação de
+uma função de perda assimétrica, correspondente àquele quantil,
+chegando-se assim à regressão quantílica.
 
 \hypertarget{referencial-teorico}{%
 \subsection{Referencial teórico}\label{referencial-teorico}}
+
+\hypertarget{interpretacao-geometrica}{%
+\subsubsection{Interpretação
+Geométrica}\label{interpretacao-geometrica}}
+
+\hypertarget{o-grafico-dual}{%
+\paragraph{O gráfico dual}\label{o-grafico-dual}}
 
 \hypertarget{estimacao-de-quantis}{%
 \subsubsection{Estimação de quantis}\label{estimacao-de-quantis}}
