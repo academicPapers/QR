@@ -84,7 +84,7 @@
   \title{Regressão Quantílica}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \subtitle{Aplicações na Engenharia de Avaliações}
+  \subtitle{Quando utilizar!?}
   \author{Luiz Fernando Palin Droubi\footnote{SPU/SC,
   \href{mailto:lfpdroubi@gmail.com}{\nolinkurl{lfpdroubi@gmail.com}}} \\ Carlos Augusto Zilli\footnote{IFSC,
   \href{mailto:carloszilli@gmail.com}{\nolinkurl{carloszilli@gmail.com}}} \\ Murilo Damian Ribeiro\footnote{UFSC,
@@ -95,12 +95,15 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{13/12/2019}
+    \date{16/12/2019}
 
 \usepackage{expl3}
 \expandafter\def\csname ver@l3regex.sty\endcsname{} 
+\usepackage{wrapfig}
 \usepackage[brazil]{babel}
 % \usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{breakurl}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{subfig}
@@ -190,6 +193,15 @@ A regressão quantílica permite que a influência de uma característica
 qualquer de um imóvel tenha efeitos diferentes para diferentes faixas de
 valores de imóveis.
 
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{images/-000} 
+
+}
+
+\caption{Mudanças na densidade de trutas ($y$) em função do quociente largura/profundidade de um canal ($X$). Fonte: \textcite[413]{QReco}.}\label{fig:trutas}
+\end{figure}
+
 É possível perceber em alguns casos como o mostrado na figura
 \ref{fig:trutas}, que com a regressão linear pode-se chegar à conclusão
 de que não há qualquer correlação entre duas variáveis, já que, em
@@ -205,15 +217,6 @@ que, com o aumento do quociente largura/profundidade de um canal,
 limita-se a densidade de trutas no canal. Esta limitação não é percebida
 nos quantis inferiores dos dados. Por isso, em média, o efeito é nulo,
 mas claramente o efeito pode ser percebido nos quantis superiores.
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{images/-000} 
-
-}
-
-\caption{Mudanças na densidade de trutas ($y$) em função do quociente largura/profundidade de um canal ($X$). Fonte: \textcite[413]{QReco}.}\label{fig:trutas}
-\end{figure}
 
 O mesmo comportamento poderia ser encontrado na Engenharia de
 Avaliações. Imagine-se que ao analisar um mercado de lotes urbanos o
@@ -298,16 +301,19 @@ escopo das investigações estatísticas à comparação de médias por décadas
 \autocite[350]{koenker2000}.
 
 Muito anterior ao descobrimento por \textcite{galton} do fenômeno da
-regressão à média e do método dos mínimos quadrados por
-\textcite{legendre1805} \footnote{\textcite{gauss1809} ligou o método
-  dos mínimos quadrados à distribuição normal mas a origem do método se
-  deve ao trabalho pioneiro de \textcite{legendre1805}. Houve
-  discordâncias entre os dois na disputa pela invenção do método, entre
-  outros achados na época. Ver a este respeito \textcite{STIGLER197731};
-  \textcite{stigler1981} e \textcite{stigler1986}.}, segundo
-\textcite[p.~281]{tortoise}, Boscovich propôs em 1760, o seguinte
-problema, onde buscava estimar a elipsidade da terra, prevista na
-obra-prima de Isaac Newton \autocite*{newton}, em :
+regressão à média e ainda anterior ao descobrimento do método dos
+mínimos quadrados por \textcite{legendre1805} \footnote{\textcite{gauss1809}
+  ligou o método dos mínimos quadrados à distribuição normal mas a
+  origem do método se deve ao trabalho pioneiro de
+  \textcite{legendre1805}. Houve discordâncias entre os dois na disputa
+  pela invenção do método, entre outros achados na época. Ver a este
+  respeito \textcite{STIGLER197731}; \textcite{stigler1981} e
+  \textcite{stigler1986}.}, Boscovich propôs, em 1760, o seguinte
+problema, em busca de estimar se a hipótese elipsoidal, prevista na
+obra-prima de \textcite{newton}, estaria correta, em função de cinco
+observações do comprimento de um grau de latitude obtidas em diferentes
+longitudes
+\autocites[p.~353]{koenker2000}[p.~281]{tortoise}[p.~40]{stigler1986}:
 
 Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
@@ -315,22 +321,29 @@ Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 
 com \(\sum \hat u_i = 0\) e \(\sum |\hat u_i| = \text{min!}\).
 
-Laplace resolveu o problema matematicamente em 1789
-\autocite[281]{tortoise}.
+\textcite{boscovich} propôs uma solução através de um algoritmo
+geométrico. Alguns anos depois, \textcite{laplace1789} resolveu o
+problema matematicamente em 1789 \autocite[281]{tortoise}, no que pode
+ser considerada a primeira análise de regressão.
 
 Posteriormente, com a chegada do \emph{méthode des moindres carrés}, ou
 seja, do método dos mínimos quadrados ordinários, o método dos mínimos
-erros absolutos de Laplace ficou em segundo plano, até que Edgeworth, em
-1887 propõe o primeiro algoritmo capaz de obter o intercepto e o
-coeficiente angular da reta do método dos mínimos desvios absolutos,
-relaxando a restrição de que a soma dos resíduos seja igual a zero
-(\(\sum \hat u_i = 0\)) \autocite[281]{tortoise}.
+erros absolutos de Boscovich/Laplace ficou em segundo plano. Até que
+\textcite{edgeworth}, relaxando a restrição de que a soma dos resíduos
+seja igual a zero (\(\sum \hat u_i = 0\)) \autocite[281]{tortoise},
+propõe o primeiro o protótipo do que viria se tornar, na década de 1940,
+o algoritmo simplex, capaz de obter, de forma iterativa, o intercepto e
+o coeficiente angular da reta do método dos mínimos desvios absolutos.
 
 Na década de 40 surgiram os primeiros algoritmos simplex destinados à
 otimização, algoritmos estes que se ajustam às necessidades do métodos
 dos mínimos desvios absolutos, que não possui solução analítica, mas
 iterativa. A primeira aplicação do método dos mínimos desvios absolutos
 se deve a Arrow e Hoffenberg, em 1959 \autocite[281]{tortoise}.
+
+\textcite{barrodale} propuseram a forma moderna do algoritmo simplex
+que, por muitos anos e até hoje é utilizado para a minimização do erro
+médio absoluto.
 
 \textcite{koenker1978} generalizaram o problema de minimização do erro
 médio absoluto, o que equivale à regressão à mediana, ao problema de
@@ -394,11 +407,10 @@ minimização descrito acima.
 
 A diferença é que no caso da regressão linear, ao invés de minimizar em
 relação a um escalar, desta vez se minimiza o erro em prever uma
-variável Y em relação a {]} uma função de outra variável X, f(X).
-Pode-se demonstrar que entre todas as funções f(X), a que minimiza o
-erro médio quadrático de Y dado X (\(\mathbb{E}[(Y - f(X))^2]\)) é a
-função de regressão \(\mu(t) = \mathbb{E}(Y|X=t)\)
-\autocite[49-50]{matloff2017}.
+variável Y em relação a uma função de outra variável X, f(X). Pode-se
+demonstrar que entre todas as funções f(X), a que minimiza o erro médio
+quadrático de Y dado X (\(\mathbb{E}[(Y - f(X))^2]\)) é a função de
+regressão \(\mu(t) = \mathbb{E}(Y|X=t)\) \autocite[49-50]{matloff2017}.
 
 Analogamente, pode-se demonstrar que a mediana condicional é a função
 que minimiza o erro médio absoluto de Y dado X
@@ -410,16 +422,16 @@ que minimiza o erro médio absoluto de Y dado X
 Pode-se demonstrar que a regressão linear, ou seja, a minimização de
 \(\mathbb{E}[(Y - X\beta)^2]\) possui uma única solução e esta solução
 pode ser encontrada analiticamente, bastando para isso efetuar a
-derivação parcial deste termo e igualando-o a zero, obtendo-se assum um
-único solução para o cálculo do valor de \(\beta\)
-\autocite[ver][49-50]{matloff2017}.
+derivação parcial deste termo em relação a \(\beta\) e igualando-o a
+zero, obtendo-se assim uma única solução para \(\beta\) a qual
+usualmente designa-se \(\hat \beta\) \autocite[ver][49-50]{matloff2017}.
 
-O mesmo não se pode dizer da regressão à mediana a mais genericamente da
-regressão quantílica. Nesta abordagem, há múltiplas soluções possíveis,
-assim como numa amostra de tamanho par existem duas medianas possíveis.
-Ainda, as soluções do problema de minimização da regressão quantílica
-não podem ser encontradas analiticamente, sendo necessária a utilização
-de precessos iterativos para a obtenção do(s) mínimo(s).
+O mesmo não se pode dizer da regressão à mediana e, mais genericamente,
+da regressão quantílica. Nesta abordagem, há múltiplas soluções
+possíveis, assim como numa amostra de tamanho par existem duas medianas
+possíveis. Ainda, as soluções do problema de minimização da regressão
+quantílica não podem ser encontradas analiticamente, sendo necessária a
+utilização de precessos iterativos para a obtenção do(s) mínimo(s).
 
 Contudo, deve-se ter em mente que, em ambos os processos de minimização,
 seja para a regressão linear ou para a regressão quantílica, trabalha-se
@@ -427,27 +439,73 @@ com apenas uma amostra da população estudada. Desta forma, os valores de
 \(\hat \beta\) encontrados são apenas estimativas dos valores reais de
 \(\beta\), ou seja, os valores da população.
 
-Assim, deve-se levar em conta que a diferença entre as múltiplas
-soluções da regressão quantílica é da ordem de \(1/n\), enquanto a
-amplitude da precisão da estimativa é de tamanho \(1/\sqrt{n}\). Assim,
-presume-se que as múltiplas soluções possíveis, para os casos práticos
-estão dentro da margem de erro para a primeira estimativa encontrada
-pelo algoritmo.
+A diferença entre as múltiplas soluções da regressão quantílica é da
+ordem de \(1/n\), enquanto a amplitude da precisão da estimativa é de
+tamanho \(1/\sqrt{n}\). Assim, presume-se que as múltiplas soluções
+possíveis, para os casos práticos estão dentro da margem de erro para a
+primeira estimativa encontrada pelo algoritmo.
 
 \hypertarget{robustez-da-solucao}{%
 \paragraph{Robustez da solução}\label{robustez-da-solucao}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Presença de \emph{Outliers}
+\end{enumerate}
 
 \hypertarget{transformacao-e-retransformacao}{%
 \paragraph{Transformação e
 retransformação}\label{transformacao-e-retransformacao}}
 
-\[Q_{f(Y)}(\tau) = f(Q_Y(\tau))\]
+Na regressão linear, com a aplicação do método à uma variável produto da
+transformação da variável dependente original, não é suficiente a
+simples retransformação dessa variável à escala original para a obtenção
+da solução, já que \(f(\mathbb{E}(X)) \leq \mathbb{E}(f(X))\), devido à
+desigualdade de Jensen \autocite[ver][p.~207]{moda_media_mediana}.
+
+Já na regressão quantílica, com a aplicação de \textbf{transformações
+monotônicas}, pode-se afirmar que o quantil da variável transformada
+corresponde ao mesmo quantil da variável original. Assim, seja \(f(.)\)
+uma transformação monotônica qualquer em \(\mathbb{R}\), e \(Q(.)\) a
+função quantil, para uma variável aleatória qualquer \(Y\) pode-se
+escrever:
+
+\[Q_{f(Y)}(\tau) = f(Q_Y(\tau))\] \textcite[p.~39-40]{koenker1978}
+elencam ainda quatro propriedades de equivariância para a regressão
+quantílica, reproduzidas abaixo:
+
+\[
+\begin{aligned}
+\hat \beta(\tau;\lambda y,X) &= \lambda \hat \beta(\tau; y, X), & \lambda \in[0,\infty), \\
+\hat \beta(1-\tau;\lambda y,X) &= \lambda \hat \beta(\tau; y, X) & \lambda \in (-\infty,0],\\
+\hat \beta(\tau;y + X\gamma,X)& = \hat \beta(\tau; y, X) + \gamma & \gamma \in \mathbb{R}^k,\\
+\hat \beta(\tau;y,XA) &= A^{-1} \hat \beta(\tau; y, X) & A_{K \times K} \text{não-singular.}
+\end{aligned}
+\]
 
 \hypertarget{eficiencia-computacional}{%
 \paragraph{Eficiência computacional}\label{eficiencia-computacional}}
 
+\hypertarget{eficiencia-estatistica}{%
+\paragraph{Eficiência estatística}\label{eficiencia-estatistica}}
+
+Pode-se demonstrar que, se por um lado a média amostral tem eficiência
+estatística assintótica igual a 1 quando a distribuição dos dados é
+normal ou gaussiana, ela ela tem menos da metade da eficiência da
+mediana quando a distribuição for a distribuição de Laplace e tem
+eficiência zero para a distribuição de Cauchy
+\autocite[p.36]{koenker1978}.
+
+Desta maneira, quando há incerteza quanto à real distribuição dos dados,
+a média, no caso escalar, ou a média condicional (regressão linear),
+considerada o estimador ótimo para o caso gaussiano, pode ser preterível
+à mediana, ou outros estimadores, ditos ``ineficientes''
+\autocite[p.36]{koenker1978}
+
 \hypertarget{estimador-de-maxima-verossimilhanca}{%
-\paragraph{Estimador de máxima
+\subparagraph{Estimador de máxima
 verossimilhança}\label{estimador-de-maxima-verossimilhanca}}
 
 Pode-se demonstrar que, quando a distribuição é normal o estimador de
@@ -469,8 +527,7 @@ No entanto, se a distribuição dos dados for a distribuição de Laplace,
 pode-se demonstrar que são necessários duas vezes mais dados para que a
 média estime \(\mu\) com a mesma precisão da mediana.
 
-\hypertarget{media}{%
-\paragraph{Média}\label{media}}
+\twocolumn
 
 \begin{figure}[H]
 
@@ -481,12 +538,13 @@ média estime \(\mu\) com a mesma precisão da mediana.
 \caption{Distribuição Normal.}\label{fig:dist_normal}
 \end{figure}
 
-\[\hat \mu = \frac{1}{n}\sum x_i\]
-\[\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2\]
-\[f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right )\]
-
-\hypertarget{mediana}{%
-\paragraph{Mediana}\label{mediana}}
+\[
+\begin{aligned}
+\hat \mu = \frac{1}{n}\sum x_i \\
+\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2\\
+f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right )
+\end{aligned}
+\]
 
 \begin{figure}[H]
 
@@ -497,10 +555,13 @@ média estime \(\mu\) com a mesma precisão da mediana.
 \caption{Distribuição de Laplace.}\label{fig:dist_Laplace}
 \end{figure}
 
-\[\hat \mu = \arg\min_c \sum |x_i - c|\]
-\[\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu|\]
-
-\[f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )\]
+\[
+\begin{aligned}
+\hat \mu = \arg\min_c \sum |x_i - c| \\
+\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu| \\
+f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )
+\end{aligned}
+\] \onecolumn
 
 \hypertarget{inferencia}{%
 \subsubsection{Inferência}\label{inferencia}}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.11)  13 DEC 2019 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.11)  16 DEC 2019 18:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,7 +414,7 @@ Package hyperref Info: Driver (autodetected): hpdftex.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2019/11/10 v7.00c Hyperref driver for pdfTeX
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty
-Package: atveryend 2019/12/05 v1.10 Hooks at the very end of document (HO)
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
 )
 \Fld@listcount=\count111
@@ -859,6 +859,13 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip75
 \thanksmargin=\skip76
 \droptitle=\skip77
+) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen158
+\WF@size=\dimen159
+\c@WF@wrappedlines=\count396
+\WF@box=\box48
+\WF@everypar=\toks24
+Package: wrapfig 2003/01/31  v 3.6
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2019/12/08 3.37 The Babel package
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/switch.def
@@ -867,21 +874,39 @@ File: switch.def 2019/12/08 3.37 Babel switching mechanism
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2019/12/08 3.37 Babel common definitions
-\babel@savecnt=\count396
-\U@D=\dimen158
+\babel@savecnt=\count397
+\U@D=\dimen160
 (/home/droubi/.TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@dirlevel=\count397
+\bbl@dirlevel=\count398
 )
 Package babel Info: \l@brazil = using hyphenrules for portuguese
 (babel)             (\language3) on input line 113.
 Package babel Info: Making " an active character on input line 145.
-)) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/float/float.sty
+)) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/breakurl/breakurl.sty
+Package: breakurl 2013/04/10 v1.40 Breakable hyperref URLs
+(/home/droubi/.TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+(/home/droubi/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/home/droubi
+/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks25
+\XKV@tempa@toks=\toks26
+)
+\XKV@depth=\count399
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+
+Package breakurl Warning: You are using breakurl while processing via pdflatex.
+
+(breakurl)                \burl will be just a synonym of \url.
+(breakurl)                 on input line 48.
+
+) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count398
-\float@exts=\toks24
-\float@box=\box48
-\@float@everytoks=\toks25
-\@floatcapt=\box49
+\c@float@type=\count400
+\float@exts=\toks27
+\float@box=\box49
+\@float@everytoks=\toks28
+\@floatcapt=\box50
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
@@ -889,31 +914,32 @@ Package: caption 2019/10/18 v3.4a Customizing captions (AR)
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2019/09/09 v1.8e caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 64.
-\captionmargin=\dimen159
-\captionmargin@=\dimen160
-\captionwidth=\dimen161
-\caption@tempdima=\dimen162
-\caption@indent=\dimen163
-\caption@parindent=\dimen164
-\caption@hangindent=\dimen165
+\captionmargin=\dimen161
+\captionmargin@=\dimen162
+\captionwidth=\dimen163
+\caption@tempdima=\dimen164
+\caption@indent=\dimen165
+\caption@parindent=\dimen166
+\caption@hangindent=\dimen167
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count399
-\c@continuedfloat=\count400
+\c@caption@flags=\count401
+\c@continuedfloat=\count402
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: wrapfig package is loaded.
 )
-\c@KVtest=\count401
+\c@KVtest=\count403
 \sf@farskip=\skip78
-\sf@captopadj=\dimen166
+\sf@captopadj=\dimen168
 \sf@capskip=\skip79
 \sf@nearskip=\skip80
-\c@subfigure=\count402
-\c@subfigure@save=\count403
-\c@lofdepth=\count404
-\c@subtable=\count405
-\c@subtable@save=\count406
-\c@lotdepth=\count407
+\c@subfigure=\count404
+\c@subfigure@save=\count405
+\c@lofdepth=\count406
+\c@subtable=\count407
+\c@subtable@save=\count408
+\c@lotdepth=\count409
 \sf@top=\skip81
 \sf@bottom=\skip82
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/latex/lastpage/lastpage.sty
@@ -972,36 +998,36 @@ s
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count408
-\@quotereset=\count409
+\@quotelevel=\count410
+\@quotereset=\count411
 (./Artigo.aux)
 \openout1 = `Artigo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 132.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 135.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-32.
+35.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 132.
-LaTeX Font Info:    ... okay on input line 132.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
 LaTeX Font Info:    Trying to load font information for T1+ptm on input line 13
-2.
+5.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1039,7 +1065,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box50
+\AtBeginShipoutBox=\box51
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -1049,7 +1075,7 @@ Package color Info: Driver file: pdftex.def on input line 147.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ))
-Package hyperref Info: Link coloring ON on input line 132.
+Package hyperref Info: Link coloring ON on input line 135.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/oberdiek/refcount.sty
@@ -1057,11 +1083,11 @@ Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 ) (/home/droubi/.TinyTeX/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count410
+\c@section@level=\count412
 )
-LaTeX Info: Redefining \ref on input line 132.
-LaTeX Info: Redefining \pageref on input line 132.
-LaTeX Info: Redefining \nameref on input line 132.
+LaTeX Info: Redefining \ref on input line 135.
+LaTeX Info: Redefining \pageref on input line 135.
+LaTeX Info: Redefining \nameref on input line 135.
 (./Artigo.out) (./Artigo.out)
 \@outlinefile=\write4
 \openout4 = `Artigo.out'.
@@ -1143,8 +1169,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Artigo.bbl' found.
 (./Artigo.bbl)
-Package biblatex Info: Reference section=0 on input line 132.
-Package biblatex Info: Reference segment=0 on input line 132.
+Package biblatex Info: Reference section=0 on input line 135.
+Package biblatex Info: Reference segment=0 on input line 135.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2019-12-09 v2.10 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1158,169 +1184,173 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 132.
+(lastpage)             ! on input line 135.
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 133.
+ 136.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 133.
+ 136.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 133.
+ 136.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 133.
+ 136.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 1
-33.
+36.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 1
-33.
+36.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 136.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 139.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 145.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 148.
 [1
 
 {/home/droubi/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 196.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 196.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 196.
-<images/-000.png, id=97, 1773.62625pt x 1543.7675pt>
+<images/-000.png, id=94, 1773.62625pt x 1543.7675pt>
 File: images/-000.png Graphic file (type png)
 <use images/-000.png>
-Package pdftex.def Info: images/-000.png  used on input line 211.
+Package pdftex.def Info: images/-000.png  used on input line 198.
 (pdftex.def)             Requested size: 426.78859pt x 371.47757pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 202.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 202.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 202.
 
-Underfull \hbox (badness 2351) in paragraph at lines 215--215
+Underfull \hbox (badness 2351) in paragraph at lines 202--202
 []\T1/ptm/m/n/12 Figura 1: |Mu-dan-ças na den-si-dade de tru-tas ($\OML/ztmcm/m
 /it/12 y$\T1/ptm/m/n/12 ) em fun-ção do quo-ci-ente lar-
  []
 
-[2]
-<images/urb-1.png, id=114, 469.755pt x 325.215pt>
+[2 <./images/-000.png (PNG copy)>]
+<images/urb-1.png, id=112, 469.755pt x 325.215pt>
 File: images/urb-1.png Graphic file (type png)
 <use images/urb-1.png>
-Package pdftex.def Info: images/urb-1.png  used on input line 235.
+Package pdftex.def Info: images/urb-1.png  used on input line 238.
 (pdftex.def)             Requested size: 426.78961pt x 295.46973pt.
-[3 <./images/-000.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 246.
-<image_Galton.png, id=127, 4257.9075pt x 6772.30125pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 249.
+[3 <./images/urb-1.png (PNG copy)>]
+<image_Galton.png, id=128, 4257.9075pt x 6772.30125pt>
 File: image_Galton.png Graphic file (type png)
 <use image_Galton.png>
-Package pdftex.def Info: image_Galton.png  used on input line 268.
+Package pdftex.def Info: image_Galton.png  used on input line 271.
 (pdftex.def)             Requested size: 426.79025pt x 678.81987pt.
 
-LaTeX Warning: Float too large for page by 0.53677pt on input line 271.
+LaTeX Warning: Float too large for page by 0.53677pt on input line 274.
 
-[4 <./images/urb-1.png (PNG copy)>] [5 <./image_Galton.png>] [6]
-<DmKq7.png, id=210, 316.18124pt x 242.9075pt>
+[4] [5 <./image_Galton.png>] [6]
+<DmKq7.png, id=232, 316.18124pt x 242.9075pt>
 File: DmKq7.png Graphic file (type png)
 <use DmKq7.png>
-Package pdftex.def Info: DmKq7.png  used on input line 378.
+Package pdftex.def Info: DmKq7.png  used on input line 391.
 (pdftex.def)             Requested size: 298.77354pt x 229.53395pt.
-[7] [8 <./DmKq7.png>]
-<images/dist_normal-1.png, id=247, 469.755pt x 325.215pt>
+[7 <./DmKq7.png>] [8] [9]
+<images/dist_normal-1.png, id=291, 469.755pt x 325.215pt>
 File: images/dist_normal-1.png Graphic file (type png)
 <use images/dist_normal-1.png>
-Package pdftex.def Info: images/dist_normal-1.png  used on input line 477.
-(pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[9]
-<images/dist_Laplace-1.png, id=264, 469.755pt x 325.215pt>
+Package pdftex.def Info: images/dist_normal-1.png  used on input line 534.
+(pdftex.def)             Requested size: 145.87341pt x 100.98929pt.
+<images/dist_Laplace-1.png, id=292, 469.755pt x 325.215pt>
 File: images/dist_Laplace-1.png Graphic file (type png)
 <use images/dist_Laplace-1.png>
-Package pdftex.def Info: images/dist_Laplace-1.png  used on input line 493.
-(pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[10 <./images/dist_normal-1.png (PNG copy)> <./images/dist_Laplace-1.png (PNG c
-opy)>]
-<images/qr1-1.png, id=281, 469.755pt x 325.215pt>
+Package pdftex.def Info: images/dist_Laplace-1.png  used on input line 551.
+(pdftex.def)             Requested size: 145.87341pt x 100.98929pt.
+[10
+
+
+ <./images/dist_normal-1.png (PNG copy)> <./images/dist_Laplace-1.png (PNG copy
+)>]
+<images/qr1-1.png, id=307, 469.755pt x 325.215pt>
 File: images/qr1-1.png Graphic file (type png)
 <use images/qr1-1.png>
-Package pdftex.def Info: images/qr1-1.png  used on input line 550.
+Package pdftex.def Info: images/qr1-1.png  used on input line 611.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[11]
-<images/qr2-1.png, id=296, 469.755pt x 325.215pt>
+[11
+
+ <./images/qr1-1.png (PNG copy)>]
+<images/qr2-1.png, id=321, 469.755pt x 325.215pt>
 File: images/qr2-1.png Graphic file (type png)
 <use images/qr2-1.png>
-Package pdftex.def Info: images/qr2-1.png  used on input line 565.
+Package pdftex.def Info: images/qr2-1.png  used on input line 626.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-<images/coef1-1.png, id=298, 469.755pt x 325.215pt>
+<images/coef1-1.png, id=323, 469.755pt x 325.215pt>
 File: images/coef1-1.png Graphic file (type png)
 <use images/coef1-1.png>
-Package pdftex.def Info: images/coef1-1.png  used on input line 586.
+Package pdftex.def Info: images/coef1-1.png  used on input line 647.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[12 <./images/qr1-1.png (PNG copy)> <./images/qr2-1.png (PNG copy)>]
-<images/coef2-1.png, id=309, 469.755pt x 325.215pt>
+[12 <./images/qr2-1.png (PNG copy)> <./images/coef1-1.png (PNG copy)>]
+<images/coef2-1.png, id=334, 469.755pt x 325.215pt>
 File: images/coef2-1.png Graphic file (type png)
 <use images/coef2-1.png>
-Package pdftex.def Info: images/coef2-1.png  used on input line 611.
+Package pdftex.def Info: images/coef2-1.png  used on input line 672.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[13 <./images/coef1-1.png (PNG copy)> <./images/coef2-1.png (PNG copy)>]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
-30.
+91.
 (/home/droubi/.TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<images/coefs-1.png, id=320, 469.755pt x 325.215pt>
+<images/coefs-1.png, id=337, 469.755pt x 325.215pt>
 File: images/coefs-1.png Graphic file (type png)
 <use images/coefs-1.png>
-Package pdftex.def Info: images/coefs-1.png  used on input line 635.
+Package pdftex.def Info: images/coefs-1.png  used on input line 696.
 (pdftex.def)             Requested size: 426.78961pt x 295.46973pt.
+[13 <./images/coef2-1.png (PNG copy)>]
 
-LaTeX Warning: Float too large for page by 33.00975pt on input line 704.
+LaTeX Warning: Float too large for page by 33.00975pt on input line 765.
 
 [14 <./images/coefs-1.png (PNG copy)>] [15] [16] 
 AED: lastpage setting LastPage
 [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 753.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 753.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 814.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 814.
 (./Artigo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 753.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 753.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 814.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 814.
 Package rerunfilecheck Info: File `Artigo.out' has not changed.
 (rerunfilecheck)             Checksum: 6F545170313B7C0FD7E6BEBA6C7C7F99;2770.
 Package logreq Info: Writing requests to 'Artigo.run.xml'.
 \openout1 = `Artigo.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 753.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 814.
  ) 
 Here is how much of TeX's memory you used:
- 30699 strings out of 494087
- 537420 string characters out of 6172566
- 1019503 words of memory out of 5000000
- 34349 multiletter control sequences out of 15000+600000
+ 31018 strings out of 494087
+ 542464 string characters out of 6172566
+ 1027910 words of memory out of 5000000
+ 34646 multiletter control sequences out of 15000+600000
  604329 words of font info for 143 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 60i,12n,76p,911b,4018s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 77i,12n,117p,911b,4148s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/droubi/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/home/droubi/
 .TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}</home/droubi/.TinyTeX/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/droubi/.TinyTeX/texmf-dist/
@@ -1333,10 +1363,10 @@ ol/usyr.pfb></home/droubi/.TinyTeX/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><
 /home/droubi/.TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></home/droubi
 /.TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></home/droubi/.TinyTeX/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Artigo.pdf (17 pages, 5143585 bytes).
+Output written on Artigo.pdf (17 pages, 5133556 bytes).
 PDF statistics:
- 423 PDF objects out of 1000 (max. 8388607)
- 372 compressed objects within 4 object streams
- 101 named destinations out of 1000 (max. 500000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 405 compressed objects within 5 object streams
+ 105 named destinations out of 1000 (max. 500000)
  184 words of extra memory for PDF output out of 10000 (max. 10000000)
 
