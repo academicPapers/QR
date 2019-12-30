@@ -95,7 +95,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{16/12/2019}
+    \date{30/12/2019}
 
 \usepackage{expl3}
 \expandafter\def\csname ver@l3regex.sty\endcsname{} 
@@ -103,7 +103,7 @@
 \usepackage[brazil]{babel}
 % \usepackage{natbib}
 \usepackage{hyperref}
-\usepackage{breakurl}
+% \usepackage{breakurl}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{subfig}
@@ -126,9 +126,8 @@
 \usepackage{fancyhdr}
 % Turn on the style
 \pagestyle{fancy}
-% Clear the header and footer
-\fancyhead{}
-\fancyfoot{}
+\fancyhf{} % Clear the header and footer
+\renewcommand{\headrulewidth}{0pt}
 % Set the right side of the footer to be the page number
 \fancyfoot[R]{\thepage~/~\pageref{LastPage}}
 
@@ -157,21 +156,90 @@ determinada característica tem influência na formação do valor total de
 um imóvel. Ocorre que uma determinada característica pode influenciar
 positivamente o preço de venda dos imóveis de maior valor e
 negativamente o preço de venda dos imóveis de menor valor (ou \emph{vice
-versa}), sendo que, \textbf{em média}, o seu efeito seja nulo, o que no
+versa}), sendo que, \textbf{em média}, o seu efeito é nulo, o que no
 entanto não quer dizer que aquela variável não tenha qualquer influência
 na formação de preço dos imóveis do mercado em análise. Em suma, esta
 diferente contribuição das características no valor final dos imóveis,
-atualmente, é ignorada, sendo apenas utilizado o valor médio, sendo que
-diferentes efeitos das características em imóveis de valores diferentes
-são negligenciadas. A regressão quantílica é um método que permite
-estimar a real influência de cada característica ao longo de toda a
-distribuição de probabilidades dos imóveis de um mercado, o que pode se
-demonstrar útil na avaliação de imóveis urbanos em determinados mercados
-o que atualmente pode passar despercebido aos olhos do avaliador
-acostumado com os métodos estatísticos clássicos.
+atualmente, é ignorada (utiliza-se apenas o valor médio), fazendo com
+que eventuais diferenças nos efeitos das características em imóveis de
+valores diferentes sejam negligenciadas. A regressão quantílica é um
+método que permite estimar a real influência de cada característica ao
+longo de toda a distribuição de probabilidades dos imóveis de um
+mercado, o que pode se demonstrar útil na avaliação de imóveis urbanos
+em determinados mercados o que atualmente pode passar despercebido aos
+olhos do avaliador acostumado com os métodos estatísticos clássicos.
 
 \hypertarget{introducao}{%
 \section{Introdução}\label{introducao}}
+
+\begin{quote}
+What the regression curve does is give a grand summary for the averages
+of the distributions corresponding to the set of of x's. We could go
+further and compute several different regression curves corresponding to
+the various percentage points of the distributions and thus get a more
+complete picture of the set. Ordinarily this is not done, and so
+regression often gives a rather incomplete picture. Just as the mean
+gives an incomplete picture of a single distribution, so the regression
+curve gives a correspondingly incomplete picture for a set of
+distributions. \hfill --- \textcite{mosteller1977}
+\autocite[apud][19]{koenker2000}
+\end{quote}
+
+Em muitas áreas da Ciência, como na Ecologia, é possível que um
+pesquisador, ao analisar dados como os da figura \ref{fig:trutas} com a
+utilização do consagrado método da regressão linear, chegue à conclusão
+de que não há qualquer correlação entre duas variáveis, já que, pelo
+estudo das variáveis, \emph{em média}, o efeito do regressor encontrado
+é nulo (\(\beta = 0\)), tal como mostra a reta de regressão linear
+(tracejada) na figura.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{images/-000} 
+
+}
+
+\caption{Mudanças na densidade de trutas ($y$) em função do quociente largura/profundidade de um canal ($X$). Fonte: \textcite[413]{QReco}.}\label{fig:trutas}
+\end{figure}
+
+No entanto, como bem observaram \textcite[412-413]{QReco}, se os autores
+deste estudo tivessem se baseado \emph{apenas} no método da regressão
+linear, eles teriam fatalmente chegado a esta conclusão errônea. Na
+realidade, porém, com o auxílio da regressão quantílica, mostrou-se que
+a relação existe, porém pode ser percebida apenas nos quantis superiores
+dos dados. Fisicamente, o que deve ser deduzido é que, com o aumento do
+quociente largura/profundidade de um canal, limita-se a densidade de
+trutas no canal. Esta limitação não é percebida nos quantis inferiores
+dos dados, de maneira que, \emph{em média}, o seu efeito é nulo, mas
+claramente o efeito é considerável nos quantis superiores dos dados.
+Isto ocorre porque efeitos de fatores limitantes não são bem
+representados pela média das distribuições de probabilidades, onde a
+presença de muitos outros fatores limitantes não-medidos podem estar
+presentes \cite[413]{QReco}.
+
+O mesmo comportamento pode ou poderia ser encontrado na Engenharia de
+Avaliações. Imagine-se que ao analisar um mercado de lotes urbanos o
+Engenheiro de Avaliações se depare com os dados mostrados na figura
+\ref{fig:urb}. Ao analisar os dados através da regressão linear à média
+(reta tracejada), o Engenheiro poderia, erroneamente concluir que a área
+não teria nenhum efeito sobre o valor unitário dos lotes, quando na
+realidade o que ocorre é que o efeito da variável área é o de aumentar
+suavemente o valor unitário dos lotes de menor valor, e diminuir de uma
+forma um pouco mais agressiva o valor unitário dos lotes dos quantis
+superiores.
+
+Em suma, globalmente, o efeito médio é zero, o que não significa que a
+variável não possua qualquer significância na formação de preços dos
+imóveis.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{images/urb-1} 
+
+}
+
+\caption{Dados gerados randomicamente para ilustrar a importância da regressão quantílica na Engenharia de Avaliações. Fonte: do Autor.}\label{fig:urb}
+\end{figure}
 
 \textcite{Zietz} mostra que os conflitos a respeito da contribuição de
 uma determinada característica na formação dos preços de venda de
@@ -193,62 +261,11 @@ A regressão quantílica permite que a influência de uma característica
 qualquer de um imóvel tenha efeitos diferentes para diferentes faixas de
 valores de imóveis.
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{images/-000} 
-
-}
-
-\caption{Mudanças na densidade de trutas ($y$) em função do quociente largura/profundidade de um canal ($X$). Fonte: \textcite[413]{QReco}.}\label{fig:trutas}
-\end{figure}
-
-É possível perceber em alguns casos como o mostrado na figura
-\ref{fig:trutas}, que com a regressão linear pode-se chegar à conclusão
-de que não há qualquer correlação entre duas variáveis, já que, em
-média, o efeito do regressor é nulo (\(\beta = 0\)), o que pode ser
-visto na reta tracejada na figura, que é a reta de regressão linear.
-
-No entanto, como bem observaram \textcite[412-413]{QReco}, se os autores
-somente tivessem se baseado na regressão linear, eles teriam
-erroneamente concluído que não há relação alguma entre as variávies
-\(X\) e \(y\). Na realidade, a relação pode ser percebida apenas nos
-quantis superiores dos dados. Fisicamente, o que deve ser deduzido é
-que, com o aumento do quociente largura/profundidade de um canal,
-limita-se a densidade de trutas no canal. Esta limitação não é percebida
-nos quantis inferiores dos dados. Por isso, em média, o efeito é nulo,
-mas claramente o efeito pode ser percebido nos quantis superiores.
-
-O mesmo comportamento poderia ser encontrado na Engenharia de
-Avaliações. Imagine-se que ao analisar um mercado de lotes urbanos o
-Engenheiro de Avaliações se depare com os dados mostrados na figura
-\ref{fig:urb}. Ao analisar os dados através da regressão linear à média
-(reta tracejada), o Engenheiro poderia, erroneamente concluir que a área
-não teria nenhum efeito sobre o valor unitário dos lotes, quando na
-realidade o que ocorre é que o efeito da variável área é o de aumentar
-suavemente o valor unitário dos lotes de menor valor, e diminuir de uma
-forma um pouco mais agressiva o valor unitário dos lotes dos quantis
-superiores.
-
-Em suma, globalmente, o efeito médio é zero, o que não significa que a
-variável não possua qualquer significância na formação de valor dos
-imóveis.
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{images/urb-1} 
-
-}
-
-\caption{Dados gerados randomicamente para ilustrar a importância da regressão quantílica na Engenharia de Avaliações. Fonte: do Autor.}\label{fig:urb}
-\end{figure}
-
 \hypertarget{revisao-bibliografica}{%
 \section{Revisão Bibliográfica}\label{revisao-bibliografica}}
 
 \hypertarget{breve-historico}{%
 \subsection{Breve Histórico}\label{breve-historico}}
-
-\textcite{stigler1986}
 
 Segundo \textcite[p.~347]{koenker2000}, o gráfico mais importante da
 história da estatística é o gráfico de Galton, reproduzido na figura 1.
@@ -284,8 +301,8 @@ independente de \(X\).
 
 Talvez prevendo que o seu método fizesse os seus colegas estatísticos se
 aterem apenas ao estudo das médias, \textcite[p.~62]{galton}
-\autocite[\emph{apud}][p.~350]{koenker2000} repreendeu seus colegas
-estatísticos que:
+\autocite[\emph{apud}][p.~350]{koenker2000} repreendeu os seus colegas
+que:
 
 \begin{quote}
 limited their inquiries to Averages, and do not seem to revel in more
@@ -309,10 +326,10 @@ mínimos quadrados por \textcite{legendre1805} \footnote{\textcite{gauss1809}
   pela invenção do método, entre outros achados na época. Ver a este
   respeito \textcite{STIGLER197731}; \textcite{stigler1981} e
   \textcite{stigler1986}.}, Boscovich propôs, em 1760, o seguinte
-problema, em busca de estimar se a hipótese elipsoidal, prevista na
-obra-prima de \textcite{newton}, estaria correta, em função de cinco
-observações do comprimento de um grau de latitude obtidas em diferentes
-longitudes
+problema, em busca de estimar se a hipótese elipsoidal da forma da
+terra, prevista na obra-prima de \textcite{newton}, estaria correta, em
+função de cinco observações do comprimento de um grau de latitude
+obtidas em diferentes longitudes
 \autocites[p.~353]{koenker2000}[p.~281]{tortoise}[p.~40]{stigler1986}:
 
 Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
@@ -322,24 +339,28 @@ Encontrar \(\hat \alpha\) e \(\hat \beta\) tais que:
 com \(\sum \hat u_i = 0\) e \(\sum |\hat u_i| = \text{min!}\).
 
 \textcite{boscovich} propôs uma solução através de um algoritmo
-geométrico. Alguns anos depois, \textcite{laplace1789} resolveu o
-problema matematicamente em 1789 \autocite[281]{tortoise}, no que pode
-ser considerada a primeira análise de regressão.
+geométrico. Alguns anos depois, em 1789, \textcite{laplace1789} resolveu
+o problema matematicamente, no que pode ser considerada a primeira
+análise de regressão \autocite[281]{tortoise}.
 
 Posteriormente, com a chegada do \emph{méthode des moindres carrés}, ou
 seja, do método dos mínimos quadrados ordinários, o método dos mínimos
-erros absolutos de Boscovich/Laplace ficou em segundo plano. Até que
-\textcite{edgeworth}, relaxando a restrição de que a soma dos resíduos
-seja igual a zero (\(\sum \hat u_i = 0\)) \autocite[281]{tortoise},
-propõe o primeiro o protótipo do que viria se tornar, na década de 1940,
-o algoritmo simplex, capaz de obter, de forma iterativa, o intercepto e
-o coeficiente angular da reta do método dos mínimos desvios absolutos.
+erros absolutos de Boscovich/Laplace ficou em segundo plano.
+Posteriormente, \textcite{edgeworth1887} argumentou que, quando os erros
+não seguem a lei de Gauss, a regressão à mediana poderia efetuar
+melhores estimativas. Então \textcite{edgeworth1888}, relaxando a
+restrição de que a soma dos resíduos seja igual a zero
+(\(\sum \hat u_i = 0\)) \autocite[281]{tortoise}, propõe o primeiro o
+protótipo do que viria se tornar, na década de 1940, o algoritmo
+simplex, capaz de obter, de forma iterativa, o intercepto e o
+coeficiente angular da reta do método dos mínimos desvios absolutos.
 
 Na década de 40 surgiram os primeiros algoritmos simplex destinados à
 otimização, algoritmos estes que se ajustam às necessidades do métodos
 dos mínimos desvios absolutos, que não possui solução analítica, mas
-iterativa. A primeira aplicação do método dos mínimos desvios absolutos
-se deve a Arrow e Hoffenberg, em 1959 \autocite[281]{tortoise}.
+iterativa. A primeira aplicação dos algoritmos simplex para a resolução
+do método dos mínimos desvios absolutos se deve a \textcite{charnes}
+\autocites[ver][281]{tortoise}[4]{conopt}.
 
 \textcite{barrodale} propuseram a forma moderna do algoritmo simplex
 que, por muitos anos e até hoje é utilizado para a minimização do erro
@@ -358,17 +379,26 @@ chegando-se assim à regressão quantílica.
 \subsubsection{Interpretação
 Geométrica}\label{interpretacao-geometrica}}
 
+\textcite{edgeworth1888} mostrou que, para o caso da regressão à mediana
+bivariado, pontos no espaço amostral correspondem a retas no espaço
+paramétrico
+\((x_i, y_i) \mapsto \{(\alpha, \beta): \alpha = y_i - x_i \beta\}\) e
+retas através de pares de pontos no espaço amostral correspondem a
+pontos (interseção das duas retas geradas pelos pontos) no espaço
+paramétrico. Todos os pares de observações assim gerados produzem
+\(\binom{n}{2}\) pontos no espaço paramétrico.
+
+\textcite{edgeworth1888} então propôs um algoritmo geométrico, iniciando
+em algum ponto do espaço paramétrico iterativamente, seguindo o caminho
+mais íngreme, minimizando os resíduos, encontrando assim uma solução
+ótima. Este procedimento pode ser generalizado para \(n\) dimensões.
+
 \hypertarget{o-grafico-dual}{%
 \paragraph{O gráfico dual}\label{o-grafico-dual}}
 
-\hypertarget{estimacao-de-quantis}{%
-\subsubsection{Estimação de quantis}\label{estimacao-de-quantis}}
-
-Existem diversas formas de se obter os quantis de uma amostra.
-
-\hypertarget{o-problema-de-estimar-quantis-como-um-problema-de-minimizacao}{%
-\subsubsection{O problema de estimar quantis como um problema de
-minimização}\label{o-problema-de-estimar-quantis-como-um-problema-de-minimizacao}}
+\hypertarget{o-problema-de-estimacao-de-quantis-como-um-problema-de-minimizacao}{%
+\subsubsection{O problema de estimação de quantis como um problema de
+minimização}\label{o-problema-de-estimacao-de-quantis-como-um-problema-de-minimizacao}}
 
 Pode-se demonstrar que, assim como a média aritmética \(\mu\) de uma
 variável aleatória tem a propriedade de minimizar a soma dos desvios
@@ -448,12 +478,10 @@ primeira estimativa encontrada pelo algoritmo.
 \hypertarget{robustez-da-solucao}{%
 \paragraph{Robustez da solução}\label{robustez-da-solucao}}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\tightlist
-\item
-  Presença de \emph{Outliers}
-\end{enumerate}
+Uma das principais vantagens da regressão à mediana consiste na sua
+robustez à presença de \emph{outliers}. Enquanto a solução da regressão
+linear é altamente sensível à presença de eventuais \emph{outliers} na
+amostra, a solução de regressão quantílica é
 
 \hypertarget{transformacao-e-retransformacao}{%
 \paragraph{Transformação e
@@ -487,6 +515,21 @@ quantílica, reproduzidas abaixo:
 
 \hypertarget{eficiencia-computacional}{%
 \paragraph{Eficiência computacional}\label{eficiencia-computacional}}
+
+Segundo \textcite[p.~3]{conopt}, para amostras de tamanho menor do que
+alguns milhares de dados, com algumas dúzias de parâmetros a serem
+estiamdos, o que é hoje considerado um problema modesto pela ciência de
+dados, o algoritmo de \textcite{barrodale} é considerado extremamente
+eficiente.
+
+De fato, segundo \textcite[p.~6]{conopt}, algoritmos do tipo simplex
+como o de \textcite{barrolade}, ditos \emph{exterior point algorithms},
+são mais eficientes para problemas de número moderado de dados e
+parâmetros.
+
+Já para a solução de problemas com maior número de dados, procedimentos
+do tipo \emph{interior point algorithms}, como são substancialmente mais
+rápidos e precisos \autocite[6]{conopt}.
 
 \hypertarget{eficiencia-estatistica}{%
 \paragraph{Eficiência estatística}\label{eficiencia-estatistica}}
@@ -527,8 +570,7 @@ No entanto, se a distribuição dos dados for a distribuição de Laplace,
 pode-se demonstrar que são necessários duas vezes mais dados para que a
 média estime \(\mu\) com a mesma precisão da mediana.
 
-\twocolumn
-
+\hspace{-1.6cm}\begin{minipage}{0.5\textwidth}
 \begin{figure}[H]
 
 {\centering \includegraphics[width=0.7\linewidth]{images/dist_normal-1} 
@@ -538,14 +580,19 @@ média estime \(\mu\) com a mesma precisão da mediana.
 \caption{Distribuição Normal.}\label{fig:dist_normal}
 \end{figure}
 
-\[
-\begin{aligned}
-\hat \mu = \frac{1}{n}\sum x_i \\
-\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2\\
-f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right )
-\end{aligned}
-\]
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
 
+$$\hat \mu = \frac{1}{n}\sum x_i$$
+$$\hat \sigma = \frac{1}{n-1} \sum_{i=1}^n (x_i - \hat \mu)^2$$
+$$f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right )$$
+\end{minipage}
+\hspace{-1.6cm}\begin{minipage}{0.5\textwidth}
+$$\hat \mu = \arg\min_c \sum |x_i - c|$$
+$$\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu| \\$$
+$$f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )$$
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
 \begin{figure}[H]
 
 {\centering \includegraphics[width=0.7\linewidth]{images/dist_Laplace-1} 
@@ -554,14 +601,7 @@ f(x|\mu, \sigma) = \frac{1}{\sigma\sqrt{2/\pi}}\exp \left (-\frac{1}{2}\frac{(x 
 
 \caption{Distribuição de Laplace.}\label{fig:dist_Laplace}
 \end{figure}
-
-\[
-\begin{aligned}
-\hat \mu = \arg\min_c \sum |x_i - c| \\
-\hat \lambda = \frac{1}{n} \sum_{i=1}^n |x_i - \hat \mu| \\
-f(x|\mu, \lambda) = \frac{1}{2 \lambda} \exp \left ( -\frac{|x - \mu|}{\lambda}\right )
-\end{aligned}
-\] \onecolumn
+\end{minipage}
 
 \hypertarget{inferencia}{%
 \subsubsection{Inferência}\label{inferencia}}

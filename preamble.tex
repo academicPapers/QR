@@ -4,7 +4,7 @@
 \usepackage[brazil]{babel}
 % \usepackage{natbib}
 \usepackage{hyperref}
-\usepackage{breakurl}
+% \usepackage{breakurl}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{subfig}
@@ -27,8 +27,7 @@
 \usepackage{fancyhdr}
 % Turn on the style
 \pagestyle{fancy}
-% Clear the header and footer
-\fancyhead{}
-\fancyfoot{}
+\fancyhf{} % Clear the header and footer
+\renewcommand{\headrulewidth}{0pt}
 % Set the right side of the footer to be the page number
 \fancyfoot[R]{\thepage~/~\pageref{LastPage}}
