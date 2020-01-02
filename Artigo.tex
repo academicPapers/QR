@@ -95,14 +95,14 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{30/12/2019}
+    \date{02/01/2020}
 
 \usepackage{expl3}
 \expandafter\def\csname ver@l3regex.sty\endcsname{} 
 \usepackage{wrapfig}
 \usepackage[brazil]{babel}
 % \usepackage{natbib}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 % \usepackage{breakurl}
 \usepackage{graphicx}
 \usepackage{float}
@@ -138,36 +138,37 @@
 \section*{Resumo}\label{resumo}}
 \addcontentsline{toc}{section}{Resumo}
 
-A NBR 14.653-02 recomenda que, na Engenharia de Avaliações de imóveis
-urbanos, para o tratamento dos dados, seja utilizada metodologia
-científica, mesmo no tratamento de dados por fatores, o que usualmente é
-feito através do método da regressão linear, ainda que a norma também
-cite outros métodos, como a regressão espacial, a análise envoltória de
-dados e as redes neurais artificiais. No entanto, através destes
-métodos, o que se obtém são coeficientes ou fatores \textbf{médios} da
-contribuição de uma característica do imóvel na formação do valor final.
-Ocorre que a contribuição de uma determinada característica para a
-formação do valor final dos imóveis pode ser diferente para os
-diferentes quantis da distribuição de probabilidades. É possível até que
-uma determinada característica que se mostre insignificante no método da
-regressão linear seja significativa na regressão quantílica, já que na
-regressão linear o que se estima é se, \textbf{em média}, uma
-determinada característica tem influência na formação do valor total de
-um imóvel. Ocorre que uma determinada característica pode influenciar
-positivamente o preço de venda dos imóveis de maior valor e
-negativamente o preço de venda dos imóveis de menor valor (ou \emph{vice
-versa}), sendo que, \textbf{em média}, o seu efeito é nulo, o que no
-entanto não quer dizer que aquela variável não tenha qualquer influência
-na formação de preço dos imóveis do mercado em análise. Em suma, esta
-diferente contribuição das características no valor final dos imóveis,
-atualmente, é ignorada (utiliza-se apenas o valor médio), fazendo com
-que eventuais diferenças nos efeitos das características em imóveis de
-valores diferentes sejam negligenciadas. A regressão quantílica é um
-método que permite estimar a real influência de cada característica ao
-longo de toda a distribuição de probabilidades dos imóveis de um
-mercado, o que pode se demonstrar útil na avaliação de imóveis urbanos
-em determinados mercados o que atualmente pode passar despercebido aos
-olhos do avaliador acostumado com os métodos estatísticos clássicos.
+A NBR 14.653-02 \autocite{NBR1465302} recomenda que, na Engenharia de
+Avaliações de imóveis urbanos, para o tratamento dos dados seja
+utilizada metodologia científica, mesmo no tratamento de dados por
+fatores, o que usualmente é feito através do método da regressão linear
+clássica ou ordinária, ainda que a norma também cite outros métodos,
+como a regressão espacial, a análise envoltória de dados e as redes
+neurais artificiais. No entanto, através destes métodos, o que se obtém
+são coeficientes ou fatores \textbf{médios} da contribuição de uma
+característica do imóvel na formação do valor final. Ocorre que a
+contribuição de uma determinada característica para a formação do valor
+final dos imóveis pode ser diferente para os diferentes quantis da
+distribuição de probabilidades. É possível até que uma determinada
+característica que se mostre insignificante no método da regressão
+linear seja significativa na regressão quantílica, já que na regressão
+linear o que se estima é se, \textbf{em média}, uma determinada
+característica tem influência na formação do valor total de um imóvel.
+Ocorre que uma determinada característica pode influenciar positivamente
+o preço de venda dos imóveis de maior valor e negativamente o preço de
+venda dos imóveis de menor valor (ou \emph{vice versa}), sendo que,
+\textbf{em média}, o seu efeito é nulo, o que no entanto não quer dizer
+que aquela variável não tenha qualquer influência na formação de preço
+dos imóveis do mercado em análise. Em suma, esta diferente contribuição
+das características no valor final dos imóveis, atualmente, é ignorada
+(utiliza-se apenas o valor médio), fazendo com que eventuais diferenças
+nos efeitos das características em imóveis de valores diferentes sejam
+negligenciadas. A regressão quantílica é um método que permite estimar a
+real influência de cada característica ao longo de toda a distribuição
+de probabilidades dos imóveis de um mercado, o que pode se demonstrar
+útil na avaliação de imóveis urbanos em determinados mercados o que
+atualmente pode passar despercebido aos olhos do avaliador acostumado
+com os métodos estatísticos clássicos.
 
 \hypertarget{introducao}{%
 \section{Introdução}\label{introducao}}
@@ -232,6 +233,10 @@ Em suma, globalmente, o efeito médio é zero, o que não significa que a
 variável não possua qualquer significância na formação de preços dos
 imóveis.
 
+A regressão quantílica permite que a influência de uma característica
+qualquer de um imóvel tenha efeitos diferentes para diferentes faixas de
+valores de imóveis.
+
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{images/urb-1} 
@@ -241,7 +246,7 @@ imóveis.
 \caption{Dados gerados randomicamente para ilustrar a importância da regressão quantílica na Engenharia de Avaliações. Fonte: do Autor.}\label{fig:urb}
 \end{figure}
 
-\textcite{Zietz} mostra que os conflitos a respeito da contribuição de
+\textcite{Zietz} mostram que os conflitos a respeito da contribuição de
 uma determinada característica na formação dos preços de venda de
 imóveis residenciais podem ser esclarecidos através da regressão
 quantílica. Diferentes valores para os coeficientes de regressão linear
@@ -257,10 +262,6 @@ venda, enquanto outras variáveis parecem ter um comportamento constante
 para todos os preços de venda de imóveis, como garagens e distância ao
 centro, entre outras.
 
-A regressão quantílica permite que a influência de uma característica
-qualquer de um imóvel tenha efeitos diferentes para diferentes faixas de
-valores de imóveis.
-
 \hypertarget{revisao-bibliografica}{%
 \section{Revisão Bibliográfica}\label{revisao-bibliografica}}
 
@@ -268,7 +269,8 @@ valores de imóveis.
 \subsection{Breve Histórico}\label{breve-historico}}
 
 Segundo \textcite[p.~347]{koenker2000}, o gráfico mais importante da
-história da estatística é o gráfico de Galton, reproduzido na figura 1.
+história da estatística é o gráfico de Galton, reproduzido na figura
+\ref{galton}.
 
 O gráfico ilustra o fenômeno, descoberto por Galton, da regressão à
 média, cuja importância até hoje se faz presente em diversos estudos
@@ -287,7 +289,7 @@ média.
 \centering
 \includegraphics{image_Galton.png}
 \caption{Regressão à média (Galton, 1885). Fonte:
-\textcite[348]{koenker2000}}
+\textcite[348]{koenker2000}\label{galton}}
 \end{figure}
 
 Segundo \textcite[p.~349]{koenker2000}, a característica essencial da
@@ -379,8 +381,21 @@ chegando-se assim à regressão quantílica.
 \subsubsection{Interpretação
 Geométrica}\label{interpretacao-geometrica}}
 
-\textcite{edgeworth1888} mostrou que, para o caso da regressão à mediana
-bivariado, pontos no espaço amostral correspondem a retas no espaço
+\hypertarget{o-grafico-dual}{%
+\paragraph{O gráfico dual}\label{o-grafico-dual}}
+
+\textcite{edgeworth} criou o gráfico dual, ferramenta essencial para o
+desenvolvimento do seu procedimento de minimização dos resíduos
+absolutos. O gráfico dual nada mais é do que o gráfico, em duas
+dimensões, dos parâmetros \(\alpha\) e \(\beta\) a serem estimados, com
+o parâmetro \(\alpha\) nas ordenadas e o parâmetro \(\beta\) no eixo das
+abscissas.
+
+\hypertarget{algoritmo-inicial}{%
+\paragraph{Algoritmo inicial}\label{algoritmo-inicial}}
+
+\textcite{edgeworth1888} mostrou que, para a regressão à mediana
+bivariada, pontos no espaço amostral correspondem a retas no espaço
 paramétrico
 \((x_i, y_i) \mapsto \{(\alpha, \beta): \alpha = y_i - x_i \beta\}\) e
 retas através de pares de pontos no espaço amostral correspondem a
@@ -389,12 +404,10 @@ paramétrico. Todos os pares de observações assim gerados produzem
 \(\binom{n}{2}\) pontos no espaço paramétrico.
 
 \textcite{edgeworth1888} então propôs um algoritmo geométrico, iniciando
-em algum ponto do espaço paramétrico iterativamente, seguindo o caminho
+em algum ponto do espaço paramétrico, iterativamente, seguindo o caminho
 mais íngreme, minimizando os resíduos, encontrando assim uma solução
-ótima. Este procedimento pode ser generalizado para \(n\) dimensões.
-
-\hypertarget{o-grafico-dual}{%
-\paragraph{O gráfico dual}\label{o-grafico-dual}}
+ótima. Este procedimento pode ser generalizado para \(n\) dimensões,
+porém
 
 \hypertarget{o-problema-de-estimacao-de-quantis-como-um-problema-de-minimizacao}{%
 \subsubsection{O problema de estimação de quantis como um problema de
@@ -404,15 +417,16 @@ Pode-se demonstrar que, assim como a média aritmética \(\mu\) de uma
 variável aleatória tem a propriedade de minimizar a soma dos desvios
 quadráticos de cada observação em relação a ela
 \autocite[50]{matloff2017}, a mediana tem a propriedade de minimizar a
-soma dos desvios médios absolutos de cada observação
-\autocite[260]{matloff2017}. Ou seja:
+soma dos desvios médios absolutos de cada observação \autocite[
+260]{matloff2017}. Ou seja:
 
 \[\mu(Y) = \mathbb{E}Y = \arg \min_c \sum_{i = 1}^n \frac{1}{n}(y_i - c)^2\]
 \[Me = \arg \min_c \sum_{i = 1}^n \frac{1}{n}|y_i - c|\] Sabe-se que a
 mediana de uma variável equivale ao quantil de 50\%. Assim, outros
 quantis podem ser obtidos com formulação análoga à formulação acima,
 porém com a aplicação de uma função de perda assimétrica
-(\(\rho_\tau(.)\)) em lugar da função módulo (ver figura 1):
+(\(\rho_\tau(.)\)) em lugar da função módulo (ver figura
+\ref{fig:custo}):
 
 \[Q_\tau(Y) = \arg \min_c \sum_{i = 1}^n \rho_\tau(y_i - c)\]
 
@@ -422,7 +436,7 @@ porém com a aplicação de uma função de perda assimétrica
 
 }
 
-\caption{Função de perda ou custo.}\label{fig:unnamed-chunk-1}
+\caption{Função de perda ou custo.}\label{fig:custo}
 \end{figure}
 
 \bcenter Fonte: \textcite{qr}. \ecenter
@@ -440,7 +454,7 @@ relação a um escalar, desta vez se minimiza o erro em prever uma
 variável Y em relação a uma função de outra variável X, f(X). Pode-se
 demonstrar que entre todas as funções f(X), a que minimiza o erro médio
 quadrático de Y dado X (\(\mathbb{E}[(Y - f(X))^2]\)) é a função de
-regressão \(\mu(t) = \mathbb{E}(Y|X=t)\) \autocite[49-50]{matloff2017}.
+regressão \(\mu(t) = \mathbb{E}(Y|X=t)\) \autocite[ 49-50]{matloff2017}.
 
 Analogamente, pode-se demonstrar que a mediana condicional é a função
 que minimiza o erro médio absoluto de Y dado X
@@ -461,7 +475,7 @@ da regressão quantílica. Nesta abordagem, há múltiplas soluções
 possíveis, assim como numa amostra de tamanho par existem duas medianas
 possíveis. Ainda, as soluções do problema de minimização da regressão
 quantílica não podem ser encontradas analiticamente, sendo necessária a
-utilização de precessos iterativos para a obtenção do(s) mínimo(s).
+utilização de processos iterativos para a obtenção do(s) mínimo(s).
 
 Contudo, deve-se ter em mente que, em ambos os processos de minimização,
 seja para a regressão linear ou para a regressão quantílica, trabalha-se
@@ -518,7 +532,7 @@ quantílica, reproduzidas abaixo:
 
 Segundo \textcite[p.~3]{conopt}, para amostras de tamanho menor do que
 alguns milhares de dados, com algumas dúzias de parâmetros a serem
-estiamdos, o que é hoje considerado um problema modesto pela ciência de
+estimados, o que é hoje considerado um problema modesto pela ciência de
 dados, o algoritmo de \textcite{barrodale} é considerado extremamente
 eficiente.
 
@@ -539,16 +553,14 @@ estatística assintótica igual a 1 quando a distribuição dos dados é
 normal ou gaussiana, ela ela tem menos da metade da eficiência da
 mediana quando a distribuição for a distribuição de Laplace e tem
 eficiência zero para a distribuição de Cauchy
-\autocite[p.36]{koenker1978}.
-
-Desta maneira, quando há incerteza quanto à real distribuição dos dados,
-a média, no caso escalar, ou a média condicional (regressão linear),
-considerada o estimador ótimo para o caso gaussiano, pode ser preterível
-à mediana, ou outros estimadores, ditos ``ineficientes''
-\autocite[p.36]{koenker1978}
+\autocite[p.36]{koenker1978}. Desta maneira, quando há incerteza quanto
+à real distribuição dos dados, a média, no caso escalar, ou a média
+condicional (regressão linear), considerada o estimador ótimo para o
+caso gaussiano, pode ser preterível à mediana, ou outros estimadores,
+ditos ``ineficientes'' \autocite[p.36]{koenker1978}
 
 \hypertarget{estimador-de-maxima-verossimilhanca}{%
-\subparagraph{Estimador de máxima
+\paragraph{Estimador de máxima
 verossimilhança}\label{estimador-de-maxima-verossimilhanca}}
 
 Pode-se demonstrar que, quando a distribuição é normal o estimador de
@@ -563,8 +575,8 @@ Isto implica que, se a distribuição dos dados é normal, são necessários
 através da mediana seja tão eficiente quanto a estimativa através da
 média. Isto implica, por sua vez, que intervalos de confiança obtidos
 para a regressão quantílica são 25\% mais largos do que os intervalos de
-confiança para a regressão linear
-\autocites[354]{koenker2000}[92]{dasGupta}.
+confiança para a regressão linear \autocites[
+354]{koenker2000}[92]{dasGupta}.
 
 No entanto, se a distribuição dos dados for a distribuição de Laplace,
 pode-se demonstrar que são necessários duas vezes mais dados para que a
@@ -625,7 +637,7 @@ Para os estudos de caso foram utilizados os dados disponíveis em
 \hypertarget{duas-dimensoes}{%
 \subsection{Duas dimensões}\label{duas-dimensoes}}
 
-Assim como na regressão linear, é mais fácil aa compreensão da regressão
+Assim como na regressão linear, é mais fácil a compreensão da regressão
 quantílica através de exemplos em duas dimensões, e depois generalizar
 para \(n\) dimensões.
 
@@ -679,8 +691,8 @@ confiança de estimação do coeficiente de regressão linear. A área
 sombreada em cinza representa os intervalos de confiança para os
 coeficientes da regressão quantílica. Deve-se notar que, entre os
 quantis aproximados de 0,3 e 0,55, os coeficientes da regressão
-quantílica não são significamente diferentes, estatísticamente, do
-coeficiente da regreessão linear.
+quantílica não são significantemente diferentes, estatisticamente, do
+coeficiente da regressão linear.
 
 \begin{figure}[H]
 
@@ -700,13 +712,6 @@ ausência de heteroscedasticidade, é mais eficiente do que o estimador da
 regressão quantílica, como a teoria já prevê (ver
 \textcite{matloff2017}, 238).
 
-(Zilli, não sei se tu pesquisou isso na revisão bibliográfica, mas acho
-que se não, era bom colocar! Colocar algo do tipo: as vantagens e
-desvantagens da regressão quantílica. Apesar da regressão quantílica ser
-robusta à presença de \emph{outliers}, ela é menos eficiente do que a
-regressao linear, caso a distribuição da variável estudada seja normal,
-claro.)
-
 \begin{figure}[H]
 
 {\centering \includegraphics[width=0.7\linewidth]{images/coef2-1} 
@@ -722,11 +727,10 @@ claro.)
 Para os dados obtidos de Hochheim \autocite*[22-23]{hochheim} foram
 ajustados dois modelos, um de regressão linear, com os dados saneados, e
 outro de regressão quantílica, utilizando-se a totalidade dos dados,
-para os quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
-
-Na figura \ref{fig:coefs} podem ser vistos os valores dos coeficientes
-de cada variável para os diferentes quantis. Pode-se perceber, mais uma
-vez, que o valor dos coeficientes da regressão quantílica não diferem
+para os quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9. Na figura
+\ref{fig:coefs} podem ser vistos os valores dos coeficientes de cada
+variável para os diferentes quantis. Pode-se perceber, mais uma vez, que
+o valor dos coeficientes da regressão quantílica não diferem
 significantemente dos coeficientes da regressão linear (exceção para
 alguns quantis superiores nas variáveis \texttt{area\_total} e
 \texttt{padrao}).
@@ -819,19 +823,18 @@ linear aqui apresentadas são para a mediana da distribuição lognormal.
 
 Pelo modelo de regressão linear, o valor da estimativa central
 encontrado foi de R\$961.660,64, com intervalo de confiança entre R\$
-924.768,13 e R\$ 1.000.024,94. A amplitude do intervalo de confiança foi
-de 7.83\%.
+\texttt{r\ brformat(exp(p{[},\ "lwr"{]}))} e R\$ 1.000.024,94. A
+amplitude do intervalo de confiança foi de 7.83\%.
 
 Já pelo modelo de regressão quantílica, o valor da estimativa central
 encontrado foi de R\$946.467,87, com intervalo de confiança entre R\$
 886.472,34 e R\$ 1.010.523,85. A amplitude do intervalo de confiança foi
-de 13.1\%.
+de \texttt{r\ porcento(amplitude(exp(p1))/100)}.
 
 O modelo de regressão linear mostrou-se, portanto, mais eficiente do que
-o modelo de regressão a mediana, apesar no menor número de dados.
-
-Os limites inferior e superior do intervalo de predição @80\% para o
-modelo de regressão linear são, respectivamente: R\$ 802.017,63 e R\$
+o modelo de regressão a mediana, apesar no menor número de dados. Os
+limites inferior e superior do intervalo de predição @80\% para o modelo
+de regressão linear são, respectivamente: R\$ 802.017,63 e R\$
 1.153.080,88.
 
 Para o modelo de regressão quantílica, o intervalo de predição não faz
