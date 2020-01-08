@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.2)  2 JAN 2020 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.1.2)  7 JAN 2020 21:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1171,7 +1171,43 @@ Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
 (/home/droubi/texmf/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
-)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip68
+\LTright=\skip69
+\LTpre=\skip70
+\LTpost=\skip71
+\LTchunksize=\count391
+\LTcapwidth=\dimen156
+\LT@head=\box44
+\LT@firsthead=\box45
+\LT@foot=\box46
+\LT@lastfoot=\box47
+\LT@cols=\count392
+\LT@rows=\count393
+\c@LT@tables=\count394
+\c@LT@chunks=\count395
+\LT@p@ftn=\toks25
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2016/04/27 v1.618033 publication quality tables
+\heavyrulewidth=\dimen157
+\lightrulewidth=\dimen158
+\cmidrulewidth=\dimen159
+\belowrulesep=\dimen160
+\belowbottomsep=\dimen161
+\aboverulesep=\dimen162
+\abovetopsep=\dimen163
+\cmidrulesep=\dimen164
+\cmidrulekern=\dimen165
+\defaultaddspace=\dimen166
+\@cmidla=\count396
+\@cmidlb=\count397
+\@aboverulesep=\dimen167
+\@belowrulesep=\dimen168
+\@thisruleclass=\count398
+\@lastruleclass=\count399
+\@thisrulewidth=\dimen169
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
@@ -1184,8 +1220,8 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen156
-\Gin@req@width=\dimen157
+\Gin@req@height=\dimen170
+\Gin@req@width=\dimen171
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grffile.sty
 Package: grffile 2017/06/30 v1.18 Extended file name support for graphics (HO)
 Package grffile Info: Option `multidot' is set to `true'.
@@ -1196,15 +1232,15 @@ Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
 Package: parskip 2001/04/09 non-zero parskip adjustments
 ) (/home/droubi/texmf/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip68
-\thanksmargin=\skip69
-\droptitle=\skip70
+\thanksmarkwidth=\skip72
+\thanksmargin=\skip73
+\droptitle=\skip74
 ) (/home/droubi/texmf/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen158
-\WF@size=\dimen159
-\c@WF@wrappedlines=\count391
-\WF@box=\box44
-\WF@everypar=\toks25
+\wrapoverhang=\dimen172
+\WF@size=\dimen173
+\c@WF@wrappedlines=\count400
+\WF@box=\box48
+\WF@everypar=\toks26
 Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2018/02/14 3.18 The Babel package
@@ -1214,10 +1250,10 @@ File: switch.def 2018/02/14 3.18 Babel switching mechanism
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2018/02/14 3.18 Babel common definitions
-\babel@savecnt=\count392
-\U@D=\dimen160
+\babel@savecnt=\count401
+\U@D=\dimen174
 (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@dirlevel=\count393
+\bbl@dirlevel=\count402
 )
 
 Package babel Warning: No hyphenation patterns were preloaded for
@@ -1231,11 +1267,11 @@ Package babel Warning: No hyphenation patterns were preloaded for
 Package babel Info: Making " an active character on input line 145.
 )) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count394
-\float@exts=\toks26
-\float@box=\box45
-\@float@everytoks=\toks27
-\@floatcapt=\box46
+\c@float@type=\count403
+\float@exts=\toks27
+\float@box=\box49
+\@float@everytoks=\toks28
+\@floatcapt=\box50
 ) (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
@@ -1243,32 +1279,36 @@ Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen161
-\captionmargin@=\dimen162
-\captionwidth=\dimen163
-\caption@tempdima=\dimen164
-\caption@indent=\dimen165
-\caption@parindent=\dimen166
-\caption@hangindent=\dimen167
+\captionmargin=\dimen175
+\captionmargin@=\dimen176
+\captionwidth=\dimen177
+\caption@tempdima=\dimen178
+\caption@indent=\dimen179
+\caption@parindent=\dimen180
+\caption@hangindent=\dimen181
 )
-\c@ContinuedFloat=\count395
+\c@ContinuedFloat=\count404
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+)
 Package caption Info: wrapfig package is loaded.
 )
-\c@KVtest=\count396
-\sf@farskip=\skip71
-\sf@captopadj=\dimen168
-\sf@capskip=\skip72
-\sf@nearskip=\skip73
-\c@subfigure=\count397
-\c@subfigure@save=\count398
-\c@lofdepth=\count399
-\c@subtable=\count400
-\c@subtable@save=\count401
-\c@lotdepth=\count402
-\sf@top=\skip74
-\sf@bottom=\skip75
+\c@KVtest=\count405
+\sf@farskip=\skip75
+\sf@captopadj=\dimen182
+\sf@capskip=\skip76
+\sf@nearskip=\skip77
+\c@subfigure=\count406
+\c@subfigure@save=\count407
+\c@lofdepth=\count408
+\c@subtable=\count409
+\c@subtable@save=\count410
+\c@lotdepth=\count411
+\sf@top=\skip78
+\sf@bottom=\skip79
 ) (/home/droubi/texmf/tex/latex/lastpage/lastpage.sty
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
@@ -1311,15 +1351,15 @@ LaTeX Info: Redefining \hbar on input line 50.
 ) (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
 s
-\f@nch@headwidth=\skip76
-\f@nch@O@elh=\skip77
-\f@nch@O@erh=\skip78
-\f@nch@O@olh=\skip79
-\f@nch@O@orh=\skip80
-\f@nch@O@elf=\skip81
-\f@nch@O@erf=\skip82
-\f@nch@O@olf=\skip83
-\f@nch@O@orf=\skip84
+\f@nch@headwidth=\skip80
+\f@nch@O@elh=\skip81
+\f@nch@O@erh=\skip82
+\f@nch@O@olh=\skip83
+\f@nch@O@orh=\skip84
+\f@nch@O@elf=\skip85
+\f@nch@O@erf=\skip86
+\f@nch@O@olf=\skip87
+\f@nch@O@orf=\skip88
 )
 Package biblatex Info: Trying to load language 'brazil' -> 'brazil-abnt'...
 Package biblatex Info: ... file 'brazil-abnt.lbx' found.
@@ -1343,32 +1383,32 @@ File: brazil.lbx 2017/12/19 v3.10 biblatex localization (PK/JW/AB)
 Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (biblatex)                Loading 'csquotes' recommended.
 
-\@quotelevel=\count403
-\@quotereset=\count404
+\@quotelevel=\count412
+\@quotereset=\count413
 (./Artigo.aux)
 \openout1 = `Artigo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 134.
-LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 134.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 135.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \microtypecontext on input line 134.
+LaTeX Info: Redefining \microtypecontext on input line 135.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -1415,7 +1455,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box47
+\AtBeginShipoutBox=\box51
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -1425,17 +1465,17 @@ Package color Info: Driver file: pdftex.def on input line 147.
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ))
-Package hyperref Info: Link coloring ON on input line 134.
+Package hyperref Info: Link coloring ON on input line 135.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count405
+\c@section@level=\count414
 )
-LaTeX Info: Redefining \ref on input line 134.
-LaTeX Info: Redefining \pageref on input line 134.
-LaTeX Info: Redefining \nameref on input line 134.
+LaTeX Info: Redefining \ref on input line 135.
+LaTeX Info: Redefining \pageref on input line 135.
+LaTeX Info: Redefining \nameref on input line 135.
 (./Artigo.out) (./Artigo.out)
 \@outlinefile=\write5
 \openout5 = `Artigo.out'.
@@ -1455,29 +1495,22 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                edgeworth
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
 )
-Package biblatex Info: Reference section=0 on input line 134.
-Package biblatex Info: Reference segment=0 on input line 134.
+Package biblatex Info: Reference section=0 on input line 135.
+Package biblatex Info: Reference segment=0 on input line 135.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count406
-\scratchdimen=\dimen169
-\scratchbox=\box48
-\nofMPsegments=\count407
-\nofMParguments=\count408
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count409
-\MPscratchDim=\dimen170
-\MPnumerator=\count410
-\makeMPintoPDFobject=\count411
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count415
+\scratchdimen=\dimen183
+\scratchbox=\box52
+\nofMPsegments=\count416
+\nofMParguments=\count417
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count418
+\MPscratchDim=\dimen184
+\MPnumerator=\count419
+\makeMPintoPDFobject=\count420
+\everyMPtoPDFconversion=\toks30
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -1498,24 +1531,24 @@ Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 134.
+(lastpage)             ! on input line 135.
 LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 13
-5.
+6.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 13
-5.
+6.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 13
-5.
+6.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 13
-5.
+6.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
@@ -1523,180 +1556,217 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 135.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 136.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 135.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 136.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 135.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <7.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 135.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 136.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 138.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 139.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 148.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 149.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 194.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 194.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 194.
-<images/-000.png, id=96, 1773.62625pt x 1543.7675pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
+<images/-000.png, id=100, 1773.62625pt x 1543.7675pt>
 File: images/-000.png Graphic file (type png)
 <use images/-000.png>
-Package pdftex.def Info: images/-000.png  used on input line 199.
+Package pdftex.def Info: images/-000.png  used on input line 200.
 (pdftex.def)             Requested size: 426.78859pt x 371.47757pt.
 
-Underfull \hbox (badness 5161) in paragraph at lines 203--203
+Underfull \hbox (badness 5161) in paragraph at lines 204--204
 []\T1/ptm/m/n/12 (+20) Figura 1: |Mu-danças na den-si-dade de tru-tas ($\OML/zt
 mcm/m/it/12 y$\T1/ptm/m/n/12 (+20) ) em função do quo-ciente
  []
 
 [2 <./images/-000.png (PNG copy)>]
-<images/urb-1.png, id=118, 469.755pt x 325.215pt>
+<images/urb-1.png, id=122, 469.755pt x 325.215pt>
 File: images/urb-1.png Graphic file (type png)
 <use images/urb-1.png>
-Package pdftex.def Info: images/urb-1.png  used on input line 242.
+Package pdftex.def Info: images/urb-1.png  used on input line 243.
 (pdftex.def)             Requested size: 426.78961pt x 295.46973pt.
 [3 <./images/urb-1.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 269.
-<image_Galton.png, id=134, 4257.9075pt x 6772.30125pt>
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 270.
+<image_Galton.png, id=138, 4257.9075pt x 6772.30125pt>
 File: image_Galton.png Graphic file (type png)
 <use image_Galton.png>
-Package pdftex.def Info: image_Galton.png  used on input line 290.
+Package pdftex.def Info: image_Galton.png  used on input line 291.
 (pdftex.def)             Requested size: 426.79025pt x 678.81987pt.
 
-LaTeX Warning: Float too large for page by 0.53677pt on input line 293.
+LaTeX Warning: Float too large for page by 0.53677pt on input line 294.
 
-[4] [5 <./image_Galton.png>] [6]
-<DmKq7.png, id=244, 316.18124pt x 242.9075pt>
+[4] [5 <./image_Galton.png>] [6] [7]
+<DmKq7.png, id=275, 316.18124pt x 242.9075pt>
 File: DmKq7.png Graphic file (type png)
 <use DmKq7.png>
-Package pdftex.def Info: DmKq7.png  used on input line 435.
+Package pdftex.def Info: DmKq7.png  used on input line 456.
 (pdftex.def)             Requested size: 298.77354pt x 229.53395pt.
-[7] [8 <./DmKq7.png>] [9]
-<images/dist_normal-1.png, id=314, 469.755pt x 325.215pt>
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-euf.cfg
+File: mt-euf.cfg 2006/07/03 v1.1 microtype config. file: AMS Euler Fraktur (RS)
+
+) [8 <./DmKq7.png>] [9]
+<images/outlier_2.png, id=314, 475.7775pt x 475.7775pt>
+File: images/outlier_2.png Graphic file (type png)
+<use images/outlier_2.png>
+Package pdftex.def Info: images/outlier_2.png  used on input line 571.
+(pdftex.def)             Requested size: 209.1322pt x 209.1322pt.
+<images/outlier_1.png, id=315, 475.7775pt x 475.7775pt>
+File: images/outlier_1.png Graphic file (type png)
+<use images/outlier_1.png>
+Package pdftex.def Info: images/outlier_1.png  used on input line 571.
+(pdftex.def)             Requested size: 209.1322pt x 209.1322pt.
+[10 <./images/outlier_2.png> <./images/outlier_1.png>] [11]
+<images/dist_normal-1.png, id=362, 469.755pt x 325.215pt>
 File: images/dist_normal-1.png Graphic file (type png)
 <use images/dist_normal-1.png>
-Package pdftex.def Info: images/dist_normal-1.png  used on input line 588.
+Package pdftex.def Info: images/dist_normal-1.png  used on input line 663.
 (pdftex.def)             Requested size: 149.37134pt x 103.41092pt.
-<images/dist_Laplace-1.png, id=315, 469.755pt x 325.215pt>
+<images/dist_Laplace-1.png, id=363, 469.755pt x 325.215pt>
 File: images/dist_Laplace-1.png Graphic file (type png)
 <use images/dist_Laplace-1.png>
-Package pdftex.def Info: images/dist_Laplace-1.png  used on input line 610.
+Package pdftex.def Info: images/dist_Laplace-1.png  used on input line 685.
 (pdftex.def)             Requested size: 149.37134pt x 103.41092pt.
 
-Underfull \hbox (badness 5771) in paragraph at lines 585--617
+Underfull \hbox (badness 5771) in paragraph at lines 660--692
 [] $[]$ $[]$
  []
 
 
-Overfull \hbox (2.28003pt too wide) in paragraph at lines 585--617
+Overfull \hbox (2.28003pt too wide) in paragraph at lines 660--692
 []$ $[]$ 
  []
 
-[10 <./images/dist_normal-1.png (PNG copy)>]
-<images/qr1-1.png, id=334, 469.755pt x 325.215pt>
+[12 <./images/dist_normal-1.png (PNG copy)> <./images/dist_Laplace-1.png (PNG c
+opy)>]
+
+LaTeX Warning: Command \textendash invalid in math mode on input line 771.
+
+[13] [14] [15]
+<images/qr1-1.png, id=473, 469.755pt x 325.215pt>
 File: images/qr1-1.png Graphic file (type png)
 <use images/qr1-1.png>
-Package pdftex.def Info: images/qr1-1.png  used on input line 663.
+Package pdftex.def Info: images/qr1-1.png  used on input line 894.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[11 <./images/dist_Laplace-1.png (PNG copy)>]
-<images/qr2-1.png, id=349, 469.755pt x 325.215pt>
+<images/qr2-1.png, id=475, 469.755pt x 325.215pt>
 File: images/qr2-1.png Graphic file (type png)
 <use images/qr2-1.png>
-Package pdftex.def Info: images/qr2-1.png  used on input line 678.
+Package pdftex.def Info: images/qr2-1.png  used on input line 909.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-<images/coef1-1.png, id=351, 469.755pt x 325.215pt>
+[16 <./images/qr1-1.png (PNG copy)> <./images/qr2-1.png (PNG copy)>]
+<images/coef1-1.png, id=484, 469.755pt x 325.215pt>
 File: images/coef1-1.png Graphic file (type png)
 <use images/coef1-1.png>
-Package pdftex.def Info: images/coef1-1.png  used on input line 699.
+Package pdftex.def Info: images/coef1-1.png  used on input line 930.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-[12 <./images/qr1-1.png (PNG copy)> <./images/qr2-1.png (PNG copy)>]
-<images/coef2-1.png, id=362, 469.755pt x 325.215pt>
+<images/coef2-1.png, id=489, 469.755pt x 325.215pt>
 File: images/coef2-1.png Graphic file (type png)
 <use images/coef2-1.png>
-Package pdftex.def Info: images/coef2-1.png  used on input line 717.
+Package pdftex.def Info: images/coef2-1.png  used on input line 1002.
 (pdftex.def)             Requested size: 298.74986pt x 206.82681pt.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 735.
-
+[17 <./images/coef1-1.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 1021
+.
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [13 <./images/coef1-1.png (PNG copy)> <./images/coef2-1.png (PNG copy)>]
-<images/coefs-1.png, id=374, 469.755pt x 325.215pt>
+)
+<images/coefs-1.png, id=499, 469.755pt x 325.215pt>
 File: images/coefs-1.png Graphic file (type png)
 <use images/coefs-1.png>
-Package pdftex.def Info: images/coefs-1.png  used on input line 740.
+Package pdftex.def Info: images/coefs-1.png  used on input line 1026.
 (pdftex.def)             Requested size: 426.78961pt x 295.46973pt.
+[18 <./images/coef2-1.png (PNG copy)>]
 
-LaTeX Warning: Float too large for page by 33.00975pt on input line 809.
+LaTeX Warning: Float too large for page by 33.00975pt on input line 1095.
 
-[14 <./images/coefs-1.png (PNG copy)>] [15]
+[19 <./images/coefs-1.png (PNG copy)>] [20]
+Overfull \hbox (19.05272pt too wide) in alignment at lines 1145--1152
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (19.05272pt too wide) in alignment at lines 1152--1157
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (19.05272pt too wide) in alignment at lines 1157--1163
+ [] [] [] [] [] [] 
+ []
+
 
 Package biblatex Warning: Month out of range or not an integer
-(biblatex)                at entry 'NBR1465302' on input line 854.
+(biblatex)                at entry 'NBR1465302' on input line 1194.
 
-[16] [17] 
+[21] [22] [23] [24] 
 AED: lastpage setting LastPage
-[18]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 857.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 857.
+[25]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1197.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1197.
 (./Artigo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 857.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 857.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1197.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1197.
+
 Package rerunfilecheck Info: File `Artigo.out' has not changed.
-(rerunfilecheck)             Checksum: 05383CBE346F7C8DE1ED6297C216647C;2624.
+(rerunfilecheck)             Checksum: 74E7965EB7F4E97E9B608B16B8A352AA;2937.
 Package logreq Info: Writing requests to 'Artigo.run.xml'.
 \openout1 = `Artigo.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 857.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1197.
  ) 
 Here is how much of TeX's memory you used:
- 30003 strings out of 494923
- 519893 string characters out of 6180743
- 985349 words of memory out of 5000000
- 32704 multiletter control sequences out of 15000+600000
- 610526 words of font info for 260 fonts, out of 8000000 for 9000
+ 30364 strings out of 494923
+ 526058 string characters out of 6180743
+ 992085 words of memory out of 5000000
+ 33004 multiletter control sequences out of 15000+600000
+ 616059 words of font info for 276 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 63i,11n,73p,10422b,1916s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,12n,73p,10422b,1914s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texlive/texmf-dist
 /fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/s
-ymbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Artigo.pdf (18 pages, 4725025 bytes).
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/
+share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/rsfs/rsfs10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/s
+ymbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on Artigo.pdf (25 pages, 4773392 bytes).
 PDF statistics:
- 501 PDF objects out of 1000 (max. 8388607)
- 447 compressed objects within 5 object streams
- 110 named destinations out of 1000 (max. 500000)
- 32944 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 688 PDF objects out of 1000 (max. 8388607)
+ 619 compressed objects within 7 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 32962 words of extra memory for PDF output out of 35830 (max. 10000000)
 

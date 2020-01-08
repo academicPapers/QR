@@ -255,8 +255,8 @@ $$y_i = \hat \alpha + \hat \beta x_i + \hat u_i$$
 com $\sum \hat u_i = 0$ e $\sum |\hat u_i| = \text{min!}$.
 
 @boscovich propôs uma solução através de um algoritmo geométrico. Alguns anos
-depois, em 1789, @laplace1789 resolveu o problema matematicamente,
-no que pode ser considerada a primeira análise de regressão [@tortoise, 281]. 
+depois, em 1789, @laplace1789 resolveu o problema matematicamente, nomeando o método de "Methode de Situation" no que pode ser considerada a primeira análise 
+de regressão [@tortoise, 281]. 
 
 Posteriormente, com a chegada do *méthode des moindres carrés*, ou seja, do
 método dos mínimos quadrados ordinários, o método dos mínimos erros absolutos de
@@ -294,7 +294,7 @@ achados na época. Ver a este respeito @STIGLER197731; @stigler1981 e @stigler19
 
 #### O gráfico dual
 
-@edgeworth criou o gráfico dual, ferramenta essencial para o desenvolvimento
+@edgeworth1888 criou o gráfico dual, ferramenta essencial para o desenvolvimento
 do seu procedimento de minimização dos resíduos absolutos. O gráfico dual nada
 mais é do que o gráfico, em duas dimensões, dos parâmetros $\alpha$ e $\beta$ a
 serem estimados, com o parâmetro $\alpha$ nas ordenadas e o parâmetro $\beta$
@@ -302,19 +302,37 @@ no eixo das abscissas.
 
 #### Algoritmo inicial
 
-@edgeworth1888 mostrou que, para a regressão à mediana bivariada, pontos no
-espaço amostral correspondem a retas no espaço paramétrico $(x_i, y_i) \mapsto
-\{(\alpha, \beta): \alpha = y_i - x_i \beta\}$ e retas através de pares de
-pontos no espaço amostral correspondem a pontos (interseção das duas retas
-geradas pelos pontos) no espaço paramétrico. Todos os pares de observações
-assim gerados produzem $\binom{n}{2}$ pontos no espaço paramétrico.
+@edgeworth1888 (*apud* @koenker2000, p.356) mostrou que, para a regressão à
+mediana bivariada, pontos no espaço amostral correspondem a retas no espaço
+paramétrico $(x_i, y_i) \mapsto \{(\alpha, \beta): \alpha = y_i - x_i \beta\}$, 
+e retas através de pares de pontos no espaço amostral correspondem a pontos 
+(interseção das duas retas geradas pelos pontos) no espaço paramétrico. 
+Todos os pares de observações assim gerados produzem $\binom{n}{2}$ pontos no 
+espaço paramétrico. Num espaço de $p$ dimensões, o número de vértices é da ordem
+$\binom{n}{p} = \mathcal{O}(n^p)$.
 
 @edgeworth1888 então propôs um algoritmo geométrico, iniciando em algum ponto do
-espaço paramétrico, iterativamente, seguindo o caminho mais íngreme, minimizando 
-os resíduos, encontrando assim uma solução ótima. Este procedimento pode ser 
-generalizado para $n$ dimensões, porém 
+espaço paramétrico, mais especificamente em um ponto de intersecção de duas 
+retas e, iterativamente, computando a derivada direcional da função erro absoluto 
+($\ell1$), até encontrar uma solução ótima, ou seja, até se chegar a um ponto
+em que as derivadas direcionais não sejam mais descendentes, ou seja, não haja
+mais nenhuma direção onde o erro absoluto esteja diminuindo [ver @koenker2000, 
+356-358]. 
+
+O procedimento acima pode ser algebricamente escrito e generalizado para $n$ 
+dimensões.
 
 ### O problema de estimação de quantis como um problema de minimização
+
+Enquanto a regressão linear, também chamada de estimador dos mínimos (erros)
+quadrados, é o método análogo, para $n$ dimensões, da média amostral, o estimador
+dos mínimos erros absolutos é o método análogo à mediana amostral em $n$ 
+dimensões [@basset, 618].
+
+Desta maneira, é útil definir algebricamente a média $\mu$ e a mediana amostral
+$Me$, como minimizações de um tipo de erro, quadrático ou absoluto. A regressão
+linear e a quantílica, então, são facilmente generalizadas pela extensão destas
+minimizações unidimensionais, para $n$ dimensões.
 
 Pode-se demonstrar que, assim como a média aritmética $\mu$ de uma variável
 aleatória tem a propriedade de minimizar a soma dos desvios quadráticos de cada
@@ -346,15 +364,45 @@ média de uma população pode ser visto como o problema de minimização descri
 acima.
 
 A diferença é que no caso da regressão linear, ao invés de minimizar em relação
-a um escalar, desta vez se minimiza o erro em prever uma variável Y em relação a
-uma função de outra variável X, f(X). Pode-se demonstrar que entre todas as
-funções f(X), a que minimiza o erro médio quadrático de Y dado X ($\mathbb{E}[(Y
-- f(X))^2]$) é a função de regressão $\mu(t) = \mathbb{E}(Y|X=t)$ [@matloff2017,
-49-50].
+a um escalar, desta vez se minimiza o erro em prever uma variável $Y$ em relação
+a uma função de outra variável $X$, $f(X)$. Pode-se demonstrar que entre todas 
+as funções $f(X)$, a que minimiza o erro médio quadrático de $Y$ dado $X$ ($\mathbb{E}[(Y - f(X))^2]$) é a função de regressão $\mu(t) = \mathbb{E}(Y|X=t)$ [@matloff2017, 49-50]. Logo, estima-se $\hat beta$ assim:
+
+$$\hat \beta = \arg \min_{b \in \mathfrak{R}^p}\sum (y_i - x'_ib)^2$$
 
 Analogamente, pode-se demonstrar que a mediana condicional é a função que
-minimiza o erro médio absoluto de Y dado X ($\mathbb{E}(|Y-f(X)|)$)
+minimiza o erro médio absoluto de $Y$ dado $X$ ($\mathbb{E}(|Y-f(X)|)$)
 [@matloff2017, 260-261].
+
+Desta maneira, na regressão quantílica estima-se os coeficientes de acordo com o
+seguinte problema de minimização [@qr40, 2]:
+
+$$\hat \beta(\tau) = \arg \min_{b \in \mathfrak{R}^p}\sum \rho_\tau (y_i - x'_ib)$$
+Esta solução tem a propriedade de que, aproximadamente, $\tau n$ são positivos e
+$(1-\tau)n$ são negativos [@qr40, 3].
+
+No caso particular da regressão à mediana, essa equação se reduz à:
+
+$$\hat \beta(\tau = 0,5) = \arg \min_{b \in \mathfrak{R}^p}\sum |y_i - x'_ib|$$
+A diferença, portanto, da regressão linear à média e da regressão à mediana, 
+pode ser escrita com a diferença da definição da norma de um espaço vetorial, 
+aplicada ao vetor de erros $\epsilon = y_i - x_i'\beta$.
+
+No caso da regressão à mediana, essa norma é denominada norma $\ell_1$, enquanto
+na regressão à média, a norma é denominada norma $\ell_2$, ou norma euclidiana, 
+de maneira que o problema de minimização pode ser genericamente escrito como a 
+seguir:
+
+$$\arg \min_{b \in \mathfrak{R}^p} \sum \lVert y_i - x'_ib \rVert$$
+
+Na regressão à mediana, a norma de um vetor $x$ é definida da seguinte maneira:
+
+$$\lVert x \rVert_1 = \sum_i |x_i| = |x_1| + |x_2| + \ldots + |x_i|$$
+
+Na regressão linear, conforme afirmou-se, a norma utilizada é a euclidiana,
+assim definida:
+
+$$\lVert x \rVert_2 = \sqrt{\left(\sum_i x_i^2\right)} = \sqrt{x_1^2 + x_2^2 + \ldots + x_i^2}$$
 
 #### Unicidade da solução
 
@@ -382,15 +430,31 @@ A diferença entre as múltiplas soluções da regressão quantílica é da orde
 $1/n$, enquanto a amplitude da precisão da estimativa é de tamanho $1/\sqrt{n}$.
 Assim, presume-se que as múltiplas soluções possíveis, para os casos práticos
 estão dentro da margem de erro para a primeira estimativa encontrada pelo
-algoritmo.
+algoritmo [@basset].
 
 #### Robustez da solução
 
 Uma das principais vantagens da regressão à mediana consiste na sua robustez à
 presença de *outliers*. Enquanto a solução da regressão linear é altamente
 sensível à presença de eventuais *outliers* na amostra, a solução de regressão
-quantílica é 
+quantílica é muito menos sensível.
 
+A figura \ref{fig:outlier1}[^2] ilustra o caso típico de um *outlier* presente
+na variáve resposta do modelo, onde a solução da regressão quantílica se mostra
+totalmente estável, pois este ponto não altera substancialmente a estimação
+(reta em vermelho) da reta de regressão quantílica "real" (em azul). Já a figura
+\ref{fig:outlier2}[^3] ilustra um caso onde o *outlier* é um ponto discrepante
+também na variável explicativa, situação esta que não é incomum em amostras de
+imóveis urbanos. Neste último caso, a solução da regressão quantílica mostra-se
+totalmente sensível à influência deste ponto.
+
+
+```{r outlier, out.width="49%", fig.show='hold', fig.cap = "Regressão quantílica: efeito de outliers na amostra.", fig.subcap=c("variável resposta", "variável explicativa")}
+knitr::include_graphics(c("images/outlier_2.png", "images/outlier_1.png"))
+```
+
+[^2]: Fonte: http://sfb649.wiwi.hu-berlin.de/fedc_homepage/xplore/tutorials/xaghtmlnode6.html
+[^3]: Idem.
 
 #### Transformação e retransformação
 
@@ -431,39 +495,34 @@ ditos *exterior point algorithms*, são mais eficientes para problemas de númer
 moderado de dados e parâmetros.
 
 Já para a solução de problemas com maior número de dados, procedimentos do tipo
-*interior point algorithms*, como  são substancialmente mais rápidos e precisos
-[@conopt, 6].
+*interior point algorithms*, como o de Frisch-Newton, são substancialmente mais
+rápidos e precisos [@conopt, 6]. De fato, como mencionado anteriormente, 
+com o algoritmo simplex o problema é da ordem $\mathcal{O}(n^p)$. Segundo 
+@koenker2000 [p. 369], com a utilização de um *interior point algorithm*, o 
+problema toma a ordem de $\mathcal{O}(np^3\log^2n)$, ainda muito superior à 
+ordem do problema de mínimos quadrados, que é de ordem $\mathcal{O}(np^2)$.
 
-#### Eficiência estatística
+Com algum pré-processamento, é possível reduzir bastante a ordem do problema.
 
-Pode-se demonstrar que, se por um lado a média amostral tem eficiência
-estatística assintótica igual a 1 quando a distribuição dos dados é normal ou
-gaussiana, ela ela tem menos da metade da eficiência da mediana quando a
-distribuição for a distribuição de Laplace e tem eficiência zero para a
-distribuição de Cauchy [@koenker1978, p.36].
-Desta maneira, quando há incerteza quanto à real distribuição dos dados, a
-média, no caso escalar, ou a média condicional (regressão linear), considerada o
-estimador ótimo para o caso gaussiano, pode ser preterível à mediana, ou outros
-estimadores, ditos "ineficientes" [@koenker1978, p.36]
+Para problemas esparsos, $i.e.$ problemas onde há um grande número de variáveis,
+porém apenas algumas com valores diferentes de zero, foram desenvolvidos outros 
+métodos baseados em álgebra esparsa [ver @koenker2005].
+
+Uma comparação detalhada da eficiência dos diversos métodos computacionais
+com diferentes tamanhos de amostras e parâmetros pode ser visto em @tortoise.
+
+Mais recentemente, com o advento do *Big Data*, mesmo os algoritmos do tipo
+*interior point algorithms*, ainda que com uso de pré-processamento, podem ser
+insuficientes. Para isto, é necessário fazer uso do método de gradiente
+descendente, com o auxílio de computação paralela [@qr, 8].
 
 #### Estimador de máxima verossimilhança
 
-Pode-se demonstrar que, quando a distribuição é normal o estimador de máxima 
+Pode-se demonstrar que, quando a distribuição é normal, o estimador de máxima 
 verossimilhança para o parâmetro $\mu$ da distribuição é a média amostral.
 
 Analogamente, se a distribuição dos dados for a distribuição de Laplace, o
 estimador de máxima verossimilhança para o parâmetro é a mediana.
-
-Isto implica que, se a distribuição dos dados é normal, são necessários $\pi/2$
-(1,57) vezes mais dados para que a estimativa de $\mu$ através da mediana seja
-tão eficiente quanto a estimativa através da média. Isto implica, por sua vez,
-que intervalos de confiança obtidos para a regressão quantílica são 25% mais
-largos do que os intervalos de confiança para a regressão linear [@koenker2000,
-354; @dasGupta, 92].
-
-No entanto, se a distribuição dos dados for a distribuição de Laplace, pode-se
-demonstrar que são necessários duas vezes mais dados para que a média estime
-$\mu$ com a mesma precisão da mediana.
 
 \hspace{-1.6cm}\begin{minipage}{0.5\textwidth}
 ```{r dist_normal, fig.cap = "Distribuição Normal."}
@@ -498,14 +557,165 @@ legend(2, 0.9, expression(paste(mu==0, ", ", lambda==0.5),
 ```
 \end{minipage}
 
-### Inferência
+```{r}
+# df <- data.frame(x = seq(-3, 3, by = .05))
+# df$y <- apply(df, 1, function(x) ifelse(x<0, dlaplace(x), dnorm(x)))
+# df$type <- ifelse(df$x < 0, "laplace", "normal")
+# plot(y ~ x, data = df, type = "line", axes=F)
+# axis(1, pos = 0)
+# axis(2, pos = 0, labels = FALSE)
+# p1 <- ggplot(data = df, aes(x, y, color = type)) +
+#   geom_line() +
+#   ylab("") +
+#   scale_y_continuous(breaks = NULL)
+# p1
+# xyplot(y ~ x, group = type, data = df, type = "l", 
+#        scales = list(y = list(draw = FALSE))
+#        )
+```
+
+#### Eficiência estatística
+
+Como mostrado no item anterior, a média é o estimador de máxima verossimilhança 
+quando os dados tem distribuição normal, enquanto a mediana é o estimador de 
+máxima verossimilhança quando os dados assumem a distribuição de Laplace.
+
+Na prática, no entanto, os dados não são perfeitamente normais ou perfeitamente
+laplacianos, porém ajustam-se melhor ou pior a uma ou outra, ou ainda à soma de
+diversas distribuições de probabilidade.
+
+Pode-se demonstrar que, se por um lado a média amostral tem eficiência
+estatística assintótica igual a 1 quando a distribuição dos dados é normal ou
+gaussiana, porém ela tem menos da metade da eficiência da mediana quando a
+distribuição for a distribuição de Laplace e tem eficiência zero para a
+distribuição de Cauchy [@koenker1978, p.36]. 
+
+Isto implica que, se a distribuição dos resíduos é normal, são necessários
+$\pi/2$ (1,57) vezes mais dados para que a estimativa de $\mu$ através da
+mediana seja tão eficiente quanto a estimativa através da média. Logo, neste
+caso, os intervalos de confiança obtidos para a regressão quantílica são 25%
+mais largos do que os intervalos de confiança para a regressão linear
+[@koenker2000, 354; @dasGupta,92]. No entanto, se a distribuição dos dados for a
+distribuição de Laplace, são necessários duas vezes mais dados para que a média
+estime $\mu$ com a mesma precisão da mediana.
+
+Desta maneira, quando há incerteza quanto à real distribuição dos dados, a
+média, no caso escalar, ou a média condicional (regressão linear), considerada o
+estimador ótimo para o caso gaussiano, pode ser preterível à mediana, ou outros
+estimadores, ditos "ineficientes" [@koenker1978, p.36].
+
+A hipótese da normalidade dos dados é virtualmente preestabelecida na comunidade
+científica em geral. No entanto, a verificação da normalidade nem sempre é feita
+de uma maneira rigorasa. Um caso interessante ilustra este fato: ao analisar um
+experimento desenhado por @pierce em 1872 para investigar a validade da lei dos
+erros de Gauss, assim como a aplicabilidade do método dos mínimos quadrados, em
+que este concluiu pela justificativa da adoção da hipótese da normalidade,
+@frechet e depois @wilson concluíram que os dados se adaptavam melhor à primeira
+lei dos erros de Laplace, $\varphi (\epsilon) = Ce^{-|R\epsilon|}$, do que à
+segunda, $\varphi (\epsilon) = Ce^{-R^2\epsilon^2}$, $i.e.$ à distribuição de
+Gauss [@mim, 62].
+
+Segundo @basset [p. 618], para qualquer distribuição de erros em que a mediana é 
+superior à média como um estimador de tendência central (isto se aplica a uma 
+enorme classe de distribuições com caudas longas e/ou densidade máxima na 
+mediana), o estimador de mínimos desvios absolutos é preferível ao estimador de 
+mínimos quadrados, apresentando menores elipsóides de confiança assintóticamente.
+
+## Inferência e Qualidade do ajuste da regressão quantílica
+
+Na regressão linear, normalmente a verificação da qualidade do ajuste do modelo
+é feita através do coeficiente de determinação $R^2$, ou do coeficiente de
+determinação ajustado. @r1 mostra como é calculado a qualidade do ajuste dos
+dados a um modelo de regressão quantílica.
+
+Quando se considera o modelo de regressão linear em que os erros apresentam 
+distribuição normal, o coeficiente de determinação $R^2$ é uma medida bastante 
+utilizada para análise da qualidade do ajuste do modelo. Para os modelos de 
+regressão quantílica, @r1 propuseram uma medida semelhante ao coeficiente de 
+determinação $R^2$, que permite ao pesquisador avaliar a qualidade do ajuste do 
+modelo. Para essa análise, considere-se um modelo linear para o quantil 
+condicional de $(y_i | x_i)$, com $p$ variáveis explicativas. Teremos:
+
+$$Q(y_i | x_i) = x_i' \beta(\tau) = x_{i1}' \beta_1(\tau) + x_{i2}' \beta_2(\tau)$$
+Em que $x_i$, $i$-ésima linha da matriz de planejamento $X$, é particionada em 
+duas partes, aqui chamadas de $x_{i1}$ e $x_{i2}$ de dimensões $p – q$ e $q$, 
+respectivamente. Considere-se que $\hat \beta(\tau)$ é o estimador responsável 
+por minimizar a soma dos desvios absolutos ponderados para o modelo completo. 
+Então teremos:
+
+$$\hat V(\tau) = \sum_{i=1}^n \rho_\tau [y_i - x_i'\beta(\tau)]$$
+E $\tilde \beta(\tau)$, sob restrição q-dimensional $H_0: \beta_2(\tau)=0$, o 
+estimador responsável por minimizar a soma dos desvios absolutos ponderados para 
+o modelo reduzido:
+
+$$\tilde V(\tau) = \sum_{i=1}^n \rho_\tau [y_i - x_i' \tilde \beta(\tau)]$$
+Dessa forma, o coeficiente de determinação para regressão quantílica do 
+modelo (1.5), pode ser definido da seguinte maneira:
+
+$$R^1 = 1 - \frac{\hat V(\tau)}{\tilde V(\tau)}$$
+Considerando que $\tilde \beta(\tau)$ é obtido quando restringimos 
+$\hat \beta(\tau)$, então $\tilde V(\tau) \geq \hat V(\tau)$ e assim tem-se que
+$R^1 (\tau)$ terá valores dentro do intervalo $R^1(\tau) \in [0,1]$, sendo desta 
+forma uma medida possível para mensurar a qualidade do ajuste para um modelo 
+indexado a um determinado quantil da regressão quantílica.
+
+> Se considerarmos no vetor de parâmetros $\beta_2(\tau)$ os coeficientes de 
+regressão associados a todas as variáveis explicativas disponíveis, de forma que 
+o modelo reduzido tenha apenas o intercepto, então $R^1(\tau)$ calculado se 
+assemelha bastante ao coeficiente de explicação $R^2$ comumente utilizado na 
+análise de regressão clássica [@santos2012].
+
+Na medida em que o mede o relativo sucesso de dois modelos para a média 
+condicional em função de termos da variância residual, @r1 (apud @santos2012), 
+nos mostram que o $R^1(\tau)$ mede o relativo sucesso de correspondentes modelos 
+de regressão quantílica em um específico quantil em função de uma apropriada 
+soma de resíduos absolutos ponderados. Sendo assim, o $R^1(\tau)$ trata-se de 
+uma medida local de qualidade de ajuste do modelo de regressão quantílica para 
+um determinado quantil.
+
+É de se esperar que o valor deste critério esteja está entre 0 e 1. Quanto 
+maior o coeficiente de determinação $R^1(\tau)$, melhor a qualidade do modelo 
+ajustado.
+
+A teoria relativa a regressão quantílica já evoluiu bastante desde sua proposta 
+original, com extensões em classes de modelos não lineares propostos por @nlqr. 
+O comportamento assintótico dos estimadores dos modelos de regressão quantílica 
+não linear se assemelha à teoria dos mínimos quadrados não lineares, de forma 
+que a inferência para regressão quantílica não linear pode ser adaptada 
+diretamente dos métodos destes [@koenker_2005].
+
+
+### Intervalos de Confiança
+
+Segundo @qr, é um princípio básico da Econometria que qualquer estimador sério
+deve ter uma forma de verificação da sua precisão. Existem diversas formas de se
+construir intervalos de confiança para a regressão quantílica. A descrição
+destes métodos está fora do escopo deste artigo. Segundo @qr [p. 153], as
+discrepâncias entre os intervalos obtidos para a regressão quantílica e os
+outros métodos disponíveis na econometria são pequenos e a inferência para a
+regressão quantílica é talvez mais robusta do que as outras formas de inferência
+comumente encontradas.
+
+Uma comparação de diversos métodos de cômputo dos intervalos de confiança para 
+diferentes distribuições de erros pode ser encontrada em @rqci.
 
 ## Aplicações da regressão quantílica
 
-### Na Engenharia de Avaliações
+Aplicações da regressão quantílica tem aplicação em especial na Econometria, mas 
+também nos mais diversos ramos da ciência, na solução ou descrição de diversos 
+problemas. Para isto, foram desenvolvidos diferentes métodos de análise de quantis, análogos aos variados métodos de regressão existentes para a média.
 
-@Zietz mostra...
+Para dados em séries temporais, foram desenvolvidos métodos para modelos
+autoregressivos (AR), autoregressivos heteroscedásticos (ARCH) e ARCH
+generalizados (GARCH) [ver @qar; @arch; @garch]. Para dados longitudinais, ou em
+painel, foram desenvolvidos modelos mistos [ver @koenker2003].
 
+Aplicações interessantes nas finanças e Econometria incluem a otimização de
+portfólios de investimentos [@portfolio], e análise de dados de desemprego
+[@duration].
+
+Um resumo dos diversos métodos e aplicações da regressão quantílica podem ser
+encontrados em @qr40.
 
 # Estudos de Caso
 
@@ -527,7 +737,7 @@ ilustra a aplicação da regressão quantílica e da regressão linear para este
 caso. Na figura \ref{fig:qr1}, a reta vermelha é a reta de regressão linear
 entre as variáveis. A área sombreada em cinza é o intervalo de confiança para a
 regressão linear \@80\%. As retas azuis são as retas de regressão quantílica
-para os quantis 0,1; 0,2; 0,3; 0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
+para os decis $D_1$ (0,1) a $D_9$ (0,9).
 
 A regressão quantílica neste caso pode ser usada para demonstrar a não validade
 dos intervalos de confiança (IC) e predição (IP) para a regressão linear para
@@ -576,8 +786,55 @@ regressão linear.
 plot(summary(qr), parm="area_total")
 ```
 
-Já para os dados transformados, pode-se notar na figura \ref{fig:coef2} que para
-todos os quantis, os coeficientes da regressão quantílica não podem ser
+Outra forma de se analisar este gráfico é: a área total tem maior influencia na
+formação de valor de um imóvel nos quantis superiores (acima de 0,55) e menor
+influência nos quantis inferiores (abaixo de 0,3). Os coeficientes para os
+quantis 0,3; 0,5 e 0,8 podem ser vistos na tabela \ref{tab:fits}. Para um imóvel
+no quantil central ($\tau = 0,5$), uma unidade marginal de área adiciona
+aproximadamente 18,5% mais valor do que em um imóvel nos quantis inferiores e
+para um imóvel nos quantis superiores uma unidade marginal de área adiciona
+aproximadamente 19,5% mais valor do que para um imóvel no quantil central ($\tau
+= 0,5$).
+
+```{r, results='asis'}
+fit1 <- rq(valor ~ area_total, data = dados, tau = 0.3)
+fit2 <- rq(valor ~ area_total, data = dados, tau = 0.5)
+fit3 <- rq(valor ~ area_total, data = dados, tau = 0.8)
+stargazer(
+  fit1,
+  fit2,
+  fit3,
+  type = type,
+  header = FALSE,
+  column.labels = c("$\\tau=0,3$", "$\\tau=0,5$", "$\\tau=0,8$"),
+  model.numbers = FALSE,
+  label = "tab:fits",
+  title = "Comparação entre diferentes quantis da regressão quantílica.",
+  report = "vcstp*",
+  star.cutoffs = c(0.30, 0.20, 0.10),
+  intercept.bottom = FALSE,
+  decimal.mark = ",",
+  digit.separator = ".",
+  digits= 2
+)
+```
+
+
+Está claro, aqui, que o efeito maior da variável área total nos quantis
+superiores é devido ao efeito de um covariante, por exemplo, o padrão de
+acabamento, variável omitida do modelo, que deve estar correlacionada com a
+variável área total (imóveis de alto padrão usualmente contam com área total
+maior e imóveis de menor área tem menor padrão de acabamento). Mas isto serve
+para ilustrar bem o funcionamento da regressão quantílica e uma de suas
+vantagens em relação à regressão linear: na regressão linear, a omissão da
+variável padrão de acabamento, em conjunto com um único coeficiente médio para a
+variável área resultaria em um modelo viesado. Já na regressão quantílica, mesmo
+a variável padrão de acabamento estando ausente, o seu efeito se faz sentir pela
+mudança na magnitude do coeficiente da variável presente, ou seja, no caso, a
+variável área total.
+
+Já no caso dos dados transformados, pode-se notar na figura \ref{fig:coef2} que
+para todos os quantis, os coeficientes da regressão quantílica não podem ser
 considerados estatisticamente diferentes do coeficiente da regressão linear.
 Também se pode notar nesta figura como o estimador de regressão linear, para uma
 variável normalmente distribuída e na ausência de heteroscedasticidade, é mais
@@ -593,8 +850,9 @@ plot(summary(qr2), parm="log(area_total)")
 
 Para os dados obtidos de Hochheim [-@hochheim, 22-23] foram ajustados dois
 modelos, um de regressão linear, com os dados saneados, e outro de regressão
-quantílica, utilizando-se a totalidade dos dados, para os quantis 0,1; 0,2; 0,3;
-0,4; 0,5; 0,6; 0,7; 0,8 e 0,9.
+quantílica, utilizando-se a totalidade dos dados, para os decis $D_1$ (0,1) a
+$D_9$ (0,9).
+
 Na figura \ref{fig:coefs} podem ser vistos os valores dos coeficientes de cada
 variável para os diferentes quantis. Pode-se perceber, mais uma vez, que o valor
 dos coeficientes da regressão quantílica não diferem significantemente dos
@@ -611,7 +869,7 @@ fit_qr <- rq(log(valor) ~ area_total + quartos + suites + garagens +
 plot(summary(fit_qr))
 ```
 
-Na tabela \ref{tab:fits} podem ser vistos os coeficientes e estatísticas básicas
+Na tabela \ref{tab:mfits} podem ser vistos os coeficientes e estatísticas básicas
 dos modelos de regressão linear e de regressão à mediana (quantil 0,5).
 
 ```{r}
@@ -629,9 +887,21 @@ fit_3 <- rq(log(valor) ~ area_total + quartos + suites + garagens +
 ```
 
 ```{r, results='asis'}
-stargazer(fit, fit_1, type = type, header = FALSE, label = "tab:fits",
-          title = "Comparação entre os modelos de regressão linear e regressão à mediana.",
-          report = "vcstp*", ci = TRUE, ci.level = .80, star.cutoffs = c(0.30, 0.20, 0.10))
+stargazer(
+  fit,
+  fit_1,
+  type = type,
+  header = FALSE,
+  label = "tab:mfits",
+  title = "Comparação entre os modelos de regressão linear e regressão à mediana.",
+  report = "vcstp*",
+  ci = TRUE,
+  ci.level = .80,
+  star.cutoffs = c(0.30, 0.20, 0.10),
+  intercept.bottom = FALSE,
+  decimal.mark = ",",
+  digit.separator = "."
+)
 ```
 
 ```{r}
@@ -640,6 +910,13 @@ pp <- predict(fit, newdata = dados[52,], interval = "prediction", level = .80)
 p1 <- predict(fit_1, newdata = dados[52,], interval = "confidence", level = .80)
 p2 <- predict(fit_2, newdata = dados[52,], interval = "confidence", level = .80)
 p3 <- predict(fit_3, newdata = dados[52,], interval = "confidence", level = .80)
+P <- brformat(exp(p), nsmall = 0)
+PP <- brformat(exp(pp), nsmall = 0)
+P1 <- brformat(exp(p1), nsmall = 0)
+P2 <- brformat(exp(p2), nsmall = 0)
+P3 <- brformat(exp(p3), nsmall = 0)
+amp_ols <- brformat(amplitude(exp(p)))
+amp_rq <- brformat(amplitude(exp(p1)))
 ```
 
 ### Estimativas
@@ -654,15 +931,14 @@ Deve-se levar em conta que as estimativas com o modelo de regressão linear aqui
 apresentadas são para a mediana da distribuição lognormal.
 
 Pelo modelo de regressão linear, o valor da estimativa central  encontrado foi
-de R\$`r brformat(exp(p[, "fit"]))`, com intervalo de confiança entre R\$ `r
+de R\$`r brformat(exp(p[, "fit"]))`, com intervalo de confiança entre R\$ `r 
 brformat(exp(p[, "lwr"]))` e R\$ `r brformat(exp(p[, "upr"]))`. A amplitude do
 intervalo de confiança foi de `r porcento(amplitude(exp(p))/100)`.
 
 Já pelo modelo de regressão quantílica, o valor da estimativa central encontrado
 foi de R\$`r brformat(exp(p1[, "fit"]))`, com intervalo de confiança entre R\$
 `r brformat(exp(p1[, "lower"]))` e R\$ `r brformat(exp(p1[, "higher"]))`. A
-amplitude do intervalo de confiança foi de  `r
-porcento(amplitude(exp(p1))/100)`.
+amplitude do intervalo de confiança foi de  `r porcento(amplitude(exp(p1))/100)`.
 
 O modelo de regressão linear mostrou-se, portanto, mais eficiente do que o
 modelo de regressão a mediana, apesar no menor número de dados.
@@ -671,18 +947,57 @@ regressão linear são, respectivamente:  R\$ `r brformat(exp(pp[, "lwr"]))` e R
 `r brformat(exp(pp[, "upr"]))`.
 
 Para o modelo de regressão quantílica, o intervalo de predição não faz qualquer
-sentido. No entanto, é possível estimar os valores diretamente para os quantis
-0,1 e 0,9 da população. Nesta caso, os valores encontrados foram,
-respectivamente: R\$ `r brformat(exp(p2[, "fit"]))` e R\$ `r brformat(exp(p3[,
-"fit"]))`.
+sentido. No entanto, é possível estimar os valores diretamente para os decis
+$D_1$ e $D_9$ da população, para efeito de comparação com os limites do
+intervalo de predição para a regressão linear. Nesta caso, os valores
+encontrados foram, respectivamente: R\$ `r brformat(exp(p2[, "fit"]))` e R\$ `r 
+brformat(exp(p3[, "fit"]))`.
 
 Podem ainda ser calculados os intervalos de confiança \@80\% para as estimativas
-dos quantis 0,1 e 0,9.
+dos decis $D_1$ e $D_9$.
 
-Os limites inferior e superior do IC para o quantil 0,1 são, respectivamente:
+Os limites inferior e superior do IC para o $D_1$ são, respectivamente:
 R\$ `r brformat(exp(p2[, "lower"]))` e R\$ `r brformat(exp(p2[, "higher"]))`.
 
-Os limites inferior e superior do IC para o quantil 0,9 são, respectivamente:
+Os limites inferior e superior do IC para o $D_9$ são, respectivamente:
 R\$ `r brformat(exp(p3[, "lower"]))` e R\$ `r brformat(exp(p3[, "higher"]))`.
+
+A tabela abaixo resume os resultados obtidos acima: pode-se notar que há uma
+melhor estimação com o método de regressão linear (IC menores).
+
+
+|   Método             | 10% / IP        |       IC inferior |  Estimativa Central |  IC Superior      | 90% / IP        |
+|----------------------|-----------------|-------------------|---------------------|-------------------|-----------------|
+| Regressão linear     | `r PP[, "lwr"]` | `r P[, "lwr"]`    | `r PP[, "fit"]`     | `r P[, "upr"]`    | `r PP[, "upr"]` |
+| Regressão quantílica | `r P2[, "fit"]` | `r P1[, "lower"]` | `r P1[, "fit"]`     | `r P1[, "higher"]`| `r P3[, "fit"]` |
+
+
+Table: Comparação dos modelos de regressão linear e regressão quantílica.
+
+# Conclusão
+
+A regressão quantílica é um método que deve ser considerado na Engenharia de
+Avaliações, por possibilitar uma melhor descrição de todo o mercado imobiliário,
+para além apenas do efeito médio obtido com a regressão linear.
+
+No entanto, deve ser levado em conta a distribuição dos erros do modelo: quando
+os erros obedecem à lei de Gauss (ou segunda lei de Laplace), *i.e.* se os erros
+tem distribuição normal, como no estudo de caso dos dados multivariados, onde se
+obteve normalidade através da simples transformação da variável resposta pela 
+função logarítmica, o método da regressão linear é mais eficiente, até para a 
+estimação da mediana.
+
+Porém, deve-se levar em conta que nem sempre os dados amostrais vão se
+apresentar tão bem comportados. A presença de heteroscedasticidade pode reduzir
+significantemente a eficiência da estimação pelo método dos mínimos quadrados. A
+ausência de normalidade também pode vir a ocorrer.  Nem sempre se pode obter a
+normalidade através de uma simples transformação de variáveis. Além do mais, 
+transformações de variáveis distorcem o modelo, por isso são indesejáveis.
+
+O Engenheiro de Avaliações deve estar preparado para o tratamento dos mais
+diversos tipos de dados. O método da regressão quantílica pode ser um aliado do
+Engenheiro de Avaliações quando a estrutura dos dados não for a ideal, ou seja,
+a estrutura de erros normais e homoscedásticos, onde a regressão linear impera.
+
 
 # Referências {-}
